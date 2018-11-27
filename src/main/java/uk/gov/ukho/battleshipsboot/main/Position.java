@@ -5,6 +5,7 @@ import java.util.Objects;
 public class Position {
     private Column col;
     private int row;
+    private boolean isHit;
 
     public Position(Column col, int row) {
         if(row > 10){
@@ -12,6 +13,7 @@ public class Position {
         }
         this.col = col;
         this.row = row;
+        isHit = false;
     }
 
     public Column getCol() {
@@ -41,4 +43,13 @@ public class Position {
     public int hashCode() {
         return Objects.hash(col, row);
     }
+
+    public void setHit(){
+        isHit = true;
+    }
+
+    public boolean isHit() {
+        return isHit;
+    }
+
 }

@@ -6,12 +6,12 @@ import uk.gov.ukho.battleshipsboot.main.Position;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 public abstract class Ship {
     private final int LENGTH;
     private Position position;
     private List<Position> occupiedPositions;
-    private List<Position> hitPositions;
     private boolean isSunk;
     private Orientation orient;
 
@@ -32,8 +32,18 @@ public abstract class Ship {
         return orient;
     }
 
-    public Position getPosition(int anInt) {
+    public Position getOccupiedPosition(int anInt) {
         return occupiedPositions.get(anInt);
+    }
+
+    public Position getOccupiedPosition(Position position) {
+        Optional<Position> occupiedPosition = occupiedPositions.stream()
+                .filter(p -> p.equals(position)).findFirst();
+
+        if(occupiedPosition.isPresent()) {
+            return occupiedPosition.get();
+        }
+        return null;
     }
 
     public List<Position> getOccupiedPositions() {
@@ -60,11 +70,17 @@ public abstract class Ship {
 
 
 
-//    public void setHitPosition(int anInt) {
-//        hits.set(anInt, true);
-//        if(!hits.contains(false)) {
-//            isSunk = true;
-//        }
-//    }
+    public void setHitPosition(Position position) {
+        for(Position aPosition: occupiedPositions) {
+            if(aPosition.equals(position)) {
+                aPosition.setHit();
+            }
+        }
+
+        boolean allPositionsHit = occupiedPositions.stream().allMatch(p -> p.isHit());
+        if(allPositionsHit) {
+            isSunk = true;
+        }
+    }
 
 }

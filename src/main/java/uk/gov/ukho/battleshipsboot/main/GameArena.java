@@ -1,11 +1,11 @@
 package uk.gov.ukho.battleshipsboot.main;
 import uk.gov.ukho.battleshipsboot.ships.Ship;
-
 import java.util.*;
 
 public class GameArena {
 
-    private List<Ship> shipsOnBoard= new ArrayList<>();
+    private List<Ship> shipsOnBoard = new ArrayList<>();
+    private List<Position> shotPositions = new ArrayList<>();
 
     public boolean addShip(Ship ship){
         if(shipAlreadyExists(ship)) {
@@ -40,10 +40,10 @@ public class GameArena {
     }
 
     public boolean isShipOffBoard(Ship ship) {
-        if(ship.getOrient() == Orientation.VERTICAL && ship.getPosition(0).getRow() > 10) {
+        if(ship.getOrient() == Orientation.VERTICAL && ship.getOccupiedPosition(0).getRow() > 10) {
                 return true;
         }
-        if(ship.getPosition(0).getCol().toString().charAt(0) + ship.getLength() > 'K') {
+        if(ship.getOccupiedPosition(0).getCol().toString().charAt(0) + ship.getLength() > 'K') {
                 return true;
         }
         return false;
@@ -65,5 +65,15 @@ public class GameArena {
             }
         }
         return false;
+    }
+
+    public void shoot(Position position) {
+        position.setHit();
+        for(Ship ship : shipsOnBoard) {
+           if(ship.getOccupiedPositions().contains(position)) {
+               ship.setHitPosition(position);
+           }
+           shotPositions.add(position);
+       }
     }
 }
