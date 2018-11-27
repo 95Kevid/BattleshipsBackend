@@ -38,7 +38,7 @@ public class GameArena {
         }
         return null;
     }
-     // this is nuts
+     // this is nutsrfg
     public boolean isShipOffBoard(Ship ship) {
         if(ship.getOrient() == Orientation.VERTICAL && ship.getPosition(0).getRow() > 10) {
                 return true;
