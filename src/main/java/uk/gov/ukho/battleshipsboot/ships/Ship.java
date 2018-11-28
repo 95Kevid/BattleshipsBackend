@@ -68,8 +68,6 @@ public abstract class Ship {
         }
     }
 
-
-
     public void setHitPosition(Position position) {
         for(Position aPosition: occupiedPositions) {
             if(aPosition.equals(position)) {
@@ -81,6 +79,10 @@ public abstract class Ship {
         if(allPositionsHit) {
             isSunk = true;
         }
+    }
+
+    public boolean isSunk() {
+        return isSunk;
     }
 
 }

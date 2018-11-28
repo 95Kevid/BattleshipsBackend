@@ -6,6 +6,8 @@ public class GameArena {
 
     private List<Ship> shipsOnBoard = new ArrayList<>();
     private List<Position> shotPositions = new ArrayList<>();
+    private List<Ship> sunkShips = new ArrayList<>();
+
 
     public boolean addShip(Ship ship){
         if(shipAlreadyExists(ship)) {
@@ -72,8 +74,15 @@ public class GameArena {
         for(Ship ship : shipsOnBoard) {
            if(ship.getOccupiedPositions().contains(position)) {
                ship.setHitPosition(position);
+               if(ship.isSunk() == true) {
+                   sunkShips.add(ship);
+               }
            }
            shotPositions.add(position);
        }
+    }
+
+    public List<Ship> getSunkShips() {
+        return new ArrayList<>(sunkShips);
     }
 }

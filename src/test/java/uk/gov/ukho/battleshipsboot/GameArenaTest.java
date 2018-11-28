@@ -1,11 +1,11 @@
 package uk.gov.ukho.battleshipsboot;
 import org.junit.Before;
 import org.junit.Test;
-import uk.gov.ukho.battleshipsboot.main.Column;
-import uk.gov.ukho.battleshipsboot.main.GameArena;
-import uk.gov.ukho.battleshipsboot.main.Orientation;
-import uk.gov.ukho.battleshipsboot.main.Position;
+import uk.gov.ukho.battleshipsboot.main.*;
 import uk.gov.ukho.battleshipsboot.ships.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import static junit.framework.TestCase.assertSame;
 import static org.junit.Assert.assertFalse;
@@ -21,7 +21,7 @@ public class GameArenaTest {
     private Cruiser cruiser;
 
     @Before
-    public void initateTest () {
+    public void initateTest() {
         gameArena = new GameArena();
     }
 
@@ -39,7 +39,7 @@ public class GameArenaTest {
         carrier = new Carrier(Orientation.HORIZONTAL, positionF10);
         submarine = new Submarine(Orientation.VERTICAL, positionG6);
         destroyer = new Destroyer(Orientation.VERTICAL, positionA1);
-        cruiser =  new Cruiser(Orientation.HORIZONTAL, positionA10);
+        cruiser = new Cruiser(Orientation.HORIZONTAL, positionA10);
 
         gameArena.addShip(destroyer);
         gameArena.addShip(battleship);
@@ -67,7 +67,7 @@ public class GameArenaTest {
     }
 
     @Test
-    public void ships_can_not_be_placed_on_another_ship_when_placing_vertically(){
+    public void ships_can_not_be_placed_on_another_ship_when_placing_vertically() {
         gameArena.clear();
 
         Position positionA1 = new Position(A, 1);
@@ -148,7 +148,7 @@ public class GameArenaTest {
     public void positions_the_ship_occupies_that_are_hit_are_set_to_hit() {
         gameArena.clear();
 
-        submarine = new Submarine(Orientation.VERTICAL,new Position(A,1));
+        submarine = new Submarine(Orientation.VERTICAL, new Position(A, 1));
         battleship = new Battleship(Orientation.HORIZONTAL, new Position(B, 4));
 
         gameArena.addShip(submarine);
@@ -166,6 +166,75 @@ public class GameArenaTest {
         assertTrue(submarine.getOccupiedPosition(position1).isHit());
         assertFalse(battleship.getOccupiedPosition(position3).isHit());
         assertTrue(battleship.getOccupiedPosition(position4).isHit());
+    }
+
+    @Test
+    public void ships_sunk_when_all_hit_points_have_been_hit() {
+        gameArena.clear();
+
+        submarine = new Submarine(Orientation.VERTICAL, new Position(A, 1));
+        battleship = new Battleship(Orientation.HORIZONTAL, new Position(B, 4));
+
+        gameArena.addShip(submarine);
+        gameArena.addShip(battleship);
+
+        gameArena.shoot(new Position(A, 1));
+        gameArena.shoot(new Position(A, 2));
+
+        assertFalse(submarine.isSunk());
+
+        gameArena.shoot(new Position(A, 3));
+        assertTrue(submarine.isSunk());
+    }
+
+    @Test
+    public void list_of_sunk_ships_are_kept() {
+        gameArena.clear();
+
+        submarine = new Submarine(Orientation.VERTICAL, new Position(A, 1));
+        battleship = new Battleship(Orientation.HORIZONTAL, new Position(B, 4));
+        cruiser = new Cruiser(Orientation.VERTICAL, new Position(Column.G, 3));
+        carrier = new Carrier(Orientation.HORIZONTAL, new Position(Column.E, 4));
+
+        gameArena.addShip(submarine);
+        gameArena.addShip(battleship);
+        gameArena.addShip(cruiser);
+        gameArena.addShip(carrier);
+
+        gameArena.shoot(new Position(B, 4));
+        gameArena.shoot(new Position(C, 4));
+        gameArena.shoot(new Position(D, 4));
+        gameArena.shoot(new Position(E, 4));
+
+        gameArena.shoot(new Position(A, 1));
+        gameArena.shoot(new Position(A, 2));
+        gameArena.shoot(new Position(A, 3));
+        gameArena.shoot(new Position(A, 4));
+
+        assertTrue(gameArena.getSunkShips().contains(battleship));
+        assertTrue(gameArena.getSunkShips().contains(submarine));
+        assertFalse(gameArena.getSunkShips().contains(cruiser));
+    }
+
+    @Test
+    public void can_start_one_player_game_with_correct_ship_placement() {
+        gameArena.clear();
+
+        List<Ship> ships = new ArrayList<>();
+        battleship = new Battleship(Orientation.VERTICAL, new Position(F, 1));
+        carrier = new Carrier(Orientation.HORIZONTAL, new Position(F, 10));
+        submarine = new Submarine(Orientation.VERTICAL, new Position(G, 6));
+        destroyer = new Destroyer(Orientation.VERTICAL, new Position(A, 1));
+        cruiser = new Cruiser(Orientation.HORIZONTAL, new Position((A, 10));
+
+        ships.add(battleship);
+        ships.add(carrier);
+        ships.add(submarine);
+        ships.add(destroyer);
+        ships.add(cruiser);
+
+        Game game =  new Game();
+        game.start(1, ships);
     }
 
 }
