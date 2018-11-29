@@ -37,8 +37,8 @@ public abstract class Ship {
         return occupiedPositions;
     }
 
-    public void addOccupiedPosition(int index, Position position) {
-        occupiedPositions.add(index, position);
+    public void setOccupiedPosition(List<Position> occupiedPosition) {
+        this.occupiedPositions = occupiedPosition;
     }
 
     public void setSunk(Boolean isSunk) {
