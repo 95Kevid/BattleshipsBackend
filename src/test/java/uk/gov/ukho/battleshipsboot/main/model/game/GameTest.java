@@ -1,4 +1,4 @@
-package uk.gov.ukho.battleshipsboot.main;
+package uk.gov.ukho.battleshipsboot.main.model.game;
 
 import org.junit.Test;
 import uk.gov.ukho.battleshipsboot.model.game.Game;

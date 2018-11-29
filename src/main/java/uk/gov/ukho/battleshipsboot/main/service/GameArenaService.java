@@ -70,7 +70,7 @@ public class GameArenaService {
             if(ship.getOccupiedPositions().contains(position)) {
                 ship.setHitPosition(position);
                 if(ship.isSunk() == true) {
-                    gameArena.getSunkShips().add(ship);
+                    gameArena.addSunkenShip(ship);
                 }
             }
             gameArena.addShotPosition(position);

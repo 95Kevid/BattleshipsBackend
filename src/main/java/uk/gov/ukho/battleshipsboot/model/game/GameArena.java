@@ -22,7 +22,7 @@ public class GameArena {
     }
 
     public List<Ship> getShipsOnBoard() {
-        return new ArrayList<Ship>(shipsOnBoard);
+        return shipsOnBoard;
     }
 
     public void addShip(Ship ship) {
@@ -41,5 +41,9 @@ public class GameArena {
         shipsOnBoard.clear();
         shotPositions.clear();
         sunkShips.clear();
+    }
+
+    public void addSunkenShip(Ship ship) {
+        sunkShips.add(ship);
     }
 }

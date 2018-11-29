@@ -1,8 +1,7 @@
-package uk.gov.ukho.battleshipsboot.main;
+package uk.gov.ukho.battleshipsboot.main.model.game;
 import org.junit.Before;
 import org.junit.Test;
 import uk.gov.ukho.battleshipsboot.main.service.GameArenaService;
-import uk.gov.ukho.battleshipsboot.model.game.Game;
 import uk.gov.ukho.battleshipsboot.model.game.GameArena;
 import uk.gov.ukho.battleshipsboot.model.game.Orientation;
 import uk.gov.ukho.battleshipsboot.model.game.Position;
@@ -197,7 +196,7 @@ public class GameArenaTest {
         submarine = new Submarine(Orientation.VERTICAL, new Position(A, 1));
         battleship = new Battleship(Orientation.HORIZONTAL, new Position(B, 4));
         cruiser = new Cruiser(Orientation.VERTICAL, new Position(Column.G, 3));
-        carrier = new Carrier(Orientation.HORIZONTAL, new Position(Column.E, 4));
+        carrier = new Carrier(Orientation.HORIZONTAL, new Position(A, 10));
 
         gameArenaService.addShip(submarine, gameArena);
         gameArenaService.addShip(battleship, gameArena);
@@ -218,14 +217,4 @@ public class GameArenaTest {
         assertTrue(gameArena.getSunkShips().contains(submarine));
         assertFalse(gameArena.getSunkShips().contains(cruiser));
     }
-
-
-
-
-
-
-
-
-
-
 }
