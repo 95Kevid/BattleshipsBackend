@@ -34,19 +34,18 @@ public abstract class Ship {
     }
 
     public List<Position> getOccupiedPositions() {
-        return new ArrayList<>(occupiedPositions);
+        return occupiedPositions;
     }
 
     public void addOccupiedPosition(int index, Position position) {
         occupiedPositions.add(index, position);
     }
 
+    public void setSunk(Boolean isSunk) {
+        this.isSunk = isSunk;
+    }
+
     public boolean isSunk() {
         return isSunk;
     }
-
-    public void sink() {
-        isSunk = true;
-    }
-
 }

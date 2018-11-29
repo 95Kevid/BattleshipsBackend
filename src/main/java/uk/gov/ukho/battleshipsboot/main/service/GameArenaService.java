@@ -120,7 +120,7 @@ public class GameArenaService {
                 .allMatch(p -> p.isHit());
 
         if(allPositionsHit) {
-            ship.sink();
+            ship.setSunk(true);
         }
     }
 }

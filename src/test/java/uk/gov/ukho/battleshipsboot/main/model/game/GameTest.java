@@ -24,10 +24,10 @@ public class GameTest {
     public void whenIAddPlayersToAGameThenItIsTheSameAsTheOnesThatAreRequestedFromIt() {
         Game game = new Game(1);
 
-        Player player1 = new Player();
-        Player player2 = new Player();
-        Player player3 = new Player();
-        Player player4 = new Player();
+        Player player1 = new Player(1);
+        Player player2 = new Player(2);
+        Player player3 = new Player(3);
+        Player player4 = new Player(4);
 
         game.addPlayer(player1);
         game.addPlayer(player2);
