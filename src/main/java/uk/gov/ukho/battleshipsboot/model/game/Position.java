@@ -22,16 +22,8 @@ public class Position {
         return col;
     }
 
-    public void setCol(Column col) {
-        this.col = col;
-    }
-
     public int getRow() {
         return row;
-    }
-
-    public void setRow(int row) {
-        this.row = row;
     }
 
     public boolean equals(Object object) {

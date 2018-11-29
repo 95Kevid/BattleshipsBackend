@@ -165,9 +165,9 @@ public class GameArenaTest {
         gameArenaService.registerHit(position2, gameArena);
         gameArenaService.registerHit(position4, gameArena);
 
-        assertTrue(submarine.getOccupiedPosition(position1).isHit());
-        assertFalse(battleship.getOccupiedPosition(position3).isHit());
-        assertTrue(battleship.getOccupiedPosition(position4).isHit());
+        assertTrue(gameArenaService.getOccupiedPositionsOfShip(position1, submarine).isHit());
+        assertFalse(gameArenaService.getOccupiedPositionsOfShip(position3, battleship).isHit());
+        assertTrue(gameArenaService.getOccupiedPositionsOfShip(position4, battleship).isHit());
     }
 
     @Test

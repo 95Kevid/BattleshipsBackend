@@ -9,14 +9,6 @@ public class GameArena {
     private List<Position> shotPositions = new ArrayList<>();
     private List<Ship> sunkShips = new ArrayList<>();
 
-    public List<Position> getShotPositions() {
-        return shotPositions;
-    }
-
-    public void setShotPositions(List<Position> shotPositions) {
-        this.shotPositions = new ArrayList<>(shotPositions);
-    }
-
     public List<Ship> getSunkShips() {
         return new ArrayList<>(sunkShips);
     }
