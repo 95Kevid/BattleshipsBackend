@@ -1,4 +1,6 @@
-package uk.gov.ukho.battleshipsboot.main;
+package uk.gov.ukho.battleshipsboot.model.game;
+
+import uk.gov.ukho.battleshipsboot.model.ships.Column;
 
 import java.util.Objects;
 

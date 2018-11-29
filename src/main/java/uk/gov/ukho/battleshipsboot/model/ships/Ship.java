@@ -1,8 +1,7 @@
-package uk.gov.ukho.battleshipsboot.ships;
+package uk.gov.ukho.battleshipsboot.model.ships;
 
-import uk.gov.ukho.battleshipsboot.main.Column;
-import uk.gov.ukho.battleshipsboot.main.Orientation;
-import uk.gov.ukho.battleshipsboot.main.Position;
+import uk.gov.ukho.battleshipsboot.model.game.Orientation;
+import uk.gov.ukho.battleshipsboot.model.game.Position;
 
 import java.util.ArrayList;
 import java.util.List;

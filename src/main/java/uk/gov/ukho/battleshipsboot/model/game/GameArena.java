@@ -1,5 +1,6 @@
-package uk.gov.ukho.battleshipsboot.main;
-import uk.gov.ukho.battleshipsboot.ships.Ship;
+package uk.gov.ukho.battleshipsboot.model.game;
+import uk.gov.ukho.battleshipsboot.model.ships.Ship;
+
 import java.util.*;
 
 public class GameArena {
@@ -69,7 +70,7 @@ public class GameArena {
         return false;
     }
 
-    public void shoot(Position position) {
+    public void registerHit(Position position) {
         position.setHit();
         for(Ship ship : shipsOnBoard) {
            if(ship.getOccupiedPositions().contains(position)) {
@@ -84,5 +85,9 @@ public class GameArena {
 
     public List<Ship> getSunkShips() {
         return new ArrayList<>(sunkShips);
+    }
+
+    public List<Ship> getShipsOnBoard() {
+        return shipsOnBoard;
     }
 }
