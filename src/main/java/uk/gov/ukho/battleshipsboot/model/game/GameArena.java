@@ -9,78 +9,12 @@ public class GameArena {
     private List<Position> shotPositions = new ArrayList<>();
     private List<Ship> sunkShips = new ArrayList<>();
 
-
-    public boolean addShip(Ship ship){
-        if(shipAlreadyExists(ship)) {
-            return false;
-        }
-
-        if(isShipOffBoard(ship)) {
-            return false;
-        }
-
-        ship.setOccupiedPositions();
-
-        if(positionsAlreadyOccupied(ship)) {
-            return false;
-        }
-
-        shipsOnBoard.add(ship);
-        return true;
+    public List<Position> getShotPositions() {
+        return shotPositions;
     }
 
-    private boolean shipAlreadyExists(Ship ship) {
-        return (shipsOnBoard.contains(ship));
-    }
-
-    public Ship getShipAtPosition(Position position) {
-        for(Ship aShip: shipsOnBoard) {
-            if(aShip.getOccupiedPositions().contains(position)) {
-                return aShip;
-            }
-        }
-        return null;
-    }
-
-    public boolean isShipOffBoard(Ship ship) {
-        if(ship.getOrient() == Orientation.VERTICAL && ship.getOccupiedPosition(0).getRow() > 10) {
-                return true;
-        }
-        if(ship.getOccupiedPosition(0).getCol().toString().charAt(0) + ship.getLength() > 'K') {
-                return true;
-        }
-        return false;
-    }
-
-    public void clear(){
-        shipsOnBoard.clear();
-    }
-
-    public boolean positionsAlreadyOccupied(Ship ship) {
-        for(Ship aShip : shipsOnBoard){
-            boolean isShipOccupyingPosition = aShip.getOccupiedPositions()
-                    .stream()
-                    .anyMatch(ship.getOccupiedPositions()::contains);
-
-            if(isShipOccupyingPosition)
-            {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public void registerHit(Position position) {
-        position.setHit();
-        for(Ship ship : shipsOnBoard) {
-           if(ship.getOccupiedPositions().contains(position)) {
-               ship.setHitPosition(position);
-               if(ship.isSunk() == true) {
-                   sunkShips.add(ship);
-               }
-           }
-           shotPositions.add(position);
-       }
+    public void setShotPositions(List<Position> shotPositions) {
+        this.shotPositions = new ArrayList<>(shotPositions);
     }
 
     public List<Ship> getSunkShips() {
@@ -88,6 +22,24 @@ public class GameArena {
     }
 
     public List<Ship> getShipsOnBoard() {
-        return shipsOnBoard;
+        return new ArrayList<Ship>(shipsOnBoard);
+    }
+
+    public void addShip(Ship ship) {
+        shipsOnBoard.add(ship);
+    }
+
+    public boolean isShipOnBoard(Ship ship) {
+        return shipsOnBoard.contains(ship);
+    }
+
+    public void addShotPosition(Position position) {
+        this.shotPositions.add(position);
+    }
+
+    public void clearArena() {
+        shipsOnBoard.clear();
+        shotPositions.clear();
+        sunkShips.clear();
     }
 }
