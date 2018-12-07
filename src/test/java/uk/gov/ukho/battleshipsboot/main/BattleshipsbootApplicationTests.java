@@ -1,4 +1,4 @@
-package uk.gov.ukho.battleshipsboot;
+package uk.gov.ukho.battleshipsboot.main;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

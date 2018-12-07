@@ -1,24 +1,34 @@
 package uk.gov.ukho.battleshipsboot.model.ships;
 
+import uk.gov.ukho.battleshipsboot.model.game.BoardPosition;
 import uk.gov.ukho.battleshipsboot.model.game.Orientation;
-import uk.gov.ukho.battleshipsboot.model.game.Position;
+
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static javax.persistence.CascadeType.PERSIST;
+
+@Entity
 public abstract class Ship {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
     private final int LENGTH;
-    private Position position;
-    private List<Position> occupiedPositions;
+
+
+    @OneToMany(cascade = PERSIST)
+    private List<BoardPosition> occupiedBoardPositions;
     private boolean isSunk;
     private Orientation orient;
 
-    public Ship(int length, Orientation orient, Position position){
+    public Ship(int length, Orientation orient, BoardPosition boardPosition){
         LENGTH = length;
-        occupiedPositions = new ArrayList<>();
-        occupiedPositions.add(0, position);
+        occupiedBoardPositions = new ArrayList<>();
+        occupiedBoardPositions.add(0, boardPosition);
         isSunk = false;
         this.orient = orient;
-        this.position = position;
     }
 
     public int getLength() {
@@ -29,16 +39,14 @@ public abstract class Ship {
         return orient;
     }
 
-    public Position getOccupiedPosition(int anInt) {
-        return occupiedPositions.get(anInt);
+    public BoardPosition getOccupiedPosition(int anInt) {
+        return occupiedBoardPositions.get(anInt);
     }
 
-    public List<Position> getOccupiedPositions() {
-        return occupiedPositions;
-    }
+    public List<BoardPosition> getOccupiedBoardPositions() { return occupiedBoardPositions;}
 
-    public void setOccupiedPosition(List<Position> occupiedPosition) {
-        this.occupiedPositions = occupiedPosition;
+    public void setOccupiedPosition(List<BoardPosition> occupiedBoardPosition) {
+        this.occupiedBoardPositions = occupiedBoardPosition;
     }
 
     public void setSunk(Boolean isSunk) {

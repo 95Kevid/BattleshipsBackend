@@ -2,14 +2,24 @@ package uk.gov.ukho.battleshipsboot.model.game;
 
 import uk.gov.ukho.battleshipsboot.model.ships.Column;
 
+import javax.persistence.*;
 import java.util.Objects;
 
-public class Position {
+@Entity
+public class BoardPosition {
+
+
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    private int id;
     private Column col;
     private int row;
     private boolean isHit;
 
-    public Position(Column col, int row) {
+    public BoardPosition() {
+
+    }
+    public BoardPosition(Column col, int row) {
         if(row > 10){
             throw new IllegalArgumentException("The row should not be greater than 10.");
         }
@@ -26,11 +36,23 @@ public class Position {
         return row;
     }
 
+    public void setCol(Column col) {
+        this.col = col;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
+    }
+
+    public void setHit(boolean hit) {
+        isHit = hit;
+    }
+
     public boolean equals(Object object) {
-        if(!(object instanceof Position)) {
-            throw new IllegalArgumentException("Object of type Position should of been proviced");
+        if(!(object instanceof BoardPosition)) {
+            throw new IllegalArgumentException("Object of type BoardPosition should of been proviced");
         }
-        Position input = (Position) object;
+        BoardPosition input = (BoardPosition) object;
         return this.col == input.getCol() && this.row == input.getRow();
     }
 

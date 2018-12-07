@@ -1,11 +1,12 @@
-package uk.gov.ukho.battleshipsboot.main.service;
+package uk.gov.ukho.battleshipsboot.service;
 
+import uk.gov.ukho.battleshipsboot.model.game.BoardPosition;
 import uk.gov.ukho.battleshipsboot.model.game.GameArena;
 import uk.gov.ukho.battleshipsboot.model.game.Orientation;
-import uk.gov.ukho.battleshipsboot.model.game.Position;
 import uk.gov.ukho.battleshipsboot.model.ships.Column;
 import uk.gov.ukho.battleshipsboot.model.ships.Ship;
 
+import java.util.List;
 import java.util.Optional;
 
 public class GameArenaService {
@@ -34,9 +35,9 @@ public class GameArenaService {
         return (gameArena.isShipOnBoard(ship));
     }
 
-    public Ship getShipAtPosition(Position position, GameArena gameArena) {
+    public Ship getShipAtPosition(BoardPosition boardPosition, GameArena gameArena) {
         for(Ship aShip: gameArena.getShipsOnBoard()) {
-            if(aShip.getOccupiedPositions().contains(position)) {
+            if(aShip.getOccupiedBoardPositions().contains(boardPosition)) {
                 return aShip;
             }
         }
@@ -55,9 +56,9 @@ public class GameArenaService {
 
     public boolean positionsAlreadyOccupied(Ship ship, GameArena gameArena) {
         for(Ship aShip : gameArena.getShipsOnBoard()){
-            boolean isShipOccupyingPosition = aShip.getOccupiedPositions()
+            boolean isShipOccupyingPosition = aShip.getOccupiedBoardPositions()
                     .stream()
-                    .anyMatch(ship.getOccupiedPositions()::contains);
+                    .anyMatch(ship.getOccupiedBoardPositions()::contains);
 
             if(isShipOccupyingPosition)
             {
@@ -67,22 +68,22 @@ public class GameArenaService {
         return false;
     }
 
-    public void registerHit(Position position, GameArena gameArena) {
-        position.setHit();
+    public void registerHit(BoardPosition boardPosition, GameArena gameArena) {
+        boardPosition.setHit();
         for(Ship ship : gameArena.getShipsOnBoard()) {
-            if(ship.getOccupiedPositions().contains(position)) {
-                setHitPositionOnShip(position, ship);
+            if(ship.getOccupiedBoardPositions().contains(boardPosition)) {
+                setHitPositionOnShip(boardPosition, ship);
                 if(ship.isSunk() == true) {
                     gameArena.addSunkenShip(ship);
                 }
             }
-            gameArena.addShotPosition(position);
+            gameArena.addShotPosition(boardPosition);
         }
     }
 
-    public Position getOccupiedPositionsOfShip(Position position, Ship ship) {
-        Optional<Position> occupiedPosition = ship.getOccupiedPositions().stream()
-                .filter(p -> p.equals(position)).findFirst();
+    public BoardPosition getOccupiedPositionsOfShip(BoardPosition boardPosition, Ship ship) {
+        Optional<BoardPosition> occupiedPosition = ship.getOccupiedBoardPositions().stream()
+                .filter(p -> p.equals(boardPosition)).findFirst();
 
         if(occupiedPosition.isPresent()) {
             return occupiedPosition.get();
@@ -93,29 +94,33 @@ public class GameArenaService {
     public void setOccupiedPositionsOfShip(Ship ship) {
         if (ship.getOrient() == Orientation.VERTICAL) {
             for (int i = 1; i < ship.getLength(); i++) {
-                Position pos = new Position(ship.getOccupiedPosition(0).getCol(),
+                BoardPosition pos = new BoardPosition(ship.getOccupiedPosition(0).getCol(),
                         ship.getOccupiedPosition(0).getRow() + i);
-                ship.addOccupiedPosition(i, pos);
+                List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
+                occupiedBoardPositions.add(i, pos);
+                ship.setOccupiedPosition(occupiedBoardPositions);
             }
         } else {
             for (int i = 1; i < ship.getLength(); i++) {
                 char inputCol = ship.getOccupiedPosition(0).getCol().toString().charAt(0);
                 int input = inputCol + i;
                 String col = "" + (char) input;
-                Position pos = new Position(Column.valueOf(col), ship.getOccupiedPosition(0).getRow());
-                ship.addOccupiedPosition(i, pos);
+                BoardPosition pos = new BoardPosition(Column.valueOf(col), ship.getOccupiedPosition(0).getRow());
+                List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
+                occupiedBoardPositions.add(i, pos);
+                ship.setOccupiedPosition(occupiedBoardPositions);
             }
         }
     }
 
-    public void setHitPositionOnShip(Position position, Ship ship) {
-        for(Position aPosition: ship.getOccupiedPositions()) {
-            if(aPosition.equals(position)) {
-                aPosition.setHit();
+    public void setHitPositionOnShip(BoardPosition boardPosition, Ship ship) {
+        for(BoardPosition aBoardPosition : ship.getOccupiedBoardPositions()) {
+            if(aBoardPosition.equals(boardPosition)) {
+                aBoardPosition.setHit();
             }
         }
 
-        boolean allPositionsHit = ship.getOccupiedPositions()
+        boolean allPositionsHit = ship.getOccupiedBoardPositions()
                 .stream()
                 .allMatch(p -> p.isHit());
 

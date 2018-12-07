@@ -1,8 +1,6 @@
-package uk.gov.ukho.battleshipsboot.main.model.game;
+package uk.gov.ukho.battleshipsboot.model.game;
 
 import org.junit.Test;
-import uk.gov.ukho.battleshipsboot.model.game.Game;
-import uk.gov.ukho.battleshipsboot.model.game.Player;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,16 +11,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class GameTest {
 
     @Test
-    public void whenICreateAGameThenWhenIAskForIdItIsTheSameAsTheOneIConstructedTheGameWith() {
-        Game game = new Game(1);
-        assertThat(game.getId())
-                .as("Test that game has the same ID which it was provided with")
-                .isEqualTo(1);
-    }
-
-    @Test
     public void whenIAddPlayersToAGameThenItIsTheSameAsTheOnesThatAreRequestedFromIt() {
-        Game game = new Game(1);
+        Game game = new Game();
+        game.printId();
 
         Player player1 = new Player(1);
         Player player2 = new Player(2);
