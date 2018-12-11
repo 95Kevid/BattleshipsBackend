@@ -11,6 +11,7 @@ import uk.gov.ukho.battleshipsboot.model.game.Game;
 import uk.gov.ukho.battleshipsboot.model.game.GameArena;
 import uk.gov.ukho.battleshipsboot.model.game.Player;
 import uk.gov.ukho.battleshipsboot.repositorys.GameRepository;
+import uk.gov.ukho.battleshipsboot.repositorys.PlayerRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -25,7 +26,7 @@ public class PlayerServiceTest {
     }
 
     @Mock
-    private GameRepository gameRepository;
+    private PlayerRepository playerRepository;
 
     @Mock
     private Player player;
@@ -43,12 +44,10 @@ public class PlayerServiceTest {
 
     @Test
     public void givenWhenAPlayerIsInstantiatedAPlayerIdIsReturned() {
-        int playerIdJo = playerService.createPlayer(game, "Jo White", gameRepository);
-        int playerIdKev = playerService.createPlayer(game, "Kevin Harragan", gameRepository);
+        Player playerJO = new Player("Jo White");
+        when(playerRepository.save(any(Player.class))).thenReturn(playerJO);
+        int playerIdJo = playerService.createPlayer("Jo White", playerRepository);
 
-        //when(gameRepository.save())
         assertThat(playerIdJo == 0).isEqualTo(true);
-        assertThat(playerIdKev == 1).isEqualTo(true);
-
     }
 }

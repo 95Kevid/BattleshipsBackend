@@ -17,11 +17,7 @@ public class FatController {
 
     @GetMapping("/test")
     public void createGame() {
-        Game game = new Game();
-        Player player = new Player("Kevin Harragan");
-        List<Player> players = new ArrayList<>();
-        game.setPlayers(players);
-        int playerId = player.getId();
+
 
     }
 

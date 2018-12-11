@@ -1,4 +1,7 @@
 package uk.gov.ukho.battleshipsboot.repositorys;
 
-public class PlayerRepository {
+import org.springframework.data.repository.CrudRepository;
+import uk.gov.ukho.battleshipsboot.model.game.Player;
+
+public interface PlayerRepository extends CrudRepository<Player, Integer> {
 }

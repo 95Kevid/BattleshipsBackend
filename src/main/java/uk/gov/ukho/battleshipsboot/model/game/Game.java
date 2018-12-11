@@ -22,6 +22,9 @@ public class Game {
     public Game() {
         this.players = new ArrayList<>();
     }
+    public Game(Player player) {
+        this();
+        this.players.add(player); }
 
     public int getId() {
         return id;

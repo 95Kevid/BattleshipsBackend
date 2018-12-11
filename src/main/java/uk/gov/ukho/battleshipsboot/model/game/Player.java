@@ -20,6 +20,7 @@ public class Player {
     private int id;
 
     public Player() {
+        gameArena = new GameArena();
     }
 
     public Player(String playerName) {

@@ -4,6 +4,7 @@ import uk.gov.ukho.battleshipsboot.model.game.Game;
 import uk.gov.ukho.battleshipsboot.model.game.GameArena;
 import uk.gov.ukho.battleshipsboot.model.game.Player;
 import uk.gov.ukho.battleshipsboot.repositorys.GameRepository;
+import uk.gov.ukho.battleshipsboot.repositorys.PlayerRepository;
 
 public class PlayerService {
 
@@ -11,10 +12,8 @@ public class PlayerService {
         player.setGameArena(gameArena);
     }
 
-    public int createPlayer(Game game, String playerName, GameRepository gameRepository) {
-        Player player =  new Player(playerName);
-        game.addPlayer(player);
-        gameRepository.save(game);
+    public int createPlayer(String playerName, PlayerRepository playerRepository) {
+        Player player = playerRepository.save(new Player(playerName));
         return player.getId();
     }
 
