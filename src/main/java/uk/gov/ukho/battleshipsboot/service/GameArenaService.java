@@ -1,5 +1,6 @@
 package uk.gov.ukho.battleshipsboot.service;
 
+import org.springframework.stereotype.Service;
 import uk.gov.ukho.battleshipsboot.model.game.BoardPosition;
 import uk.gov.ukho.battleshipsboot.model.game.GameArena;
 import uk.gov.ukho.battleshipsboot.model.game.Orientation;
@@ -9,6 +10,7 @@ import uk.gov.ukho.battleshipsboot.model.ships.Ship;
 import java.util.List;
 import java.util.Optional;
 
+@Service
 public class GameArenaService {
 
     public boolean addShip(Ship ship, GameArena gameArena){

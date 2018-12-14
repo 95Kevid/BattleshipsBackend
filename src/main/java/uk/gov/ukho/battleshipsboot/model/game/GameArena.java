@@ -1,9 +1,8 @@
 package uk.gov.ukho.battleshipsboot.model.game;
+import net.bytebuddy.dynamic.loading.InjectionClassLoader;
 import uk.gov.ukho.battleshipsboot.model.ships.Ship;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import java.util.*;
 
@@ -13,6 +12,7 @@ import static javax.persistence.CascadeType.PERSIST;
 public class GameArena {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     @OneToMany(cascade = PERSIST)
     private List<Ship> shipsOnBoard = new ArrayList<>();

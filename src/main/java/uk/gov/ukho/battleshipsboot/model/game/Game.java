@@ -1,12 +1,7 @@
 package uk.gov.ukho.battleshipsboot.model.game;
-
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
-
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-
 import static javax.persistence.CascadeType.PERSIST;
 
 @Entity
@@ -19,8 +14,18 @@ public class Game {
     @OneToMany(cascade = PERSIST)
     private List<Player> players;
 
+    private int turnIndex;
+
+    public int getTurnIndex() {
+        return turnIndex;
+    }
+
+    public void setTurnIndex(int turnIndex) {
+        this.turnIndex = turnIndex;
+    }
+
     public Game() {
-        this.players = new ArrayList<>();
+        this.players = new LinkedList<>();
     }
     public Game(Player player) {
         this();
@@ -30,19 +35,14 @@ public class Game {
         return id;
     }
 
-    public void addPlayer(Player player) {
-        players.add(player);
+    public void setId(int id) { this.id = id;}
+
+    public LinkedList<Player> getPlayers() {
+        return new LinkedList<>(players);
     }
 
-    public List<Player> getPlayers() {
-        return new ArrayList<>(players);
-    }
-
-    public void printId() {
-        System.out.println(id);
-    }
-
-    public void setPlayers(List<Player> players) {
+    public void setPlayers(LinkedList<Player> players) {
         this.players = players;
     }
+
 }

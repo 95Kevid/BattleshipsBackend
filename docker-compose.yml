@@ -1,0 +1,19 @@
+version: "2"
+
+services:
+	battleshipsboot:
+				image: 4499fe6a11a1				
+				ports:
+				 - "8080:8080"
+	
+	mariadb:
+				image: mariadb
+				ports: 
+				- "3306:3306"
+                environment:
+                MYSQL_ROOT_PASSWORD: passworD
+                restart: always
+                
+				
+				
+	

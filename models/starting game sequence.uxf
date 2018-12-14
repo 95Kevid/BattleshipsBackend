@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>9</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>747</x>
-      <y>108</y>
-      <w>99</w>
-      <h>27</h>
+      <x>329</x>
+      <y>77</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:GameController_</panel_attributes>
     <additional_attributes/>
@@ -15,21 +15,21 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>774</x>
-      <y>126</y>
-      <w>27</w>
-      <h>1179</h>
+      <x>350</x>
+      <y>91</y>
+      <w>21</w>
+      <h>1078</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1290.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;1520.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>414</x>
-      <y>108</y>
-      <w>135</w>
-      <h>27</h>
+      <x>70</x>
+      <y>77</y>
+      <w>105</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_burney : Client_</panel_attributes>
     <additional_attributes/>
@@ -37,45 +37,34 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
-      <y>126</y>
-      <w>27</w>
-      <h>612</h>
+      <x>112</x>
+      <y>91</y>
+      <w>21</w>
+      <h>616</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;660.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;860.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>0</x>
-      <y>0</y>
-      <w>126</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;120.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>477</x>
-      <y>279</y>
-      <w>315</w>
-      <h>45</h>
+      <x>119</x>
+      <y>119</y>
+      <w>245</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 createGameRequest
-(burniesPlayerID, numberOfPlayers = 2)</panel_attributes>
+(numberOfPlayers = 2)</panel_attributes>
     <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>369</y>
-      <w>315</w>
-      <h>36</h>
+      <x>119</x>
+      <y>189</y>
+      <w>245</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 gameIdResponse(gameId: 1)</panel_attributes>
@@ -84,10 +73,10 @@ gameIdResponse(gameId: 1)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>468</x>
-      <y>171</y>
-      <w>18</w>
-      <h>450</h>
+      <x>112</x>
+      <y>126</y>
+      <w>14</w>
+      <h>504</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -95,10 +84,10 @@ gameIdResponse(gameId: 1)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>774</x>
-      <y>297</y>
-      <w>18</w>
-      <h>90</h>
+      <x>350</x>
+      <y>133</y>
+      <w>14</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -106,10 +95,10 @@ gameIdResponse(gameId: 1)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>639</x>
-      <y>108</y>
-      <w>99</w>
-      <h>27</h>
+      <x>245</x>
+      <y>77</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:PlayerController_</panel_attributes>
     <additional_attributes/>
@@ -117,21 +106,21 @@ gameIdResponse(gameId: 1)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>675</x>
-      <y>126</y>
-      <w>27</w>
-      <h>1179</h>
+      <x>266</x>
+      <y>91</y>
+      <w>28</w>
+      <h>1078</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1290.0</additional_attributes>
+    <additional_attributes>20.0;10.0;10.0;1520.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>675</x>
-      <y>171</y>
-      <w>18</w>
-      <h>90</h>
+      <x>273</x>
+      <y>224</y>
+      <w>14</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -139,23 +128,23 @@ gameIdResponse(gameId: 1)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>153</y>
-      <w>216</w>
-      <h>45</h>
+      <x>98</x>
+      <y>210</y>
+      <w>210</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-createPlayerHTTPRequest('Burny')
+createPlayerHTTPRequest('Burny', gameId: 1)
 ()</panel_attributes>
-    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>250.0;20.0;40.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>243</y>
-      <w>216</w>
-      <h>36</h>
+      <x>119</x>
+      <y>301</y>
+      <w>168</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 burniesPlayerID : 0</panel_attributes>
@@ -164,23 +153,23 @@ burniesPlayerID : 0</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>531</y>
-      <w>315</w>
-      <h>45</h>
+      <x>119</x>
+      <y>476</y>
+      <w>343</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 checkForWaitingPlayerPoll()
-(playerId, gameId)</panel_attributes>
-    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
+(gameId)</panel_attributes>
+    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>774</x>
-      <y>549</y>
-      <w>18</w>
-      <h>54</h>
+      <x>448</x>
+      <y>490</y>
+      <w>14</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -188,33 +177,33 @@ checkForWaitingPlayerPoll()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>585</y>
-      <w>315</w>
-      <h>36</h>
+      <x>119</x>
+      <y>560</y>
+      <w>343</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-playerPollResponse(numberOfPlayersJoined)</panel_attributes>
-    <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
+playerPollResponse(numberOfPlayersWaitingFor)</panel_attributes>
+    <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>990</x>
-      <y>126</y>
-      <w>27</w>
-      <h>1188</h>
+      <x>994</x>
+      <y>91</y>
+      <w>21</w>
+      <h>1078</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1300.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;1520.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>954</x>
-      <y>108</y>
-      <w>90</w>
-      <h>27</h>
+      <x>966</x>
+      <y>77</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:PlayerService_</panel_attributes>
     <additional_attributes/>
@@ -222,78 +211,45 @@ playerPollResponse(numberOfPlayersJoined)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>162</y>
-      <w>324</w>
-      <h>36</h>
+      <x>280</x>
+      <y>217</y>
+      <w>483</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-createPlayer("Burny")</panel_attributes>
-    <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
+createPlayerAndJoinToGame("Burny", gameId)</panel_attributes>
+    <additional_attributes>670.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>990</x>
-      <y>180</y>
-      <w>18</w>
-      <h>72</h>
+      <x>994</x>
+      <y>238</y>
+      <w>14</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1224</x>
-      <y>108</y>
-      <w>99</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>_:PlayerRepository_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>1260</x>
-      <y>126</y>
-      <w>27</w>
-      <h>1188</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1300.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>999</x>
-      <y>171</y>
-      <w>153</w>
-      <h>36</h>
+      <x>1001</x>
+      <y>238</y>
+      <w>147</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 new ("Burny")</panel_attributes>
-    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1260</x>
-      <y>225</y>
-      <w>18</w>
-      <h>18</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1332</x>
-      <y>108</y>
-      <w>90</w>
-      <h>27</h>
+      <x>1057</x>
+      <y>77</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:GameService_</panel_attributes>
     <additional_attributes/>
@@ -301,21 +257,21 @@ new ("Burny")</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1368</x>
-      <y>126</y>
-      <w>27</w>
-      <h>1188</h>
+      <x>1085</x>
+      <y>91</y>
+      <w>21</w>
+      <h>1078</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1300.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;1520.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1368</x>
-      <y>306</y>
-      <w>18</w>
-      <h>72</h>
+      <x>1085</x>
+      <y>140</y>
+      <w>14</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -323,22 +279,22 @@ new ("Burny")</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>783</x>
-      <y>288</y>
-      <w>603</w>
-      <h>36</h>
+      <x>357</x>
+      <y>126</y>
+      <w>742</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-newGame(playerId)</panel_attributes>
-    <additional_attributes>650.0;20.0;10.0;20.0</additional_attributes>
+newGame()</panel_attributes>
+    <additional_attributes>1040.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1134</x>
-      <y>180</y>
-      <w>90</w>
-      <h>27</h>
+      <y>245</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_burny:Player_</panel_attributes>
     <additional_attributes/>
@@ -346,33 +302,21 @@ newGame(playerId)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>999</x>
-      <y>207</y>
-      <w>279</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-save(burny)</panel_attributes>
-    <additional_attributes>290.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1161</x>
-      <y>198</y>
-      <w>27</w>
-      <h>1116</h>
+      <x>1155</x>
+      <y>259</y>
+      <w>21</w>
+      <h>931</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1220.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;1310.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1512</x>
-      <y>315</y>
-      <w>90</w>
-      <h>27</h>
+      <x>1204</x>
+      <y>147</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_game1 : Game_</panel_attributes>
     <additional_attributes/>
@@ -380,10 +324,10 @@ save(burny)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1584</x>
-      <y>108</y>
-      <w>108</w>
-      <h>27</h>
+      <x>1260</x>
+      <y>77</y>
+      <w>84</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:GameRepository_</panel_attributes>
     <additional_attributes/>
@@ -391,45 +335,33 @@ save(burny)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1377</x>
-      <y>306</y>
-      <w>153</w>
-      <h>45</h>
+      <x>1092</x>
+      <y>140</y>
+      <w>126</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-new (burny,
-numberOfPlayers)</panel_attributes>
-    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
+new (numberOfPlayers)</panel_attributes>
+    <additional_attributes>160.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1548</x>
-      <y>333</y>
-      <w>27</w>
-      <h>981</h>
+      <x>1288</x>
+      <y>91</y>
+      <w>21</w>
+      <h>1106</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1070.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1620</x>
-      <y>126</y>
-      <w>27</w>
-      <h>1188</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1300.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;1560.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1620</x>
-      <y>360</y>
-      <w>18</w>
-      <h>18</h>
+      <x>1288</x>
+      <y>182</y>
+      <w>14</w>
+      <h>14</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -437,22 +369,34 @@ numberOfPlayers)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1377</x>
-      <y>342</y>
-      <w>261</w>
-      <h>36</h>
+      <x>1092</x>
+      <y>168</y>
+      <w>210</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 save(game1)</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>455</x>
+      <y>483</y>
+      <w>427</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+getNumberOfNotReadyPlayersToReadPlayers(gameId)</panel_attributes>
+    <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1368</x>
-      <y>558</y>
-      <w>18</w>
-      <h>63</h>
+      <x>1232</x>
+      <y>539</y>
+      <w>14</w>
+      <h>14</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -460,57 +404,34 @@ save(game1)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>783</x>
-      <y>540</y>
-      <w>603</w>
-      <h>36</h>
+      <x>1092</x>
+      <y>511</y>
+      <w>210</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-getWaitingPlayers()</panel_attributes>
-    <additional_attributes>650.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1548</x>
-      <y>594</y>
-      <w>18</w>
-      <h>18</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
+getGame()</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1377</x>
-      <y>576</y>
-      <w>189</w>
-      <h>36</h>
+      <x>119</x>
+      <y>343</y>
+      <w>448</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-getReadyPlayers()</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>477</x>
-      <y>414</y>
-      <w>432</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-placeDestroyerHTTPRequest(BurnyPlayerID : 0, A1, Horizontal)</panel_attributes>
-    <additional_attributes>460.0;20.0;10.0;20.0</additional_attributes>
+placeDestroyerHTTPRequest(BurnyPlayerID : 0, gameId, A1, Horizontal)</panel_attributes>
+    <additional_attributes>620.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>891</x>
-      <y>432</y>
-      <w>18</w>
-      <h>72</h>
+      <x>553</x>
+      <y>357</y>
+      <w>14</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -518,10 +439,10 @@ placeDestroyerHTTPRequest(BurnyPlayerID : 0, A1, Horizontal)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>855</x>
-      <y>108</y>
-      <w>90</w>
-      <h>27</h>
+      <x>525</x>
+      <y>77</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:ShipController_</panel_attributes>
     <additional_attributes/>
@@ -529,44 +450,33 @@ placeDestroyerHTTPRequest(BurnyPlayerID : 0, A1, Horizontal)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>891</x>
-      <y>126</y>
-      <w>27</w>
-      <h>1188</h>
+      <x>546</x>
+      <y>91</y>
+      <w>28</w>
+      <h>1071</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1300.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1368</x>
-      <y>441</y>
-      <w>18</w>
-      <h>63</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
+    <additional_attributes>20.0;10.0;10.0;1510.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>423</y>
-      <w>486</w>
-      <h>36</h>
+      <x>476</x>
+      <y>350</y>
+      <w>252</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-placeShip(playerId, Orientation.HORIZONTAL,a1)</panel_attributes>
-    <additional_attributes>520.0;20.0;10.0;20.0</additional_attributes>
+placeShip(playerId, ship, Orientation.HORIZONTAL,a1)</panel_attributes>
+    <additional_attributes>220.0;20.0;130.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1728</x>
-      <y>108</y>
-      <w>144</w>
-      <h>27</h>
+      <x>1351</x>
+      <y>77</y>
+      <w>112</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_burnyGA:GameArena_</panel_attributes>
     <additional_attributes/>
@@ -574,32 +484,21 @@ placeShip(playerId, Orientation.HORIZONTAL,a1)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1773</x>
-      <y>126</y>
-      <w>27</w>
-      <h>1188</h>
+      <x>1386</x>
+      <y>91</y>
+      <w>21</w>
+      <h>1106</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;1300.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;1560.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1773</x>
-      <y>495</y>
-      <w>18</w>
-      <h>18</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1260</x>
-      <y>459</y>
-      <w>18</w>
-      <h>18</h>
+      <x>1386</x>
+      <y>427</y>
+      <w>14</w>
+      <h>14</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -607,22 +506,22 @@ placeShip(playerId, Orientation.HORIZONTAL,a1)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1377</x>
-      <y>477</y>
-      <w>414</w>
-      <h>36</h>
+      <x>637</x>
+      <y>413</y>
+      <w>763</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
-    <additional_attributes>440.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>1070.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>324</x>
-      <y>405</y>
-      <w>1521</w>
-      <h>108</h>
+      <x>0</x>
+      <y>336</y>
+      <w>1428</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>do this for all ships</panel_attributes>
     <additional_attributes/>
@@ -630,10 +529,10 @@ addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>729</x>
-      <y>9</y>
-      <w>477</w>
-      <h>36</h>
+      <x>315</x>
+      <y>0</y>
+      <w>371</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>Step 1: Buney creates game, places ships, and waits for player to join and place their ships.</panel_attributes>
     <additional_attributes/>
@@ -641,10 +540,10 @@ addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>783</x>
-      <y>657</y>
-      <w>477</w>
-      <h>36</h>
+      <x>574</x>
+      <y>644</y>
+      <w>371</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>Step 2: Helga get's gameId from Burny and joins game</panel_attributes>
     <additional_attributes/>
@@ -652,10 +551,10 @@ addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>468</x>
-      <y>765</y>
-      <w>18</w>
-      <h>477</h>
+      <x>112</x>
+      <y>728</y>
+      <w>14</w>
+      <h>441</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -663,10 +562,10 @@ addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>414</x>
-      <y>720</y>
-      <w>135</w>
-      <h>27</h>
+      <x>70</x>
+      <y>693</y>
+      <w>105</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_helga : Client_</panel_attributes>
     <additional_attributes/>
@@ -674,10 +573,10 @@ addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>468</x>
-      <y>738</y>
-      <w>27</w>
-      <h>576</h>
+      <x>112</x>
+      <y>707</y>
+      <w>21</w>
+      <h>448</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;620.0</additional_attributes>
@@ -685,10 +584,10 @@ addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>630</x>
-      <y>720</y>
-      <w>99</w>
-      <h>27</h>
+      <x>238</x>
+      <y>693</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:PlayerController_</panel_attributes>
     <additional_attributes/>
@@ -696,10 +595,10 @@ addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>747</x>
-      <y>720</y>
-      <w>99</w>
-      <h>27</h>
+      <x>329</x>
+      <y>693</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:GameController_</panel_attributes>
     <additional_attributes/>
@@ -707,10 +606,10 @@ addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>855</x>
-      <y>720</y>
-      <w>90</w>
-      <h>27</h>
+      <x>525</x>
+      <y>693</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:ShipController_</panel_attributes>
     <additional_attributes/>
@@ -718,32 +617,45 @@ addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>963</x>
-      <y>720</y>
-      <w>90</w>
-      <h>27</h>
+      <x>973</x>
+      <y>693</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:PlayerService_</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLGeneric</id>
+    <id>UMLFrame</id>
     <coordinates>
-      <x>1134</x>
-      <y>774</y>
-      <w>90</w>
-      <h>27</h>
+      <x>0</x>
+      <y>476</y>
+      <w>1428</w>
+      <h>119</h>
     </coordinates>
-    <panel_attributes>_helga:Player_</panel_attributes>
+    <panel_attributes>do this while waiting for players to join</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>119</x>
+      <y>721</y>
+      <w>245</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+joinGameHTTPRequest
+(gameId : 1, "Helga")</panel_attributes>
+    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>675</x>
-      <y>765</y>
-      <w>18</w>
-      <h>90</h>
+      <x>350</x>
+      <y>735</y>
+      <w>14</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -751,10 +663,45 @@ addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>684</x>
-      <y>756</y>
-      <w>324</w>
-      <h>36</h>
+      <x>357</x>
+      <y>728</y>
+      <w>420</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+joinPlayerToGame(gameId, helgasPlayerId)
+</panel_attributes>
+    <additional_attributes>580.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1057</x>
+      <y>693</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_:GameService_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>749</x>
+      <y>742</y>
+      <w>14</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>735</y>
+      <w>252</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 createPlayer("Helga")</panel_attributes>
@@ -763,197 +710,10 @@ createPlayer("Helga")</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>990</x>
-      <y>774</y>
-      <w>18</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>999</x>
-      <y>765</y>
-      <w>153</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-new ("Helga")</panel_attributes>
-    <additional_attributes>150.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1260</x>
-      <y>819</y>
-      <w>18</w>
-      <h>18</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>999</x>
-      <y>801</y>
-      <w>279</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-save(helga)</panel_attributes>
-    <additional_attributes>290.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>477</x>
-      <y>747</y>
-      <w>216</w>
-      <h>45</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-createPlayerRequest('Helga')
-()</panel_attributes>
-    <additional_attributes>220.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>477</x>
-      <y>837</y>
-      <w>216</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;.
-helgasPlayerID : 1</panel_attributes>
-    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>324</x>
-      <y>522</y>
-      <w>1521</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>do this while waiting for players to join</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>477</x>
-      <y>873</y>
-      <w>315</w>
-      <h>45</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-joinGameHTTPRequest
-(gameId : 1,helgasPlayerID)</panel_attributes>
-    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>774</x>
-      <y>891</y>
-      <w>18</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>783</x>
-      <y>882</y>
-      <w>603</w>
-      <h>45</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-joinPlayerToGame(gameId, helgasPlayerId)
-</panel_attributes>
-    <additional_attributes>650.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1620</x>
-      <y>909</y>
-      <w>18</w>
-      <h>18</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1332</x>
-      <y>720</y>
-      <w>90</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>_:GameService_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1215</x>
-      <y>720</y>
-      <w>99</w>
-      <h>27</h>
-    </coordinates>
-    <panel_attributes>_:PlayerRepository_</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1368</x>
-      <y>900</y>
-      <w>18</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1377</x>
-      <y>891</y>
-      <w>261</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-getGame(gameId)</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1269</x>
-      <y>909</y>
-      <w>117</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-getPlayer(playerId)</panel_attributes>
-    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1503</x>
-      <y>720</y>
-      <w>90</w>
-      <h>27</h>
+      <x>1197</x>
+      <y>693</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_game1 : Game_</panel_attributes>
     <additional_attributes/>
@@ -961,21 +721,10 @@ getPlayer(playerId)</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1548</x>
-      <y>945</y>
-      <w>18</w>
-      <h>18</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1260</x>
-      <y>927</y>
-      <w>18</w>
-      <h>18</h>
+      <x>994</x>
+      <y>749</y>
+      <w>14</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -983,22 +732,10 @@ getPlayer(playerId)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1377</x>
-      <y>927</y>
-      <w>189</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-addPlayer(helgasPlayerId)</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>477</x>
-      <y>981</y>
-      <w>315</w>
-      <h>36</h>
+      <x>119</x>
+      <y>826</y>
+      <w>245</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
 confirmation of joined game</panel_attributes>
@@ -1007,10 +744,10 @@ confirmation of joined game</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1602</x>
-      <y>720</y>
-      <w>108</w>
-      <h>27</h>
+      <x>1274</x>
+      <y>693</y>
+      <w>84</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_:GameRepository_</panel_attributes>
     <additional_attributes/>
@@ -1018,10 +755,10 @@ confirmation of joined game</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1728</x>
-      <y>720</y>
-      <w>144</w>
-      <h>27</h>
+      <x>1351</x>
+      <y>693</y>
+      <w>112</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>_helgaGA:GameArena_</panel_attributes>
     <additional_attributes/>
@@ -1029,21 +766,10 @@ confirmation of joined game</panel_attributes>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>891</x>
-      <y>1044</y>
-      <w>18</w>
-      <h>72</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1368</x>
-      <y>1053</y>
-      <w>18</w>
-      <h>72</h>
+      <x>546</x>
+      <y>889</y>
+      <w>14</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1051,33 +777,22 @@ confirmation of joined game</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>900</x>
-      <y>1035</y>
-      <w>486</w>
-      <h>36</h>
+      <x>490</x>
+      <y>882</y>
+      <w>210</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 placeShip(playerId, Orientation.VERTICAL,B2)</panel_attributes>
-    <additional_attributes>520.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>190.0;20.0;100.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1773</x>
-      <y>1116</y>
-      <w>18</w>
-      <h>18</h>
-    </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLGeneric</id>
-    <coordinates>
-      <x>1260</x>
-      <y>1080</y>
-      <w>18</w>
-      <h>18</h>
+      <x>1386</x>
+      <y>931</y>
+      <w>14</w>
+      <h>14</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1085,46 +800,34 @@ placeShip(playerId, Orientation.VERTICAL,B2)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1269</x>
-      <y>1062</y>
-      <w>117</w>
-      <h>36</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-getPlayer(playerId)</panel_attributes>
-    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1377</x>
-      <y>1098</y>
-      <w>414</w>
-      <h>36</h>
+      <x>630</x>
+      <y>917</y>
+      <w>770</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 addShip(new Destoyer(a1, Orientation.HORIZONTAL))</panel_attributes>
-    <additional_attributes>440.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>1080.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>1026</y>
-      <w>432</w>
-      <h>36</h>
+      <x>119</x>
+      <y>875</y>
+      <w>441</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 placeBattleshipHTTPRequest(BurnyPlayerID : 0, B2, Vertical)</panel_attributes>
-    <additional_attributes>460.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>610.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>333</x>
-      <y>1017</y>
-      <w>1557</w>
-      <h>117</h>
+      <x>7</x>
+      <y>868</y>
+      <w>1421</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>do this for all ships</panel_attributes>
     <additional_attributes/>
@@ -1132,33 +835,34 @@ placeBattleshipHTTPRequest(BurnyPlayerID : 0, B2, Vertical)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1269</x>
-      <y>441</y>
-      <w>117</w>
-      <h>36</h>
+      <x>637</x>
+      <y>357</y>
+      <w>462</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-getPlayer(playerId)</panel_attributes>
-    <additional_attributes>10.0;20.0;110.0;20.0</additional_attributes>
+getGame(gameId)</panel_attributes>
+    <additional_attributes>640.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
-    <id>UMLGeneric</id>
+    <id>Relation</id>
     <coordinates>
-      <x>774</x>
-      <y>1161</y>
-      <w>18</w>
-      <h>54</h>
+      <x>637</x>
+      <y>385</y>
+      <w>532</w>
+      <h>28</h>
     </coordinates>
-    <panel_attributes/>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+getGameArena()</panel_attributes>
+    <additional_attributes>740.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1368</x>
-      <y>1170</y>
-      <w>18</w>
-      <h>36</h>
+      <x>1155</x>
+      <y>399</y>
+      <w>14</w>
+      <h>14</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1166,22 +870,77 @@ getPlayer(playerId)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>783</x>
-      <y>1152</y>
-      <w>603</w>
-      <h>36</h>
+      <x>630</x>
+      <y>903</y>
+      <w>539</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-getWaitingPlayers()</panel_attributes>
-    <additional_attributes>650.0;20.0;10.0;20.0</additional_attributes>
+getGameArena()</panel_attributes>
+    <additional_attributes>750.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1548</x>
-      <y>1179</y>
-      <w>18</w>
-      <h>18</h>
+      <x>1155</x>
+      <y>917</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1288</x>
+      <y>525</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>602</x>
+      <y>77</y>
+      <w>98</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_:ShipPlacingFacade_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>623</x>
+      <y>91</y>
+      <w>28</w>
+      <h>1078</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>20.0;10.0;10.0;1520.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>630</x>
+      <y>364</y>
+      <w>14</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>623</x>
+      <y>896</y>
+      <w>14</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1189,35 +948,363 @@ getWaitingPlayers()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1377</x>
-      <y>1161</y>
-      <w>189</w>
-      <h>36</h>
+      <x>1001</x>
+      <y>742</y>
+      <w>140</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+new ("Helga")</panel_attributes>
+    <additional_attributes>180.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>721</x>
+      <y>77</y>
+      <w>91</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_:PlayerAddingFacade_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>749</x>
+      <y>91</y>
+      <w>21</w>
+      <h>1078</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1520.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>777</y>
+      <w>343</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+addPlayerToGame(helga, gameId)</panel_attributes>
+    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1085</x>
+      <y>791</y>
+      <w>14</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>784</y>
+      <w>210</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+getGame(gameId)</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1288</x>
+      <y>798</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>798</y>
+      <w>154</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>setPlayers()</panel_attributes>
+    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1232</x>
+      <y>812</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>749</x>
+      <y>231</y>
+      <w>14</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>224</y>
+      <w>252</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+createPlayer("Burny")</panel_attributes>
+    <additional_attributes>340.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>756</x>
+      <y>259</y>
+      <w>343</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+joinPlayerToGame(gameId, burny)</panel_attributes>
+    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1085</x>
+      <y>273</y>
+      <w>14</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>287</y>
+      <w>210</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+saveGame(gameId)</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>266</y>
+      <w>210</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+getGame(gameId)</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1288</x>
+      <y>280</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1288</x>
+      <y>301</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1085</x>
+      <y>371</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>602</x>
+      <y>693</y>
+      <w>98</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_:ShipPlacingFacade_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>707</x>
+      <y>693</y>
+      <w>91</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_:PlayerAddingFacade_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1127</x>
+      <y>749</y>
+      <w>70</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_helga:Player_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>364</y>
+      <w>210</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+getGame(gameId)</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1288</x>
+      <y>378</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>840</x>
+      <y>77</y>
+      <w>91</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_:PollingFacade_</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>868</x>
+      <y>91</y>
+      <w>21</w>
+      <h>1078</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1520.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>868</x>
+      <y>497</y>
+      <w>14</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>875</x>
+      <y>504</y>
+      <w>224</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+getNumberOfWaitingPlayers(gameId)</panel_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1085</x>
+      <y>518</y>
+      <w>14</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>525</y>
+      <w>154</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 getPlayers()</panel_attributes>
-    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>1143</y>
-      <w>315</w>
-      <h>45</h>
+      <x>1232</x>
+      <y>161</y>
+      <w>21</w>
+      <h>1029</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1450.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>119</x>
+      <y>966</y>
+      <w>343</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 checkForWaitingPlayerPoll()
 (playerId, gameId)</panel_attributes>
-    <additional_attributes>330.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>470.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>774</x>
-      <y>1161</y>
-      <w>18</w>
-      <h>54</h>
+      <x>448</x>
+      <y>980</y>
+      <w>14</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1225,45 +1312,79 @@ checkForWaitingPlayerPoll()
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>477</x>
-      <y>1197</y>
-      <w>315</w>
-      <h>36</h>
+      <x>119</x>
+      <y>1050</y>
+      <w>343</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;.
-playerPollResponse(numberOfPlayersJoined)</panel_attributes>
-    <additional_attributes>10.0;20.0;330.0;20.0</additional_attributes>
+playerPollResponse(numberOfPlayersWaitingFor)</panel_attributes>
+    <additional_attributes>10.0;20.0;470.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>455</x>
+      <y>973</y>
+      <w>427</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+getNumberOfNotReadyPlayersToReadPlayers()</panel_attributes>
+    <additional_attributes>590.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1232</x>
+      <y>1029</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>1001</y>
+      <w>210</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+getGame()</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>243</x>
-      <y>1143</y>
-      <w>1647</w>
-      <h>108</h>
+      <x>0</x>
+      <y>966</y>
+      <w>1428</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>do this while waiting for players to join</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
+    <id>UMLGeneric</id>
     <coordinates>
-      <x>1170</x>
-      <y>468</y>
-      <w>216</w>
-      <h>36</h>
+      <x>1288</x>
+      <y>1015</y>
+      <w>14</w>
+      <h>14</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;-
-getGameArena()</panel_attributes>
-    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+    <panel_attributes/>
+    <additional_attributes/>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1161</x>
-      <y>486</y>
-      <w>18</w>
-      <h>18</h>
+      <x>868</x>
+      <y>987</y>
+      <w>14</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1271,22 +1392,22 @@ getGameArena()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1170</x>
-      <y>1089</y>
-      <w>216</w>
-      <h>36</h>
+      <x>875</x>
+      <y>994</y>
+      <w>224</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
-getGameArena()</panel_attributes>
-    <additional_attributes>10.0;20.0;220.0;20.0</additional_attributes>
+getNumberOfWaitingPlayers(gameId)</panel_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1161</x>
-      <y>1107</y>
-      <w>18</w>
-      <h>18</h>
+      <x>1085</x>
+      <y>1008</y>
+      <w>14</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -1294,24 +1415,81 @@ getGameArena()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1377</x>
-      <y>549</y>
-      <w>261</w>
-      <h>36</h>
+      <x>1092</x>
+      <y>1015</y>
+      <w>154</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+getPlayers()</panel_attributes>
+    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>630</x>
+      <y>889</y>
+      <w>469</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;-
 getGame(gameId)</panel_attributes>
-    <additional_attributes>270.0;20.0;10.0;20.0</additional_attributes>
+    <additional_attributes>650.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1092</x>
+      <y>896</y>
+      <w>210</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;-
+getGame(gameId)</panel_attributes>
+    <additional_attributes>280.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>1620</x>
-      <y>567</y>
-      <w>18</w>
-      <h>18</h>
+      <x>1085</x>
+      <y>903</y>
+      <w>14</w>
+      <h>14</h>
     </coordinates>
     <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>1288</x>
+      <y>910</y>
+      <w>14</w>
+      <h>14</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>448</x>
+      <y>91</y>
+      <w>21</w>
+      <h>1078</h>
+    </coordinates>
+    <panel_attributes>lt=.</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;1520.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>420</x>
+      <y>77</y>
+      <w>77</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>_:PollingController_</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

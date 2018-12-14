@@ -6,14 +6,25 @@ import javax.persistence.*;
 @Entity
 public class Player {
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.PERSIST)
     private GameArena gameArena;
 
     private String playerName;
 
+    public boolean isReadyToStartGame() {
+        return readyToStartGame;
+    }
+
+    public void setReadyToStartGame(boolean readyToStartGame) {
+        this.readyToStartGame = readyToStartGame;
+    }
+
+    private boolean readyToStartGame;
+
     public int getId() {
         return id;
     }
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,4 +48,7 @@ public class Player {
         this.gameArena = gameArena;
     }
 
+    public void setName(String name) {
+        this.playerName = name;
+    }
 }
