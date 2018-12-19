@@ -21,58 +21,70 @@ public class GameService {
         this.gameRepository = gameRepository;
     }
 
-    public int createGame() {
-        Game game = new Game();
-        Game savedGame = gameRepository.save(game);
+    public int createGame(int numberOfPlayers) {
+        Game game = new Game(numberOfPlayers);
+        Game savedGame = saveGame(game);
         return savedGame.getId();
     }
 
     public void joinPlayerToGame(int gameId, Player player) {
-        Optional<Game> gameOptional = gameRepository.findById(gameId);
-        if(!gameOptional.isPresent()) {
-            throw new IllegalArgumentException("The game ID provided does not correspond " +
-                    "to in the player repository");
-        }
-        Game game = gameOptional.get();
-        LinkedList<Player> players = game.getPlayers();
+        Game game = getGame(gameId);
+        LinkedList<Player> players = getPlayersFromGame(game);
+        checkIfMaximumPlayerLimitReached(game, players);
         players.add(player);
         game.setPlayers(players);
-        gameRepository.save(game);
+        saveGame(game);
+    }
+
+    private LinkedList<Player> getPlayersFromGame(Game game) {
+        return game.getPlayers();
+    }
+
+    private void checkIfGameIdExistsInRepository(Optional<Game> gameOptional) {
+        if (!gameOptional.isPresent()) {
+            throw new IllegalArgumentException("The game ID provided does not correspond " +
+                    "to a game record in the repository");
+        }
+    }
+
+
+    private void checkIfMaximumPlayerLimitReached(Game game, LinkedList<Player> players) {
+        if(players.size() > game.getMaxPlayers())
+        {
+            throw new IllegalStateException("The maximum number of players ("
+                    + game.getMaxPlayers()
+                    + ") has been reached.");
+        }
     }
 
 
     public Game getGame(int gameId) {
         Optional<Game> optionalGame = gameRepository.findById(gameId);
-        if(optionalGame.isPresent()) {
-            return optionalGame.get();
-        }
-        throw new IllegalArgumentException("The game ID provided does not correspond " +
-                "to a game in the game repository");
+        checkIfGameIdExistsInRepository(optionalGame);
+        return optionalGame.get();
     }
 
     public void nextTurn(Game game) {
-        Queue<Player> playersInGame = game.getPlayers();
+        Queue<Player> playersInGame = getPlayersFromGame(game);
         Player currentPlayersTurn = playersInGame.remove();
         playersInGame.add(currentPlayersTurn);
     }
 
     public PlayersToPlayersNotReady getNumberOfNotReadyPlayersToReadyPlayers(int gameId) {
-        Optional<Game> optionalGame = gameRepository.findById(gameId);
-        if(!optionalGame.isPresent()) {
-            throw new IllegalArgumentException("The game ID provided does not correspond " +
-                    "to a game in the game repository");
-        }
-        Game game = optionalGame.get();
-        List<Player> players = game.getPlayers();
-        int notReadyPlayers = (int) players.stream()
-                .filter(p -> !p.isReadyToStartGame())
-                .count();
+        Game game = getGame(gameId);
+        List<Player> playersInGame = getPlayersFromGame(game);
         PlayersToPlayersNotReady noOfPlayersToNotReadyPlayers
-                = new PlayersToPlayersNotReady(players.size(), notReadyPlayers);
+                = new PlayersToPlayersNotReady(playersInGame.size(), getNotReadyPlayers(playersInGame));
         return noOfPlayersToNotReadyPlayers;
     }
 
-    public void saveGame(Game game) {
-        gameRepository.save(game);
+    private int getNotReadyPlayers(List<Player> players) {
+        return (int) players.stream()
+                    .filter(p -> !p.isReadyToStartGame())
+                    .count();
+    }
+
+    public Game saveGame(Game game) {
+        return gameRepository.save(game);
     }
 }

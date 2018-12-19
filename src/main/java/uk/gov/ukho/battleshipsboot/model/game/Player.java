@@ -2,7 +2,6 @@ package uk.gov.ukho.battleshipsboot.model.game;
 
 import javax.persistence.*;
 
-
 @Entity
 public class Player {
 
@@ -25,7 +24,6 @@ public class Player {
         return id;
     }
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -36,10 +34,7 @@ public class Player {
 
     public Player(String playerName) {
         this.playerName = playerName;
-    }
-
-    public Player(int anId) {
-        this.id = anId;
+        this.gameArena = new GameArena();
     }
 
     public GameArena getGameArena() {return gameArena;}
@@ -50,5 +45,9 @@ public class Player {
 
     public void setName(String name) {
         this.playerName = name;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

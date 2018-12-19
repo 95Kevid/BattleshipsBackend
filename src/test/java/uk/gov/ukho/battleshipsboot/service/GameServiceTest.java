@@ -8,9 +8,7 @@ import uk.gov.ukho.battleshipsboot.model.game.Game;
 import uk.gov.ukho.battleshipsboot.model.game.Player;
 import uk.gov.ukho.battleshipsboot.model.game.PlayersToPlayersNotReady;
 import uk.gov.ukho.battleshipsboot.repositorys.GameRepository;
-
 import java.util.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
@@ -33,28 +31,32 @@ public class GameServiceTest {
     public void initTest() {
        MockitoAnnotations.initMocks(this);
        gameService = new GameService(gameRepository);
-       game1 = new Game();
-       game2 = new Game();
+       game1 = new Game(2);
+       game2 = new Game(2);
 
-       player1 = new Player(1);
-       player2 = new Player(2);
-       player3 = new Player(3);
+       player1 = new Player();
+       player1.setId(1);
+       player2 = new Player();
+       player2.setId(2);
+       player3 = new Player();
+       player3.setId(3);
+
        player1.setName("Burny");
        player2.setName("Helga");
        player3.setName("Fred");
     }
 
     @Test
-    public void givenAPlayerIdWhenAGameIsInstantiatedAGameIDIsReturned() {
+    public void givenANumberOfPlayersWhenAGameIsInstantiatedAGameIDIsReturned() {
         game1.setId(12);
         when(gameRepository.save(any(Game.class))).thenReturn(game1);
-        int gameId1 = gameService.createGame();
+        int gameId1 = gameService.createGame(2);
         verify(gameRepository, times(1)).save(any(Game.class));
         assertThat(gameId1).as("1rst run, the gameId should be 12").isEqualTo(12);
 
         game2.setId(189);
         when(gameRepository.save(any(Game.class))).thenReturn(game2);
-        int gameId2 = gameService.createGame();
+        int gameId2 = gameService.createGame(2);
         verify(gameRepository, times(2)).save(any(Game.class));
 
         assertThat(gameId2).isEqualTo(189).as("2nd run gameId should be 189");
@@ -71,7 +73,7 @@ public class GameServiceTest {
 
     @Test
     public void givenAGameIdAGameIsReturned() {
-        Game game = new Game();
+        Game game = new Game(2);
         game.setId(12);
         when(gameRepository.findById(14)).thenReturn(Optional.of(game));
         Game returnedGame = gameService.getGame(14);
@@ -109,5 +111,4 @@ public class GameServiceTest {
                 .isNotEqualTo(incorrectPlayersToPlayersNotReady)
                 .as("3 of the 3 players should not be ready");
     }
-
 }

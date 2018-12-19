@@ -1,12 +1,14 @@
 package uk.gov.ukho.battleshipsboot.facades;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import uk.gov.ukho.battleshipsboot.model.game.Player;
 import uk.gov.ukho.battleshipsboot.repositorys.GameRepository;
 import uk.gov.ukho.battleshipsboot.repositorys.PlayerRepository;
 import uk.gov.ukho.battleshipsboot.service.GameService;
 import uk.gov.ukho.battleshipsboot.service.PlayerService;
 
+@Service
 public class PlayerAddingFacade {
 
     private PlayerService playerService;
@@ -25,8 +27,9 @@ public class PlayerAddingFacade {
     }
 
 
-    public void createPlayerAndJoinToGame(String playerName, int gameId) {
+    public int createPlayerAndJoinToGame(String playerName, int gameId) {
         Player player = playerService.createPlayer(playerName, playerRepository);
         gameService.joinPlayerToGame(gameId, player);
+        return player.getId();
     }
 }

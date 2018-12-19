@@ -14,22 +14,24 @@ import java.util.Optional;
 public class GameArenaService {
 
     public boolean addShip(Ship ship, GameArena gameArena){
+        if (checkShipCanBePlaced(ship, gameArena)) return false;
+        setOccupiedPositionsOfShip(ship);
+        gameArena.addShip(ship);
+        return true;
+    }
+
+    private boolean checkShipCanBePlaced(Ship ship, GameArena gameArena) {
         if(shipAlreadyExists(ship, gameArena)) {
-            return false;
+            throw 
         }
 
         if(isShipOffBoard(ship)) {
-            return false;
+            return true;
         }
-
-        setOccupiedPositionsOfShip(ship);
-
         if(positionsAlreadyOccupied(ship, gameArena)) {
-            return false;
+            return true;
         }
-
-        gameArena.addShip(ship);
-        return true;
+        return false;
     }
 
 
