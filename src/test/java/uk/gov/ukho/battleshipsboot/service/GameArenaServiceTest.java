@@ -5,6 +5,7 @@ import uk.gov.ukho.battleshipsboot.model.game.GameArena;
 import uk.gov.ukho.battleshipsboot.model.game.Orientation;
 import uk.gov.ukho.battleshipsboot.model.game.BoardPosition;
 import uk.gov.ukho.battleshipsboot.model.ships.*;
+import uk.gov.ukho.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 
 import static junit.framework.TestCase.assertSame;
 import static org.junit.Assert.assertFalse;
@@ -67,7 +68,7 @@ public class GameArenaServiceTest {
         BoardPosition positionC2Horizontal = new BoardPosition(Column.C, 3000012);
     }
 
-    @Test
+    @Test(expected = IllegalBoardPlacementException.class)
     public void ships_can_not_be_placed_on_another_ship_when_placing_vertically() {
         gameArena.clearArena();
 
@@ -84,11 +85,11 @@ public class GameArenaServiceTest {
         gameArenaService.addShip(carrier, gameArena);
         gameArenaService.addShip(battleship, gameArena);
 
-        assertFalse(gameArenaService.addShip(submarine, gameArena));
-        assertFalse(gameArenaService.addShip(destroyer, gameArena));
+        gameArenaService.addShip(submarine, gameArena);
+        gameArenaService.addShip(destroyer, gameArena);
     }
 
-    @Test
+    @Test(expected = IllegalBoardPlacementException.class)
     public void ships_can_not_be_placed_on_another_ship_when_placing_horizontally() {
         gameArena.clearArena();
 
@@ -105,11 +106,11 @@ public class GameArenaServiceTest {
         gameArenaService.addShip(carrier, gameArena);
         gameArenaService.addShip(battleship, gameArena);
 
-        assertFalse(gameArenaService.addShip(cruiser, gameArena));
-        assertFalse(gameArenaService.addShip(submarine, gameArena));
+       gameArenaService.addShip(cruiser, gameArena);
+       gameArenaService.addShip(submarine, gameArena);
     }
 
-    @Test
+    @Test(expected = IllegalBoardPlacementException.class)
     public void can_not_be_placed_on_each_other_vertically_or_horizontally() {
         gameArena.clearArena();
 
@@ -124,11 +125,11 @@ public class GameArenaServiceTest {
         gameArenaService.addShip(carrier, gameArena);
         gameArenaService.addShip(battleship, gameArena);
 
-        assertFalse(gameArenaService.addShip(cruiser, gameArena));
-        assertFalse(gameArenaService.addShip(submarine, gameArena));
+        gameArenaService.addShip(cruiser, gameArena);
+        gameArenaService.addShip(submarine, gameArena);
     }
 
-    @Test
+    @Test(expected = IllegalBoardPlacementException.class)
     public void only_one_of_each_ship_can_be_positioned() {
         gameArena.clearArena();
 
@@ -141,8 +142,8 @@ public class GameArenaServiceTest {
         gameArenaService.addShip(submarine, gameArena);
         gameArenaService.addShip(carrier, gameArena);
 
-        assertFalse(gameArenaService.addShip(submarine, gameArena));
-        assertFalse(gameArenaService.addShip(carrier, gameArena));
+        gameArenaService.addShip(submarine, gameArena);
+        gameArenaService.addShip(carrier, gameArena);
     }
 
     @Test

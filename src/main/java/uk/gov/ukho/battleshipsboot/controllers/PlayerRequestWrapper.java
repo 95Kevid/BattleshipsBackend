@@ -4,6 +4,9 @@ public class PlayerRequestWrapper {
     private int gameId;
     private String playerName;
 
+    public PlayerRequestWrapper() {
+    }
+
     public PlayerRequestWrapper(int gameId, String playerName) {
         this.gameId = gameId;
         this.playerName = playerName;
@@ -16,4 +19,6 @@ public class PlayerRequestWrapper {
     public String getPlayerName() {
         return playerName;
     }
+
+
 }
