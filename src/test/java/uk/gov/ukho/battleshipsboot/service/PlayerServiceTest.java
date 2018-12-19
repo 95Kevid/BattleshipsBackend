@@ -12,7 +12,6 @@ import uk.gov.ukho.battleshipsboot.repositorys.PlayerRepository;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
 public class PlayerServiceTest {
     private PlayerService playerService;
 
@@ -29,7 +28,8 @@ public class PlayerServiceTest {
     @Test
     public void playersCanBeAssignedAGameArenaWithAnId() {
         GameArena gameArena = new GameArena();
-        Player player = new Player(1);
+        Player player = new Player();
+        player.setId(1);
         playerService.setArenaToPlayer(gameArena, player);
         assertThat(player.getGameArena()).isEqualTo(gameArena);
     }
