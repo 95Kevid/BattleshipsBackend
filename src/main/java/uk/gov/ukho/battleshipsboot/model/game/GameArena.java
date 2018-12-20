@@ -14,10 +14,14 @@ public class GameArena {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @OneToMany(cascade = PERSIST)
+    @OrderColumn
     private List<Ship> shipsOnBoard = new ArrayList<>();
+
     @OneToMany(cascade = PERSIST)
     private List<BoardPosition> shotBoardPositions = new ArrayList<>();
+
     @OneToMany(cascade = PERSIST)
     private List<Ship> sunkShips = new ArrayList<>();
 

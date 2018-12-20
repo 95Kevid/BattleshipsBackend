@@ -8,6 +8,9 @@ public class ShipPlaceRequestWrapper {
     private BoardPosition boardPosition;
     private Orientation orientation;
 
+    public ShipPlaceRequestWrapper() {
+    }
+
     public ShipPlaceRequestWrapper(int playerId, int gameId, BoardPosition boardPosition, Orientation orientation) {
         this.playerId = playerId;
         this.gameId = gameId;

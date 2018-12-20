@@ -6,6 +6,7 @@ import uk.gov.ukho.battleshipsboot.model.game.GameArena;
 import uk.gov.ukho.battleshipsboot.model.game.Orientation;
 import uk.gov.ukho.battleshipsboot.model.ships.Column;
 import uk.gov.ukho.battleshipsboot.model.ships.Ship;
+import uk.gov.ukho.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,25 +14,27 @@ import java.util.Optional;
 @Service
 public class GameArenaService {
 
-    public boolean addShip(Ship ship, GameArena gameArena){
-        if (checkShipCanBePlaced(ship, gameArena)) return false;
+    public void addShip(Ship ship, GameArena gameArena){
+        checkShipCanBePlaced(ship, gameArena);
         setOccupiedPositionsOfShip(ship);
         gameArena.addShip(ship);
-        return true;
     }
 
-    private boolean checkShipCanBePlaced(Ship ship, GameArena gameArena) {
+    private void checkShipCanBePlaced(Ship ship, GameArena gameArena) {
         if(shipAlreadyExists(ship, gameArena)) {
-            throw 
+            throw new IllegalBoardPlacementException("The " + Ship.class.getName()
+                    + " has already been placed on the board");
         }
 
         if(isShipOffBoard(ship)) {
-            return true;
+            throw new IllegalBoardPlacementException("Ship is positioned off board."
+            + " Please ensure that all positions are valid positions");
+
         }
         if(positionsAlreadyOccupied(ship, gameArena)) {
-            return true;
+            throw new IllegalBoardPlacementException("This board position would cause the ship"
+                    + " to overlap with another ship already placed on the board.");
         }
-        return false;
     }
 
 
