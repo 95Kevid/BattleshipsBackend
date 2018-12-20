@@ -1,0 +1,63 @@
+package com.harragan.battleshipsboot.facades;
+
+import com.harragan.battleshipsboot.model.game.Game;
+import com.harragan.battleshipsboot.repositorys.GameRepository;
+import com.harragan.battleshipsboot.repositorys.PlayerRepository;
+import com.harragan.battleshipsboot.service.GameService;
+import com.harragan.battleshipsboot.service.PlayerService;
+import org.junit.Before;
+import org.junit.Test;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import com.harragan.battleshipsboot.model.game.Player;
+
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
+
+public class PlayerAddingFacadeTest {
+
+    private PlayerAddingFacade playerAddingFacade;
+
+    @Mock
+    private PlayerService playerService;
+
+    @Mock
+    private PlayerRepository playerRepository;
+
+    @Mock
+    GameRepository gameRepository;
+
+    @Mock
+    private GameService gameService;
+
+    @Mock
+    private Player burny;
+
+    private Player helga;
+
+    private Game game;
+
+    @Before
+    public void initTest() {
+        MockitoAnnotations.initMocks(this);
+        playerAddingFacade = new PlayerAddingFacade(playerService,  gameService
+                ,playerRepository,  gameRepository);
+        game = new Game();
+        game.setId(1);
+    }
+
+    @Test
+    public void givenWhenAPlayerNameAndAGameIdIsProvidedAPlayerIsCreated() {
+        String playerName = "Burny";
+        when(playerService.createPlayer(playerName, playerRepository)).thenReturn(burny);
+
+        playerAddingFacade.createPlayerAndJoinToGame(playerName, game.getId());
+
+        verify(playerService, times(1)).createPlayer(playerName, playerRepository);
+        verify(gameService, times(1)).joinPlayerToGame(1, burny);
+        playerAddingFacade.createPlayerAndJoinToGame(playerName, game.getId());
+    }
+
+}
