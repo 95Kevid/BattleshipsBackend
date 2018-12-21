@@ -1,7 +1,5 @@
 package com.harragan.battleshipsboot.model.game;
 
-import com.harragan.battleshipsboot.model.ships.Column;
-
 import javax.persistence.*;
 import java.util.Objects;
 
@@ -12,23 +10,23 @@ public class BoardPosition {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
-    private com.harragan.battleshipsboot.model.ships.Column col;
+    private Column col;
     private int row;
     private boolean isHit;
 
     public BoardPosition() {
 
     }
-    public BoardPosition(com.harragan.battleshipsboot.model.ships.Column col, int row) {
-        if(row > 10){
+    public BoardPosition(Column col, int inputRow) {
+        if(inputRow > 10){
             throw new IllegalArgumentException("The row should not be greater than 10.");
         }
         this.col = col;
-        this.row = row;
+        this.row = inputRow;
         isHit = false;
     }
 
-    public com.harragan.battleshipsboot.model.ships.Column getCol() {
+    public Column getCol() {
         return col;
     }
 

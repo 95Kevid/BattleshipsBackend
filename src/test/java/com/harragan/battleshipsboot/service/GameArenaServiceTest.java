@@ -1,17 +1,19 @@
 package com.harragan.battleshipsboot.service;
+import com.harragan.battleshipsboot.model.game.Column;
 import com.harragan.battleshipsboot.model.ships.*;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Orientation;
 import com.harragan.battleshipsboot.model.game.BoardPosition;
-import uk.gov.ukho.battleshipsboot.model.ships.*;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
+import org.junit.rules.ExpectedException;
 
 import static junit.framework.TestCase.assertSame;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-import static com.harragan.battleshipsboot.model.ships.Column.*;
+import static org.assertj.core.api.Java6Assertions.failBecauseExceptionWasNotThrown;
+import static com.harragan.battleshipsboot.model.game.Column.*;
+import static org.junit.Assert.*;
 
 public class GameArenaServiceTest {
     private GameArena gameArena;
@@ -27,6 +29,9 @@ public class GameArenaServiceTest {
         gameArena = new GameArena();
         gameArenaService = new GameArenaService();
     }
+
+    @Rule
+    public final ExpectedException exception = ExpectedException.none();
 
     @Test
     public void ships_can_be_placed_in_valid_locations_in_the_arena() {
@@ -57,6 +62,54 @@ public class GameArenaServiceTest {
         assertSame(cruiser, gameArenaService.getShipAtPosition(positionA10, gameArena));
     }
 
+    @Test
+    public void ships_can_be_placed_on_the_edges_of_the_board_in_valid_positions () {
+        gameArena.clearArena();
+
+        BoardPosition positionA8 = new BoardPosition(A, 8);
+        BoardPosition positionG1 = new BoardPosition(G, 1);
+        BoardPosition positionJ6 = new BoardPosition(J, 6);
+        Submarine submarine = new Submarine(Orientation.VERTICAL, positionA8);
+        Cruiser cruiser = new Cruiser(Orientation.HORIZONTAL, positionG1);
+        Carrier carrier = new Carrier(Orientation.VERTICAL, positionJ6);
+        gameArenaService.addShip(submarine, gameArena);
+        gameArenaService.addShip(cruiser, gameArena);
+        gameArenaService.addShip(carrier, gameArena);
+    }
+
+
+    @Test
+    public void ships_can_not_be_placed_off_the_board_or_partly_off_the_board() {
+        gameArena.clearArena();
+        This test is flawed! Need to know how to detect that an exception is thrown multiple times
+        BoardPosition positionA10 = new BoardPosition(A,10);
+        BoardPosition positionJ1 = new BoardPosition(J,1);
+        BoardPosition positionH4 = new BoardPosition(H, 4);
+        BoardPosition positionG5 = new BoardPosition(G, 5);
+
+        Battleship battleship =  new Battleship(Orientation.VERTICAL, positionA10);
+        Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, positionJ1);
+        Cruiser cruiser = new Cruiser(Orientation.HORIZONTAL, positionH4);
+        Carrier carrier = new Carrier(Orientation.HORIZONTAL, positionG5);
+
+        String expectedMessage = "Ship is positioned off board. "
+                + "Please ensure that all positions are valid positions.git status
+
+        try{
+            gameArenaService.addShip(battleship, gameArena);
+            failBecauseExceptionWasNotThrown(IllegalBoardPlacementException.class);
+            gameArenaService.addShip(destroyer, gameArena);
+            failBecauseExceptionWasNotThrown(IllegalBoardPlacementException.class);
+            gameArenaService.addShip(cruiser, gameArena);
+            failBecauseExceptionWasNotThrown(IllegalBoardPlacementException.class);
+            gameArena.clearArena();
+            gameArenaService.addShip(carrier, gameArena);
+            failBecauseExceptionWasNotThrown(IllegalBoardPlacementException.class);
+        } catch (IllegalBoardPlacementException exception) {
+            assertEquals(expectedMessage
+                    , exception.getMessage());
+        }
+    }
 
     @Test(expected = IllegalArgumentException.class)
     public void invalid_positions_can_not_be_created() {

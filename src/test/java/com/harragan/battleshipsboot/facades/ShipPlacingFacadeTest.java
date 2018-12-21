@@ -1,18 +1,15 @@
 package com.harragan.battleshipsboot.facades;
 
 import com.harragan.battleshipsboot.model.game.*;
-import com.harragan.battleshipsboot.model.ships.Column;
+import com.harragan.battleshipsboot.model.game.Column;
 import com.harragan.battleshipsboot.model.ships.Destroyer;
-import com.harragan.battleshipsboot.repositorys.GameRepository;
+import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import uk.gov.ukho.battleshipsboot.model.game.*;
-
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
@@ -22,7 +19,7 @@ public class ShipPlacingFacadeTest {
     private ShipPlacingFacade shipPlacingFacade;
 
     @Mock
-    private GameRepository gameRepository;
+    private GameArenaService gameArenaService;
 
     @Mock
     private GameService gameService;
@@ -39,7 +36,7 @@ public class ShipPlacingFacadeTest {
     @Before
     public void initTest() {
         MockitoAnnotations.initMocks(this);
-        shipPlacingFacade = new ShipPlacingFacade(gameRepository, gameService, playerService);
+        shipPlacingFacade = new ShipPlacingFacade(gameArenaService, gameService, playerService);
     }
 
     @Test
@@ -54,8 +51,7 @@ public class ShipPlacingFacadeTest {
 
         shipPlacingFacade.placeShip(1, game.getId(), destroyer);
 
-        verify(gameArena, times(1)).addShip(destroyer);
+        verify(gameArenaService, times(1)).addShip(destroyer, gameArena);
         verify(gameService, times(1)).getGame(1);
-
     }
 }

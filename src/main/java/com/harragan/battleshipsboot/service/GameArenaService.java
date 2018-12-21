@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.harragan.battleshipsboot.model.game.BoardPosition;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Orientation;
-import com.harragan.battleshipsboot.model.ships.Column;
+import com.harragan.battleshipsboot.model.game.Column;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 
 import java.util.List;
@@ -22,13 +22,13 @@ public class GameArenaService {
 
     private void checkShipCanBePlaced(Ship ship, GameArena gameArena) {
         if(shipAlreadyExists(ship, gameArena)) {
-            throw new IllegalBoardPlacementException("The " + Ship.class.getName()
+            throw new IllegalBoardPlacementException("The " + ship.getClass().getSimpleName().toLowerCase()
                     + " has already been placed on the board");
         }
 
         if(isShipOffBoard(ship)) {
             throw new IllegalBoardPlacementException("Ship is positioned off board."
-            + " Please ensure that all positions are valid positions");
+            + " Please ensure that all positions are valid positions.");
 
         }
         if(positionsAlreadyOccupied(ship, gameArena)) {
@@ -51,10 +51,12 @@ public class GameArenaService {
     }
 
     public boolean isShipOffBoard(Ship ship) {
-        if(ship.getOrient() == Orientation.VERTICAL && ship.getOccupiedPosition(0).getRow() > 10) {
+        if(ship.getOrient() == Orientation.VERTICAL && ship.getOccupiedPosition(0).getRow()
+                + ship.getLength() > 11) {
             return true;
         }
-        if(ship.getOccupiedPosition(0).getCol().toString().charAt(0) + ship.getLength() > 'K') {
+        if(ship.getOrient() == Orientation.HORIZONTAL
+                && ship.getOccupiedPosition(0).getCol().toString().charAt(0) + ship.getLength() > 'K') {
             return true;
         }
         return false;
