@@ -1,6 +1,5 @@
 package com.harragan.battleshipsboot.model.game;
 import com.harragan.battleshipsboot.model.ships.Ship;
-import org.hibernate.annotations.IndexColumn;
 
 import javax.persistence.*;
 

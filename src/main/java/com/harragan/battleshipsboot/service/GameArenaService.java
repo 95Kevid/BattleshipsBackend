@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import com.harragan.battleshipsboot.model.game.BoardPosition;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Orientation;
-import com.harragan.battleshipsboot.model.game.Column;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 
 import java.util.List;
@@ -15,8 +14,8 @@ import java.util.Optional;
 public class GameArenaService {
 
     public void addShip(Ship ship, GameArena gameArena){
-        checkShipCanBePlaced(ship, gameArena);
         setOccupiedPositionsOfShip(ship);
+        checkShipCanBePlaced(ship, gameArena);
         gameArena.addShip(ship);
     }
 
@@ -56,7 +55,7 @@ public class GameArenaService {
             return true;
         }
         if(ship.getOrient() == Orientation.HORIZONTAL
-                && ship.getOccupiedPosition(0).getCol().toString().charAt(0) + ship.getLength() > 'K') {
+                && ship.getOccupiedPosition(0).getCol() + ship.getLength() > 'K') {
             return true;
         }
         return false;
@@ -110,13 +109,12 @@ public class GameArenaService {
             }
         } else {
             for (int i = 1; i < ship.getLength(); i++) {
-                char inputCol = ship.getOccupiedPosition(0).getCol().toString().charAt(0);
-                int input = inputCol + i;
-                String col = "" + (char) input;
-                BoardPosition pos = new BoardPosition(Column.valueOf(col), ship.getOccupiedPosition(0).getRow());
-                List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
-                occupiedBoardPositions.add(i, pos);
-                ship.setOccupiedPosition(occupiedBoardPositions);
+                    char inputCol = ship.getOccupiedPosition(0).getCol();
+                    int input = inputCol + i;
+                    BoardPosition pos = new BoardPosition((char) input, ship.getOccupiedPosition(0).getRow());
+                    List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
+                    occupiedBoardPositions.add(i, pos);
+                    ship.setOccupiedPosition(occupiedBoardPositions);
             }
         }
     }

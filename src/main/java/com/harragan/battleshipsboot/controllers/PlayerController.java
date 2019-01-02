@@ -22,7 +22,4 @@ public class PlayerController {
                 , playerRequestWrapper.getGameId());
         return new ResponseEntity<>(playerId, HttpStatus.CREATED);
     }
-
-
-
 }

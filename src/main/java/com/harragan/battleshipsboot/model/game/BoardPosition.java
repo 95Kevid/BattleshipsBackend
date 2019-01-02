@@ -10,23 +10,20 @@ public class BoardPosition {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private int id;
-    private Column col;
+    private char col;
     private int row;
     private boolean isHit;
 
     public BoardPosition() {
 
     }
-    public BoardPosition(Column col, int inputRow) {
-        if(inputRow > 10){
-            throw new IllegalArgumentException("The row should not be greater than 10.");
-        }
-        this.col = col;
+    public BoardPosition(char col, int inputRow) {
+        this.col = Character.toUpperCase(col);
         this.row = inputRow;
         isHit = false;
     }
 
-    public Column getCol() {
+    public char getCol() {
         return col;
     }
 
@@ -34,7 +31,7 @@ public class BoardPosition {
         return row;
     }
 
-    public void setCol(Column col) {
+    public void setCol(char col) {
         this.col = col;
     }
 
@@ -48,7 +45,7 @@ public class BoardPosition {
 
     public boolean equals(Object object) {
         if(!(object instanceof BoardPosition)) {
-            throw new IllegalArgumentException("Object of type BoardPosition should of been proviced");
+            throw new IllegalArgumentException("Object of type BoardPosition should of been provided");
         }
         BoardPosition input = (BoardPosition) object;
         return this.col == input.getCol() && this.row == input.getRow();
