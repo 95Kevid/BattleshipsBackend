@@ -16,7 +16,7 @@ public class Game {
 
     private int turnIndex;
 
-    private int maxPlayers;
+    private int noOfPlayers;
 
     public int getTurnIndex() {
         return turnIndex;
@@ -29,9 +29,9 @@ public class Game {
     public Game() {
     }
 
-    public Game(int maxPlayers) {
+    public Game(int noOfPlayers) {
         this.players = new LinkedList<>();
-        this.maxPlayers = maxPlayers;
+        this.noOfPlayers = noOfPlayers;
     }
 
     public int getId() {
@@ -49,6 +49,6 @@ public class Game {
     }
 
     public int getMaxPlayers() {
-        return maxPlayers;
+        return noOfPlayers;
     }
 }

@@ -2,9 +2,9 @@ package com.harragan.battleshipsboot.service;
 
 import com.harragan.battleshipsboot.model.game.BoardPosition;
 
-public class BoardPositionService {
+public class BoardPositionFactory {
 
-    public BoardPosition createBoardPosition(char col, int row) {
+    public static BoardPosition createBoardPosition(char col, int row) {
         if(!Character.isAlphabetic(col)) {
             throw new IllegalArgumentException("The column has to be a alphabetic character.");
         }

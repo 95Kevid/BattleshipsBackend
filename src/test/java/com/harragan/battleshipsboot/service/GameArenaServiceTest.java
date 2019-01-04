@@ -6,8 +6,11 @@ import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Orientation;
 import com.harragan.battleshipsboot.model.game.BoardPosition;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
+import org.mockito.Mock;
+
 import static junit.framework.TestCase.assertSame;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.when;
 
 public class GameArenaServiceTest {
     private GameArena gameArena;
@@ -270,6 +273,25 @@ public class GameArenaServiceTest {
         assertTrue(gameArena.getSunkShips().contains(battleship));
         assertTrue(gameArena.getSunkShips().contains(submarine));
         assertFalse(gameArena.getSunkShips().contains(cruiser));
+    }
+
+    @Test
+    public void givenWhenAllShipsArePlacedTheVariableAllShipsPlacedIsTrue() {
+        gameArena.clearArena();
+        Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, new BoardPosition('A', 1));
+        Carrier carrier = new Carrier(Orientation.HORIZONTAL, new BoardPosition('A', 2));
+        Cruiser cruiser = new Cruiser(Orientation.HORIZONTAL, new BoardPosition('A', 3));
+        Submarine submarine = new Submarine(Orientation.HORIZONTAL, new BoardPosition('A', 4));
+        Battleship battleship = new Battleship(Orientation.HORIZONTAL, new BoardPosition('A', 5));
+
+        gameArenaService.addShip(destroyer, gameArena);
+        gameArenaService.addShip(carrier, gameArena);
+        gameArenaService.addShip(cruiser, gameArena);
+        gameArenaService.addShip(submarine, gameArena);
+
+        assertFalse(gameArena.isAllShipsPlaced());
+        gameArenaService.addShip(battleship, gameArena);
+        assertTrue(gameArena.isAllShipsPlaced());
     }
 
 }

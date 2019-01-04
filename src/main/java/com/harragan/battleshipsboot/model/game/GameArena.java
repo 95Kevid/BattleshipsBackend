@@ -17,6 +17,8 @@ public class GameArena {
     @OneToMany(cascade = PERSIST)
     private Set<Ship> shipsOnBoard = new HashSet<>();
 
+    private boolean allShipsPlaced;
+
     @OneToMany(cascade = PERSIST)
     private List<BoardPosition> shotBoardPositions = new ArrayList<>();
 
@@ -63,5 +65,13 @@ public class GameArena {
 
     public void setSunkShips(Set<Ship> sunkShips) {
         this.sunkShips = sunkShips;
+    }
+
+    public boolean isAllShipsPlaced() {
+        return allShipsPlaced;
+    }
+
+    public void setAllShipsPlaced(boolean input) {
+        allShipsPlaced = input;
     }
 }

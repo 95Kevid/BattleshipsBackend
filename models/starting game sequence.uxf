@@ -496,7 +496,7 @@ placeShip(playerId, ship, Orientation.HORIZONTAL,a1)</panel_attributes>
     <id>UMLGeneric</id>
     <coordinates>
       <x>1584</x>
-      <y>488</y>
+      <y>480</y>
       <w>16</w>
       <h>16</h>
     </coordinates>
@@ -507,7 +507,7 @@ placeShip(playerId, ship, Orientation.HORIZONTAL,a1)</panel_attributes>
     <id>Relation</id>
     <coordinates>
       <x>728</x>
-      <y>472</y>
+      <y>464</y>
       <w>872</w>
       <h>32</h>
     </coordinates>

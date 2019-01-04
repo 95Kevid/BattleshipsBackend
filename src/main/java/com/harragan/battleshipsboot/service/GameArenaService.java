@@ -16,7 +16,14 @@ public class GameArenaService {
     public void addShip(Ship ship, GameArena gameArena){
         setOccupiedPositionsOfShip(ship);
         checkShipCanBePlaced(ship, gameArena);
+        addShipToGameArena(ship, gameArena);
+    }
+
+    private void addShipToGameArena(Ship ship, GameArena gameArena) {
         gameArena.addShip(ship);
+        if(gameArena.getShipsOnBoard().size() == 5) {
+            gameArena.setAllShipsPlaced(true);
+        }
     }
 
     private void checkShipCanBePlaced(Ship ship, GameArena gameArena) {
@@ -101,7 +108,7 @@ public class GameArenaService {
     public void setOccupiedPositionsOfShip(Ship ship) {
         if (ship.getOrient() == Orientation.VERTICAL) {
             for (int i = 1; i < ship.getLength(); i++) {
-                BoardPosition pos = new BoardPosition(ship.getOccupiedPosition(0).getCol(),
+                BoardPosition pos = BoardPositionFactory.createBoardPosition(ship.getOccupiedPosition(0).getCol(),
                         ship.getOccupiedPosition(0).getRow() + i);
                 List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
                 occupiedBoardPositions.add(i, pos);
@@ -111,7 +118,7 @@ public class GameArenaService {
             for (int i = 1; i < ship.getLength(); i++) {
                     char inputCol = ship.getOccupiedPosition(0).getCol();
                     int input = inputCol + i;
-                    BoardPosition pos = new BoardPosition((char) input, ship.getOccupiedPosition(0).getRow());
+                    BoardPosition pos = BoardPositionFactory.createBoardPosition((char) input, ship.getOccupiedPosition(0).getRow());
                     List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
                     occupiedBoardPositions.add(i, pos);
                     ship.setOccupiedPosition(occupiedBoardPositions);
