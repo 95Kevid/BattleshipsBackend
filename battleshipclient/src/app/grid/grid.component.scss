@@ -1,0 +1,15 @@
+#table-grid {
+  border: 1px solid black;
+  width: 600px;
+  height: 600px;
+  table-layout: fixed;
+}
+
+tr {
+  border: 1px solid black;
+}
+
+td {
+  border: 1px solid black;
+  width: 10%;
+}

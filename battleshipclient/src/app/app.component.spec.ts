@@ -1,6 +1,7 @@
 import {TestBed, async, ComponentFixture} from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {By} from '@angular/platform-browser';
+import {ShipPlacerUIComponent} from './containers/ship-placing/ship-placer-u-i.component';
+import {GridComponent} from './grid/grid.component';
 
 describe('AppComponent', () => {
 
@@ -10,7 +11,9 @@ describe('AppComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        ShipPlacerUIComponent,
+        GridComponent
       ],
     });
 
@@ -23,16 +26,9 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'battleshipclient'`, () => {
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('battleshipclient');
-  });
 
-  it('should render title in a h1 tag', () => {
-    fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to battleshipclient!');
-  });
+
+
 
 
   // it('should create a grid with width of board size of 10', () => {

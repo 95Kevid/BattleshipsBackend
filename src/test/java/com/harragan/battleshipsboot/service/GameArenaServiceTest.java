@@ -1,5 +1,6 @@
 package com.harragan.battleshipsboot.service;
 import com.harragan.battleshipsboot.model.ships.*;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import com.harragan.battleshipsboot.model.game.GameArena;
@@ -122,6 +123,7 @@ public class GameArenaServiceTest {
 
         gameArenaService.addShip(submarine, gameArena);
         gameArenaService.addShip(destroyer, gameArena);
+
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
