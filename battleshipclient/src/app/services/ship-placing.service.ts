@@ -9,7 +9,6 @@ import {Ship} from '../models/ship';
 })
 export class ShipPlacingService {
   private url = 'http://localhost:9721/';
-
   private ships: Ship[] = [];
 
   constructor(private http: HttpClient) {

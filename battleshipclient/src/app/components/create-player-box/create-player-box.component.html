@@ -1,0 +1,4 @@
+<form [formGroup]="createPlayerFormGroup" (ngSubmit)="onSubmit()">
+  <label>Enter Player Name: </label><input type="text" formControlName="playerName"/>
+  <button type="submit" [disabled]="formIsDisabled">Create Player</button>
+</form>

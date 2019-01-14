@@ -1,0 +1,7 @@
+<div id="create-game-box">
+<form [formGroup]="formGroup" (ngSubmit)="onSubmit()">
+  <label>Enter number of Players</label><input type="text" formControlName="numberOfPlayers"/>
+  <button type="submit" [disabled]="formDisabled">Create Game</button>
+  <label>Game Id: </label>{{gameId}}
+</form>
+</div>
