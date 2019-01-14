@@ -5,7 +5,6 @@ import org.junit.Test;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Orientation;
 import com.harragan.battleshipsboot.model.game.BoardPosition;
-import uk.gov.ukho.battleshipsboot.model.ships.*;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 
 import static junit.framework.TestCase.assertSame;
