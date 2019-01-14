@@ -15,20 +15,21 @@ public class GameArena {
     private int id;
 
     @OneToMany(cascade = PERSIST)
-    @OrderColumn
-    private List<Ship> shipsOnBoard = new ArrayList<>();
+    private Set<Ship> shipsOnBoard = new HashSet<>();
+
+    private boolean allShipsPlaced;
 
     @OneToMany(cascade = PERSIST)
     private List<BoardPosition> shotBoardPositions = new ArrayList<>();
 
     @OneToMany(cascade = PERSIST)
-    private List<Ship> sunkShips = new ArrayList<>();
+    private Set<Ship> sunkShips = new HashSet<>();
 
     public List<Ship> getSunkShips() {
         return new ArrayList<>(sunkShips);
     }
 
-    public List<Ship> getShipsOnBoard() {
+    public Set<Ship> getShipsOnBoard() {
         return shipsOnBoard;
     }
 
@@ -37,7 +38,7 @@ public class GameArena {
     }
 
     public boolean isShipOnBoard(Ship ship) {
-        return shipsOnBoard.contains(ship);
+        return getShipsOnBoard().contains(ship);
     }
 
     public void addShotPosition(BoardPosition boardPosition) {
@@ -54,7 +55,7 @@ public class GameArena {
         sunkShips.add(ship);
     }
 
-    public void setShipsOnBoard(List<Ship> shipsOnBoard) {
+    public void setShipsOnBoard(Set<Ship> shipsOnBoard) {
         this.shipsOnBoard = shipsOnBoard;
     }
 
@@ -62,7 +63,15 @@ public class GameArena {
         this.shotBoardPositions = shotBoardPositions;
     }
 
-    public void setSunkShips(List<Ship> sunkShips) {
+    public void setSunkShips(Set<Ship> sunkShips) {
         this.sunkShips = sunkShips;
+    }
+
+    public boolean isAllShipsPlaced() {
+        return allShipsPlaced;
+    }
+
+    public void setAllShipsPlaced(boolean input) {
+        allShipsPlaced = input;
     }
 }

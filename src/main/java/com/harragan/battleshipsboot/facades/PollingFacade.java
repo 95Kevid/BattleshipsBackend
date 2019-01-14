@@ -4,7 +4,9 @@ import com.harragan.battleshipsboot.repositorys.GameRepository;
 import com.harragan.battleshipsboot.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
 import com.harragan.battleshipsboot.model.game.PlayersToPlayersNotReady;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PollingFacade {
 
     GameRepository gameRepository;

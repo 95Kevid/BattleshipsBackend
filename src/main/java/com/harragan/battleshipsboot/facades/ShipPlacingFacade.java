@@ -12,17 +12,16 @@ import com.harragan.battleshipsboot.model.game.Player;
 
 @Service
 public class ShipPlacingFacade {
+
+    private GameArenaService gameArenaService;
     private GameService gameService;
     private PlayerService playerService;
-    private GameArenaService gameArenaService;
 
-    public ShipPlacingFacade(GameArenaService gameArenaService, GameService gameService,
-                             PlayerService playerService) {
-        this.gameArenaService = gameArenaService;
+    public ShipPlacingFacade(GameArenaService gameArenaService, GameService gameService, PlayerService playerService) {
         this.gameService = gameService;
         this.playerService = playerService;
+        this.gameArenaService = gameArenaService;
     }
-
 
     public void placeShip(int playerId, int gameId, Ship ship){
             Player player = playerService.getPlayerById(playerId);

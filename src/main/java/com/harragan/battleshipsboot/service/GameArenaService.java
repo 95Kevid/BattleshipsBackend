@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import com.harragan.battleshipsboot.model.game.BoardPosition;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Orientation;
-import com.harragan.battleshipsboot.model.ships.Column;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 
 import java.util.List;
@@ -15,20 +14,27 @@ import java.util.Optional;
 public class GameArenaService {
 
     public void addShip(Ship ship, GameArena gameArena){
-        checkShipCanBePlaced(ship, gameArena);
         setOccupiedPositionsOfShip(ship);
+        checkShipCanBePlaced(ship, gameArena);
+        addShipToGameArena(ship, gameArena);
+    }
+
+    private void addShipToGameArena(Ship ship, GameArena gameArena) {
         gameArena.addShip(ship);
+        if(gameArena.getShipsOnBoard().size() == 5) {
+            gameArena.setAllShipsPlaced(true);
+        }
     }
 
     private void checkShipCanBePlaced(Ship ship, GameArena gameArena) {
         if(shipAlreadyExists(ship, gameArena)) {
-            throw new IllegalBoardPlacementException("The " + Ship.class.getName()
+            throw new IllegalBoardPlacementException("The " + ship.getClass().getSimpleName().toLowerCase()
                     + " has already been placed on the board");
         }
 
         if(isShipOffBoard(ship)) {
             throw new IllegalBoardPlacementException("Ship is positioned off board."
-            + " Please ensure that all positions are valid positions");
+            + " Please ensure that all positions are valid positions.");
 
         }
         if(positionsAlreadyOccupied(ship, gameArena)) {
@@ -51,10 +57,12 @@ public class GameArenaService {
     }
 
     public boolean isShipOffBoard(Ship ship) {
-        if(ship.getOrient() == Orientation.VERTICAL && ship.getOccupiedPosition(0).getRow() > 10) {
+        if(ship.getOrient() == Orientation.VERTICAL && ship.getOccupiedPosition(0).getRow()
+                + ship.getLength() > 11) {
             return true;
         }
-        if(ship.getOccupiedPosition(0).getCol().toString().charAt(0) + ship.getLength() > 'K') {
+        if(ship.getOrient() == Orientation.HORIZONTAL
+                && ship.getOccupiedPosition(0).getCol() + ship.getLength() > 'K') {
             return true;
         }
         return false;
@@ -100,7 +108,7 @@ public class GameArenaService {
     public void setOccupiedPositionsOfShip(Ship ship) {
         if (ship.getOrient() == Orientation.VERTICAL) {
             for (int i = 1; i < ship.getLength(); i++) {
-                BoardPosition pos = new BoardPosition(ship.getOccupiedPosition(0).getCol(),
+                BoardPosition pos = BoardPositionFactory.createBoardPosition(ship.getOccupiedPosition(0).getCol(),
                         ship.getOccupiedPosition(0).getRow() + i);
                 List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
                 occupiedBoardPositions.add(i, pos);
@@ -108,13 +116,12 @@ public class GameArenaService {
             }
         } else {
             for (int i = 1; i < ship.getLength(); i++) {
-                char inputCol = ship.getOccupiedPosition(0).getCol().toString().charAt(0);
-                int input = inputCol + i;
-                String col = "" + (char) input;
-                BoardPosition pos = new BoardPosition(Column.valueOf(col), ship.getOccupiedPosition(0).getRow());
-                List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
-                occupiedBoardPositions.add(i, pos);
-                ship.setOccupiedPosition(occupiedBoardPositions);
+                    char inputCol = ship.getOccupiedPosition(0).getCol();
+                    int input = inputCol + i;
+                    BoardPosition pos = BoardPositionFactory.createBoardPosition((char) input, ship.getOccupiedPosition(0).getRow());
+                    List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
+                    occupiedBoardPositions.add(i, pos);
+                    ship.setOccupiedPosition(occupiedBoardPositions);
             }
         }
     }

@@ -1,0 +1,7 @@
+<form [formGroup] = "shipPlacingForm" (ngSubmit)="submitPlacement()">
+  <label>{{shipType}}</label>
+  <label>Column</label> <input type="text" formControlName="col">
+  <label>Row</label> <input type="text" formControlName="row">
+  <label>Orientation</label> <input type="text" formControlName="orientation">
+  <button type="submit">Place ship</button>
+</form>

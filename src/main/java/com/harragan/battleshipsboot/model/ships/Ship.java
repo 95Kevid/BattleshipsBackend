@@ -6,6 +6,7 @@ import com.harragan.battleshipsboot.model.game.Orientation;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import static javax.persistence.CascadeType.PERSIST;
 
@@ -15,13 +16,17 @@ public abstract class Ship {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private final int LENGTH;
+    private int LENGTH;
 
 
     @OneToMany(cascade = PERSIST)
     private List<BoardPosition> occupiedBoardPositions;
     private boolean isSunk;
     private Orientation orient;
+
+    public Ship() {
+
+    }
 
     public Ship(int length, Orientation orient, BoardPosition boardPosition){
         LENGTH = length;
@@ -55,5 +60,16 @@ public abstract class Ship {
 
     public boolean isSunk() {
         return isSunk;
+    }
+
+    @Override
+    public boolean equals(Object ship) {
+        Ship inputShip = (Ship) ship;
+        return this.getClass().equals(inputShip.getClass());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(this.getClass());
     }
 }

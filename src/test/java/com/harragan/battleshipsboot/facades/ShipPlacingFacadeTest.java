@@ -1,8 +1,8 @@
 package com.harragan.battleshipsboot.facades;
 
 import com.harragan.battleshipsboot.model.game.*;
-import com.harragan.battleshipsboot.model.ships.Column;
 import com.harragan.battleshipsboot.model.ships.Destroyer;
+import com.harragan.battleshipsboot.service.BoardPositionFactory;
 import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
@@ -42,7 +42,7 @@ public class ShipPlacingFacadeTest {
     @Test
     public void givenAShipPositionGameIDAndPlayerIdThenAShipIsPositionedOnThatPlayersGameArena() {
         Game game = new Game();
-        Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, new BoardPosition(Column.A, 1));
+        Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, new BoardPosition('A', 1));
         game.setId(1);
 
         when(gameService.getGame(1)).thenReturn(game);
@@ -53,6 +53,7 @@ public class ShipPlacingFacadeTest {
 
         verify(gameArenaService, times(1)).addShip(destroyer, gameArena);
         verify(gameService, times(1)).getGame(1);
-
     }
+
+
 }

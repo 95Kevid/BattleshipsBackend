@@ -75,7 +75,7 @@ public class GameService {
         Game game = getGame(gameId);
         List<Player> playersInGame = getPlayersFromGame(game);
         PlayersToPlayersNotReady noOfPlayersToNotReadyPlayers
-                = new PlayersToPlayersNotReady(playersInGame.size(), getNotReadyPlayers(playersInGame));
+                = new PlayersToPlayersNotReady(getNotReadyPlayers(playersInGame), game.getMaxPlayers());
         return noOfPlayersToNotReadyPlayers;
     }
 
