@@ -12,6 +12,7 @@ export class ShipPositionBoxComponent implements OnInit {
   @Input() shipType: string;
   @Output() shipPlacementUpdate: EventEmitter<ShipPlaceRequest> = new EventEmitter();
 
+
   shipPlacingForm = new FormGroup({
     col: new FormControl(''),
     row: new FormControl(''),
@@ -27,6 +28,9 @@ export class ShipPositionBoxComponent implements OnInit {
   }
 
   submitPlacement() {
-    this.shipPlacementUpdate.emit();
+    this.shipPlaceRequest.boardPosition.col = this.shipPlacingForm.get('col').value;
+    this.shipPlaceRequest.boardPosition.row = this.shipPlacingForm.get('row').value;
+    this.shipPlaceRequest.orientation = this.shipPlacingForm.get('orientation').value;
+    this.shipPlacementUpdate.emit(this.shipPlaceRequest);
   }
 }

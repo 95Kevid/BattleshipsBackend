@@ -32,4 +32,14 @@ public class PlayerService {
         }
         return playerOptional.get();
     }
+
+    public void setPlayerIsReady(int playerId, final PlayerRepository playerRepository) {
+        Optional<Player> playerOptional = playerRepository.findById(playerId);
+        if(!playerOptional.isPresent()) {
+            throw new IllegalArgumentException("There is no player in the repository with that Id.");
+        }
+        Player player = playerOptional.get();
+        player.setReadyToStartGame(true);
+        playerRepository.save(player);
+    }
 }

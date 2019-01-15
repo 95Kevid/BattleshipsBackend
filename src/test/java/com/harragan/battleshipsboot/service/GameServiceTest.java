@@ -1,7 +1,7 @@
 package com.harragan.battleshipsboot.service;
 
 import com.harragan.battleshipsboot.model.game.Game;
-import com.harragan.battleshipsboot.model.game.PlayersToPlayersNotReady;
+import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -84,7 +84,7 @@ public class GameServiceTest {
     }
 
     @Test
-    public void givenAGameIdThenReturnTheNumberOfPlayersThatAreNotReady() {
+    public void givenAGameIdThenReturnTheNumberOfPlayersToNumberOfNotReadyPlayers() {
         LinkedList<Player> players = new LinkedList<>();
         players.add(player1);
         players.add(player2);
@@ -100,16 +100,16 @@ public class GameServiceTest {
 
         when(gameRepository.findById(9)).thenReturn(Optional.of(game1));
 
-        PlayersToPlayersNotReady correctPlayersToPlayersNotReady
-                = new PlayersToPlayersNotReady(3,2);
-        PlayersToPlayersNotReady incorrectPlayersToPlayersNotReady
-                = new PlayersToPlayersNotReady(3,3);
+        PlayersToPlayersReady correctPlayersToPlayersNotReady
+                = new PlayersToPlayersReady(3,1);
+        PlayersToPlayersReady incorrectPlayersToPlayersNotReady
+                = new PlayersToPlayersReady(3,3);
 
-        Assertions.assertThat(gameService.getNumberOfNotReadyPlayersToReadyPlayers(game1.getId()))
+        Assertions.assertThat(gameService.getPlayersToPlayersReady(game1.getId()))
                 .isEqualTo(correctPlayersToPlayersNotReady)
                 .as("2 of the 3 players should be ready");
 
-        Assertions.assertThat(gameService.getNumberOfNotReadyPlayersToReadyPlayers(game1.getId()))
+        Assertions.assertThat(gameService.getPlayersToPlayersReady(game1.getId()))
                 .isNotEqualTo(incorrectPlayersToPlayersNotReady)
                 .as("3 of the 3 players should not be ready");
     }

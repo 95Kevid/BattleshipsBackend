@@ -9,7 +9,7 @@ import org.mockito.MockitoAnnotations;
 import static org.assertj.core.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-import com.harragan.battleshipsboot.model.game.PlayersToPlayersNotReady;
+import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
 
 
 public class PollingFacadeTest {
@@ -30,13 +30,13 @@ public class PollingFacadeTest {
 
     @Test
     public void givenWhenAGameIdIsProvidedThenANumberOfPlayersInTheGameIsProvidedWithANumberOfPlayersThatAreNotReady() {
-        PlayersToPlayersNotReady expectedPlayersToPlayersNotReady
-                = new PlayersToPlayersNotReady(3,2);
+        PlayersToPlayersReady expectedPlayersToPlayersNotReady
+                = new PlayersToPlayersReady(3,2);
 
-        when(gameService.getNumberOfNotReadyPlayersToReadyPlayers(1))
+        when(gameService.getPlayersToPlayersReady(1))
                 .thenReturn(expectedPlayersToPlayersNotReady);
 
-        PlayersToPlayersNotReady actualPlayersToPlayersNotReady
+        PlayersToPlayersReady actualPlayersToPlayersNotReady
                 = pollingFacade.getNumberOfNotReadyPlayersToReadyPlayers(1);
 
         assertThat(expectedPlayersToPlayersNotReady).isEqualTo(actualPlayersToPlayersNotReady);

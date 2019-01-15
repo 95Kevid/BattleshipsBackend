@@ -8,13 +8,15 @@ import { GridComponent } from './grid/grid.component';
 import { ShipPlacerUIComponent } from './containers/ship-placing/ship-placer-u-i.component';
 import {HttpClientModule} from '@angular/common/http';
 import { ShipPositionBoxComponent } from './components/ship-position-box/ship-position-box.component';
+import { GameControlBoxComponent } from './components/game-control-box/game-control-box.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GridComponent,
     ShipPlacerUIComponent,
-    ShipPositionBoxComponent
+    ShipPositionBoxComponent,
+    GameControlBoxComponent
   ],
   imports: [
     BrowserModule,

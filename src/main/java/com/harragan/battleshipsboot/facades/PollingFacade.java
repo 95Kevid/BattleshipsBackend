@@ -3,7 +3,7 @@ package com.harragan.battleshipsboot.facades;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
 import com.harragan.battleshipsboot.service.GameService;
 import org.springframework.beans.factory.annotation.Autowired;
-import com.harragan.battleshipsboot.model.game.PlayersToPlayersNotReady;
+import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,7 +18,7 @@ public class PollingFacade {
         this.gameRepository = gameRepository;
     }
 
-    public PlayersToPlayersNotReady getNumberOfNotReadyPlayersToReadyPlayers(int gameId) {
-        return gameService.getNumberOfNotReadyPlayersToReadyPlayers(gameId);
+    public PlayersToPlayersReady getNumberOfNotReadyPlayersToReadyPlayers(int gameId) {
+        return gameService.getPlayersToPlayersReady(gameId);
     }
 }

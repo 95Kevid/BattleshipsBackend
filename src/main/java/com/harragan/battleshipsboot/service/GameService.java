@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.Player;
-import com.harragan.battleshipsboot.model.game.PlayersToPlayersNotReady;
+import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -71,17 +71,17 @@ public class GameService {
         playersInGame.add(currentPlayersTurn);
     }
 
-    public PlayersToPlayersNotReady getNumberOfNotReadyPlayersToReadyPlayers(int gameId) {
+    public PlayersToPlayersReady getPlayersToPlayersReady(int gameId) {
         Game game = getGame(gameId);
         List<Player> playersInGame = getPlayersFromGame(game);
-        PlayersToPlayersNotReady noOfPlayersToNotReadyPlayers
-                = new PlayersToPlayersNotReady(getNotReadyPlayers(playersInGame), game.getMaxPlayers());
-        return noOfPlayersToNotReadyPlayers;
+        PlayersToPlayersReady noOfPlayersToReadyPlayers
+                = new PlayersToPlayersReady(game.getMaxPlayers(), getReadyPlayers(playersInGame));
+        return noOfPlayersToReadyPlayers;
     }
 
-    private int getNotReadyPlayers(List<Player> players) {
+    private int getReadyPlayers(List<Player> players) {
         return (int) players.stream()
-                    .filter(p -> !p.isReadyToStartGame())
+                    .filter(p -> p.isReadyToStartGame())
                     .count();
     }
 

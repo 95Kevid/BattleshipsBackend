@@ -10,6 +10,8 @@ import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 
+import java.util.Optional;
+
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerServiceTest {
@@ -40,6 +42,15 @@ public class PlayerServiceTest {
         when(playerRepository.save(any(Player.class))).thenReturn(playerJO);
         Player result = playerService.createPlayer("Jo White", playerRepository);
         assertThat(playerJO).isEqualTo(result);
+    }
+
+    @Test
+    public void givenAPlayeridAPlayerIsMarkedAsStarted() {
+        Player playerJo = new Player("Jo White");
+        playerJo.setId(1);
+        when(playerRepository.findById(playerJo.getId())).thenReturn(Optional.of(playerJo));
+        playerService.setPlayerIsReady(1, playerRepository);
+        assertThat(playerJo.isReadyToStartGame());
     }
 
 
