@@ -1,4 +1,4 @@
-<button (click)="createGameButtonClicked()" [disabled]="!joinGameMenuHidden">Create Game</button>
-<button (click)="joinGameButtonClicked()" [disabled]="!gameCreationMenuHidden" >Join Game</button>
-<app-create-game-box [hidden] = "gameCreationMenuHidden" [gameId]="gameId" (createGameEvent)="createGame($event)"></app-create-game-box>
-<app-create-player-box [hidden]="playerCreationMenuHidden" (createPlayerRequest)="createPlayer($event)"></app-create-player-box>
+<button (click)="createGameButtonClicked()" [disabled]="showJoinGameMenu">Create Game</button>
+<button (click)="joinGameButtonClicked()" [disabled]="showGameCreationMenu" >Join Game</button>
+<app-create-game-box *ngIf= "showGameCreationMenu" [gameId]="gameId" (createGameEvent)="createGame($event)"></app-create-game-box>
+<app-create-player-box *ngIf="showPlayerCreationMenu" (createPlayerRequest)="createPlayer($event)"></app-create-player-box>

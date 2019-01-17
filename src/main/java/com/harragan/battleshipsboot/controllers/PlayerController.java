@@ -1,7 +1,6 @@
 package com.harragan.battleshipsboot.controllers;
 
 import com.harragan.battleshipsboot.facades.PlayerAddingFacade;
-import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import com.harragan.battleshipsboot.service.PlayerService;
 import org.springframework.beans.factory.annotation.Autowired;

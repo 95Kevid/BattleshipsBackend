@@ -34,5 +34,4 @@ describe('ShipPlacerUIComponent', () => {
     // expect(native.textContent).toEqual('Hi');
   });
 
-
 });
