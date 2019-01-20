@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {ShipPlaceRequest} from '../../models/ship-place-request';
 import {ShipPlacingService} from '../../services/ship-placing.service';
+import {Observable} from 'rxjs';
+import {Ship} from '../../models/ship';
+import {PlayerService} from '../../services/player.service';
+import {GameService} from '../../services/game.service';
 
 @Component({
   selector: 'app-ship-placer',
@@ -11,9 +15,13 @@ export class ShipPlacerUIComponent implements OnInit {
 
   title: String = 'Ship Placing';
   shipPlacingService: ShipPlacingService;
+  playerService: PlayerService;
+  gameService: GameService;
 
-  constructor(shipPlacingService: ShipPlacingService) {
+  constructor(shipPlacingService: ShipPlacingService, playerService: PlayerService, gameService: GameService) {
     this.shipPlacingService = shipPlacingService;
+    this.playerService = playerService;
+    this.gameService = gameService;
   }
 
   ngOnInit() {
@@ -21,7 +29,10 @@ export class ShipPlacerUIComponent implements OnInit {
   }
 
   placeSubmarine(shipPlaceRequest: ShipPlaceRequest) {
-    this.shipPlacingService.placeSubmarine(shipPlaceRequest).subscribe((result) =>  console.log(result));
+    shipPlaceRequest.gameId = this.gameService.gameId;
+    shipPlaceRequest.playerId = this.playerService.playerId;
+    this.shipPlacingService.placeSubmarine(shipPlaceRequest);
+
   }
 
   placeDestroyer(shipPlaceRequest: ShipPlaceRequest) {

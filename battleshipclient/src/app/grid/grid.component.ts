@@ -16,14 +16,35 @@ export class GridComponent implements OnInit {
   gridSize: number = 10;
   tableHeaders: String[] = [];
   tableRows: Row[] = [];
+  ships: Ship[] = [];
   ships$: Observable<Ship[]>;
 
-  constructor(private shipPlacingService: ShipPlacingService) {}
+  constructor(private shipPlacingService: ShipPlacingService) {
+    this.shipPlacingService.getShips().subscribe(ships => {
+      this.ships = ships;
+      this.renderShips();
+    });
+  }
 
   ngOnInit() {
     this.loadGrid();
-    this.poppy();
-    this.ships$ = this.shipPlacingService.getShips();
+  }
+
+  renderShips() {
+    this.ships.forEach(ship => this.renderShip(ship));
+  }
+
+  renderShip(ship: Ship) {
+    for (const row of this.tableRows) {
+      for (const cell of row.cells) {
+        for (const shipCell of ship.occupiedBoardPositions) {
+          if (shipCell.equals(cell)) {
+            console.log("renderShip called");
+            cell.colour = 'blue';
+          }
+        }
+      }
+    }
   }
 
   loadGrid(): void {
@@ -36,10 +57,14 @@ export class GridComponent implements OnInit {
       const cells: Cell[] = [];
       for (let j = 0; j < this.gridSize; j++) {
         const cell: Cell = {
-          col: this.tableHeaders[j + 1] + (i + 1).toString(),
+          col: this.tableHeaders[j + 1].toString(),
           row: (i + 1).toString(),
           colour: 'white',
-          hit: false
+          hit: false,
+          equals: c => {
+            return c.col === cell.col
+              && c.row === cell.row;
+          }
         };
         cells[j] = cell;
       }
@@ -49,8 +74,39 @@ export class GridComponent implements OnInit {
     }
   }
 
-  poppy(): void {
-    this.tableRows[3].cells[1].colour = 'red';
+  placeShip(): void {
+    const cellA1: Cell = {
+       col: 'A',
+       colour: 'white',
+       hit: false,
+       row: '1',
+       equals: cell => {
+         return cell.col === cellA1.col
+         && cell.row === cellA1.row;
+       }
+    };
+
+    const cellB1: Cell = {
+      col: 'B',
+      colour: 'white',
+      hit: false,
+      row: '1',
+      equals: cell => {
+        return cell.col === cellB1.col
+          && cell.row === cellB1.row;
+      }
+    };
+
+    const cells: Cell[] = [cellA1, cellB1];
+
+    const ship: Ship = {
+      occupiedBoardPositions: cells,
+      orient: 'HORIZONTAL',
+      length: 2,
+      sunk: false
+    };
+
+    this.renderShip(ship);
   }
 
 

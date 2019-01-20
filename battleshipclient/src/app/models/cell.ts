@@ -3,4 +3,9 @@ export class Cell {
   row: string;
   colour: string;
   hit: boolean;
+
+  public equals(cell: Cell) {
+    return cell.col === this.col
+    && cell.row === this.row;
+  }
 }

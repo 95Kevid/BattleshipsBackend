@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ShipPlaceRequest} from '../models/ship-place-request';
-import {Observable, of} from 'rxjs';
+import {Observable, of, Subject} from 'rxjs';
 import {Ship} from '../models/ship';
 
 @Injectable({
@@ -9,7 +9,9 @@ import {Ship} from '../models/ship';
 })
 export class ShipPlacingService {
   private url = 'http://localhost:9721/';
-  private ships: Ship[] = [];
+  private ships: Ship[];
+  private ship$: Subject<Ship[]> = new Subject<Ship[]>();
+
 
   constructor(private http: HttpClient) {
   }
@@ -18,9 +20,8 @@ export class ShipPlacingService {
     return this.http.post<Ship>(this.url + 'placebattleship', shipPlaceRequest);
   }
 
-
   placeSubmarine(shipPlaceRequest: ShipPlaceRequest) {
-    return this.http.post<Ship>(this.url + 'placesubmarine', shipPlaceRequest);
+    return this.http.post<Ship>(this.url + 'placesubmarine', shipPlaceRequest).subscribe((ship) => );
   }
 
   placeCarrier(shipPlaceRequest: ShipPlaceRequest) {
@@ -36,6 +37,10 @@ export class ShipPlacingService {
   }
 
   getShips() {
-    return of(this.ships);
+    return this.ships.asObservable();
+  }
+
+  addShip(ship: Ship) {
+    
   }
 }

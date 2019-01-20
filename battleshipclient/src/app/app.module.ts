@@ -11,7 +11,8 @@ import { ShipPositionBoxComponent } from './components/ship-position-box/ship-po
 import { CreateGameBoxComponent } from './components/create-game-box/create-game-box.component';
 import { GameControlComponent } from './containers/game-control/game-control.component';
 import { CreatePlayerBoxComponent } from './components/create-player-box/create-player-box.component';
-// import {FlexLayoutModule} from '@angular/flex-layout';
+import {GameControlBoxComponent} from './components/game-control-box/game-control-box.component';
+
 
 
 @NgModule({
@@ -22,14 +23,14 @@ import { CreatePlayerBoxComponent } from './components/create-player-box/create-
     ShipPositionBoxComponent,
     CreateGameBoxComponent,
     GameControlComponent,
-    CreatePlayerBoxComponent
+    CreatePlayerBoxComponent,
+    GameControlBoxComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
-    // FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

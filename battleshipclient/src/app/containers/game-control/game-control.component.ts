@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {CreateGameService} from '../../services/create-game.service';
-import {CreatePlayerService} from '../../services/create-player.service';
+import {GameService} from '../../services/game.service';
+import {PlayerService} from '../../services/player.service';
 
 @Component({
   selector: 'app-game-control',
@@ -9,19 +9,17 @@ import {CreatePlayerService} from '../../services/create-player.service';
 })
 export class GameControlComponent implements OnInit {
 
-  private createGameService: CreateGameService;
-  private createPlayerService: CreatePlayerService;
+  private gameService: GameService;
+  private createPlayerService: PlayerService;
 
-  constructor(createGameService: CreateGameService, createPlayerService: CreatePlayerService) {
-    this.createGameService = createGameService;
+  constructor(gameService: GameService, createPlayerService: PlayerService) {
+    this.gameService = gameService;
     this.createPlayerService = createPlayerService;
   }
 
   gameCreationMenuHidden = true;
   playerCreationMenuHidden = true;
   joinGameMenuHidden = true;
-  gameId: number;
-  playerId: number;
 
   ngOnInit() {
   }
@@ -38,14 +36,15 @@ export class GameControlComponent implements OnInit {
   createGame(numberOfPlayers: number) {
     console.log('create game called with ' + numberOfPlayers);
     this.playerCreationMenuHidden = false;
-    return this.createGameService.createGame(numberOfPlayers).subscribe((result) => this.gameId = result);
+    return this.gameService.createGame(numberOfPlayers);
   }
 
   createPlayer(playerName: string)  {
-    this.createPlayerService.createPlayer(this.gameId, playerName).subscribe((result) => {
-      this.playerId = result;
-      console.log(result);
-    });
+    this.createPlayerService.createPlayer(this.gameService.gameId, playerName);
+  }
+
+  getGameId(): number {
+    return this.gameService.gameId;
   }
 
 }
