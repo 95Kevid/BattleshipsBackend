@@ -12,7 +12,7 @@ import { CreateGameBoxComponent } from './components/create-game-box/create-game
 import { GameControlComponent } from './containers/game-control/game-control.component';
 import { CreatePlayerBoxComponent } from './components/create-player-box/create-player-box.component';
 import {GameControlBoxComponent} from './components/game-control-box/game-control-box.component';
-
+// import {FlexLayoutModule} from '@angular/flex-layout';
 
 
 @NgModule({
@@ -23,6 +23,7 @@ import {GameControlBoxComponent} from './components/game-control-box/game-contro
     ShipPositionBoxComponent,
     CreateGameBoxComponent,
     GameControlComponent,
+    GameControlBoxComponent,
     CreatePlayerBoxComponent,
     GameControlBoxComponent
   ],
@@ -31,6 +32,7 @@ import {GameControlBoxComponent} from './components/game-control-box/game-contro
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule
+    // FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]
