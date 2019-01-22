@@ -9,8 +9,7 @@ import {Ship} from '../models/ship';
 })
 export class ShipPlacingService {
   private url = 'http://localhost:9721/';
-  private ships: Ship[];
-  private ship$: Subject<Ship[]> = new Subject<Ship[]>();
+
 
 
   constructor(private http: HttpClient) {
@@ -37,10 +36,10 @@ export class ShipPlacingService {
   }
 
   getShips() {
-    return this.ships.asObservable();
+    //return this.ships.asObservable();
   }
 
-  addShip(ship: Ship) {
-    
-  }
+  // addShip(ship: Ship) {
+  //
+  // }
 }

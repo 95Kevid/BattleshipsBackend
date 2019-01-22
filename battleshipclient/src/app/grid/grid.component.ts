@@ -13,17 +13,19 @@ import {ShipPlaceRequest} from '../models/ship-place-request';
 })
 export class GridComponent implements OnInit {
 
-  gridSize: number = 10;
+  gridSize = 10;
   tableHeaders: String[] = [];
   tableRows: Row[] = [];
   ships: Ship[] = [];
   ships$: Observable<Ship[]>;
+  letters: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'];
+  numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13' ]
 
   constructor(private shipPlacingService: ShipPlacingService) {
-    this.shipPlacingService.getShips().subscribe(ships => {
-      this.ships = ships;
-      this.renderShips();
-    });
+    // //this.shipPlacingService.getShips().subscribe(ships => {
+    //   this.ships = ships;
+    //   this.renderShips();
+    // });
   }
 
   ngOnInit() {
@@ -35,16 +37,19 @@ export class GridComponent implements OnInit {
   }
 
   renderShip(ship: Ship) {
-    for (const row of this.tableRows) {
-      for (const cell of row.cells) {
-        for (const shipCell of ship.occupiedBoardPositions) {
-          if (shipCell.equals(cell)) {
-            console.log("renderShip called");
-            cell.colour = 'blue';
-          }
-        }
-      }
+    for (const shipCell of ship.occupiedBoardPositions) {
+      this.tableRows[this.numbers.indexOf(shipCell.row)].cells[this.letters.indexOf(shipCell.col)].colour = 'pink';
     }
+    // this.tableRows[ship.]
+    //   for (const cell of row.cells) {
+    //     for (const shipCell of ship.occupiedBoardPositions) {
+    //       if (shipCell.equals(cell)) {
+    //         console.log("renderShip called");
+    //         cell.colour = 'blue';
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   loadGrid(): void {

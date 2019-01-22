@@ -35,8 +35,7 @@ import { reducer } from './store/reducer';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({shipAdd: reducer}),
-    BehaviorSubject
+    StoreModule.forRoot({shipAdd: reducer})
   ],
   providers: [],
   bootstrap: [AppComponent]
