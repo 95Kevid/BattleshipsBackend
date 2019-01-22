@@ -21,7 +21,7 @@ export class ShipPlacingService {
   }
 
   placeSubmarine(shipPlaceRequest: ShipPlaceRequest) {
-    return this.http.post<Ship>(this.url + 'placesubmarine', shipPlaceRequest).subscribe((ship) => );
+    return this.http.post<Ship>(this.url + 'placesubmarine', shipPlaceRequest);
   }
 
   placeCarrier(shipPlaceRequest: ShipPlaceRequest) {

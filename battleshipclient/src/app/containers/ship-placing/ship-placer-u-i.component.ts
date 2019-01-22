@@ -32,7 +32,6 @@ export class ShipPlacerUIComponent implements OnInit {
     shipPlaceRequest.gameId = this.gameService.gameId;
     shipPlaceRequest.playerId = this.playerService.playerId;
     this.shipPlacingService.placeSubmarine(shipPlaceRequest);
-
   }
 
   placeDestroyer(shipPlaceRequest: ShipPlaceRequest) {

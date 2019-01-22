@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule} from '@angular/forms';
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { BehaviorSubject} from 'rxjs';
 
 import { GridComponent } from './grid/grid.component';
 import { ShipPlacerUIComponent } from './containers/ship-placing/ship-placer-u-i.component';
@@ -12,7 +14,8 @@ import { CreateGameBoxComponent } from './components/create-game-box/create-game
 import { GameControlComponent } from './containers/game-control/game-control.component';
 import { CreatePlayerBoxComponent } from './components/create-player-box/create-player-box.component';
 import {GameControlBoxComponent} from './components/game-control-box/game-control-box.component';
-// import {FlexLayoutModule} from '@angular/flex-layout';
+import { reducer } from './store/reducer';
+
 
 
 @NgModule({
@@ -25,14 +28,15 @@ import {GameControlBoxComponent} from './components/game-control-box/game-contro
     GameControlComponent,
     GameControlBoxComponent,
     CreatePlayerBoxComponent,
-    GameControlBoxComponent
+    GameControlBoxComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
-    // FlexLayoutModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({shipAdd: reducer}),
+    BehaviorSubject
   ],
   providers: [],
   bootstrap: [AppComponent]
