@@ -1,8 +1,12 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ShipPlaceRequest} from '../models/ship-place-request';
-import {Observable, of, Subject} from 'rxjs';
 import {Ship} from '../models/ship';
+import {Store} from '@ngrx/store';
+import {State} from '../store/state';
+import {Actions, Effect, ofType} from '@ngrx/effects';
+import {Observable} from 'rxjs';
+import {Action} from '@ngrx/store';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +16,11 @@ export class ShipPlacingService {
 
 
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private store: Store<State>) {
   }
 
-  placeBattleship(shipPlaceRequest: ShipPlaceRequest): Observable<Ship> {
+
+  placeBattleship(shipPlaceRequest: ShipPlaceRequest) {
     return this.http.post<Ship>(this.url + 'placebattleship', shipPlaceRequest);
   }
 
