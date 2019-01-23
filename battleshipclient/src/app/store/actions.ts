@@ -2,27 +2,38 @@ import {Action} from '@ngrx/store';
 import {Ship} from '../models/ship';
 import {ShipPlaceRequest} from '../models/ship-place-request';
 
-export class CallAddSubmarineEndPoint implements Action {
+export class AddSubmarineEndPointAction implements Action {
   constructor(public payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_SUBMARINE';
 }
 
-export class CallAddBattleshipEndPoint implements Action {
-  constructor(public payload: ShipPlaceRequest) {}
+export class AddBattleshipEndPointAction implements Action {
+  constructor(public readonly payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_BATTLESHIP';
 }
 
-export class CallAddDestroyerEndPoint implements Action {
+export class AddDestroyerEndPointAction implements Action {
   constructor(public payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_DESTROYER';
 }
 
-export class CallAddCarrierEndPoint implements Action {
+export class AddCarrierEndPointAction implements Action {
   constructor(public payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_CARRIER';
 }
 
-export class CallAddCruiserEndPoint implements Action {
+export class AddCruiserEndPointAction implements Action {
   constructor(public payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_CRUISER';
 }
+
+
+
+export class AddShipSuceededAction implements Action {
+  constructor(public payload: Ship) {}
+  readonly type = 'ADD_SHIP_SUCCESS';
+}
+
+
+
+

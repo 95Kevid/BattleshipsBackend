@@ -5,6 +5,9 @@ import {Observable} from 'rxjs';
 import {Ship} from '../../models/ship';
 import {PlayerService} from '../../services/player.service';
 import {GameService} from '../../services/game.service';
+import {Store} from '@ngrx/store';
+import {State} from '../../store/state';
+import {AddSubmarineEndPointAction} from '../../store/actions';
 
 @Component({
   selector: 'app-ship-placer',
@@ -14,14 +17,14 @@ import {GameService} from '../../services/game.service';
 export class ShipPlacerUIComponent implements OnInit {
 
   title: String = 'Ship Placing';
-  shipPlacingService: ShipPlacingService;
   playerService: PlayerService;
   gameService: GameService;
+  store: Store<State>;
 
-  constructor(shipPlacingService: ShipPlacingService, playerService: PlayerService, gameService: GameService) {
-    this.shipPlacingService = shipPlacingService;
+  constructor(playerService: PlayerService, gameService: GameService, store: Store<State>) {
     this.playerService = playerService;
     this.gameService = gameService;
+    this.store = store;
   }
 
   ngOnInit() {
@@ -31,22 +34,22 @@ export class ShipPlacerUIComponent implements OnInit {
   placeSubmarine(shipPlaceRequest: ShipPlaceRequest) {
     shipPlaceRequest.gameId = this.gameService.gameId;
     shipPlaceRequest.playerId = this.playerService.playerId;
-    this.shipPlacingService.placeSubmarine(shipPlaceRequest);
+    this.store.dispatch(new AddSubmarineEndPointAction(shipPlaceRequest));
   }
 
   placeDestroyer(shipPlaceRequest: ShipPlaceRequest) {
-    this.shipPlacingService.placeDestoyer(shipPlaceRequest).subscribe((result) =>  console.log(result));
+
   }
 
   placeCarrier(shipPlaceRequest: ShipPlaceRequest) {
-    this.shipPlacingService.placeCarrier(shipPlaceRequest).subscribe((result) =>  console.log(result));
+
   }
 
   placeCruiser(shipPlaceRequest: ShipPlaceRequest) {
-    this.shipPlacingService.placeCruiser(shipPlaceRequest).subscribe((result) =>  console.log(result));
+
   }
 
   placeBattleship(shipPlaceRequest: ShipPlaceRequest) {
-    this.shipPlacingService.placeBattleship(shipPlaceRequest).subscribe((result) =>  console.log(result));
+
   }
 }

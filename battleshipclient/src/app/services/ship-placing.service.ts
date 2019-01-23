@@ -20,7 +20,7 @@ export class ShipPlacingService {
   }
 
 
-  placeBattleship(shipPlaceRequest: ShipPlaceRequest) {
+  placeBattleship(shipPlaceRequest: ShipPlaceRequest): Observable<Ship> {
     return this.http.post<Ship>(this.url + 'placebattleship', shipPlaceRequest);
   }
 
