@@ -1,9 +1,13 @@
 import {Ship} from '../models/ship';
-import {AddShipSuceededAction, InitialiseGridAction} from './actions';
+// import {AddShipSuceededAction, InitialiseGridAction} from './actions';
 import {State} from './state';
 import {Cell} from '../models/cell';
 import {Row} from '../models/row';
-import { combineReducers} from '@ngrx/store';
+import {Action} from '@ngrx/store';
+
+import * as actions from './actions';
+
+import { ShipActions } from './actions';
 
 
 const initialState: State = {
@@ -12,12 +16,12 @@ const initialState: State = {
   tableHeaders : []
 }
 
-
-export function addShipReducer(state: State =  initialState, action: AddShipSuceededAction) {
+export function reducers(state: State = initialState, action: ShipActions) {
   switch (action.type) {
-    case 'ADD_SHIP_SUCCESS': {
-      const newState: State =  {...state};
+    case actions.ADD_SHIP_SUCCESS: {
+      const newState: State =  { ...state };
       const ships: Ship[] = initialState.ships;
+
       ships.push(action.payload);
       newState.ships = ships;
       return newState;
