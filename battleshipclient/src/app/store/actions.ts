@@ -34,6 +34,11 @@ export class AddShipSuceededAction implements Action {
   readonly type = 'ADD_SHIP_SUCCESS';
 }
 
+export class InitialiseGridAction implements Action {
+  constructor(public payload: Number) {}
+  readonly type = 'INITIALISE_GRID';
+}
+
 
 
 

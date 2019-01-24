@@ -13,7 +13,7 @@ import { CreateGameBoxComponent } from './components/create-game-box/create-game
 import { GameControlComponent } from './containers/game-control/game-control.component';
 import { CreatePlayerBoxComponent } from './components/create-player-box/create-player-box.component';
 import {GameControlBoxComponent} from './components/game-control-box/game-control-box.component';
-import { reducer } from './store/reducer';
+import { reducers } from './store/addShipReducer';
 
 
 
@@ -34,7 +34,7 @@ import { reducer } from './store/reducer';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot({shipAdd: reducer})
+    StoreModule.forRoot({reducers})
   ],
   providers: [],
   bootstrap: [AppComponent]
