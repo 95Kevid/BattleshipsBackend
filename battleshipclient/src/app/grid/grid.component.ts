@@ -4,10 +4,9 @@ import {Cell} from '../models/cell';
 import {ShipPlacingService} from '../services/ship-placing.service';
 import {Observable} from 'rxjs';
 import {Ship} from '../models/ship';
-import {ShipPlaceRequest} from '../models/ship-place-request';
 import {Store} from '@ngrx/store';
 import {State} from '../store/state';
-import {ofType} from '@ngrx/effects';
+import {map, mapTo, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-grid',
@@ -19,35 +18,28 @@ export class GridComponent implements OnInit {
   gridSize = 10;
   tableHeaders: String[] = [];
   tableRows: Row[] = [];
-  ships: Ship[] = [];
+  ships$: Observable<Ship[]>;
   letters: string[] = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M'];
-  numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13' ]
+  numbers: string[] = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13' ];
 
   constructor(private shipPlacingService: ShipPlacingService, private store: Store<State>) {
-      store.select(ofType('ADD_SHIP_SUCCESS')) // need to work out how to get the grid to react and render ships. Ant has suggested async pipes used in the template.
+    this.ships$ = this.store.select(state => state.ships);
+    this.ships$.pipe(
+      tap(ships => {
+        ships.forEach(ship => this.renderShip(ship));
+      })
+    );
+  }
 
   ngOnInit() {
     this.loadGrid();
   }
 
-  renderShips() {
-    this.ships.forEach(ship => this.renderShip(ship));
-  }
 
   renderShip(ship: Ship) {
     for (const shipCell of ship.occupiedBoardPositions) {
       this.tableRows[this.numbers.indexOf(shipCell.row)].cells[this.letters.indexOf(shipCell.col)].colour = 'pink'; // Alex's way
     }
-    // this.tableRows[ship.]// myway
-    //   for (const cell of row.cells) {
-    //     for (const shipCell of ship.occupiedBoardPositions) {
-    //       if (shipCell.equals(cell)) {
-    //         console.log("renderShip called");
-    //         cell.colour = 'blue';
-    //       }
-    //     }
-    //   }
-    // }
   }
 
   loadGrid(): void {

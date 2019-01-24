@@ -17,25 +17,28 @@ export class GameControlComponent implements OnInit {
     this.createPlayerService = createPlayerService;
   }
 
-  gameCreationMenuHidden = true;
-  playerCreationMenuHidden = true;
-  joinGameMenuHidden = true;
+  // gameCreationMenuHidden = true;
+  // playerCreationMenuHidden = true;
+  // joinGameMenuHidden = true;
+  showGameCreationMenu = false;
+  showPlayerCreationMenu = false;
+  showJoinGameMenu = false;
 
   ngOnInit() {
   }
 
   createGameButtonClicked() {
-    this.gameCreationMenuHidden = false;
+    this.showGameCreationMenu = true;
   }
 
   joinGameButtonClicked() {
-    this.joinGameMenuHidden = false;
-    this.playerCreationMenuHidden = false;
+    this.showJoinGameMenu = true;
+    this.showPlayerCreationMenu = false;
   }
 
   createGame(numberOfPlayers: number) {
     console.log('create game called with ' + numberOfPlayers);
-    this.playerCreationMenuHidden = false;
+    this.showPlayerCreationMenu = false;
     return this.gameService.createGame(numberOfPlayers);
   }
 

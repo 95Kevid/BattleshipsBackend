@@ -13,7 +13,6 @@ export class CreateGameBoxComponent implements OnInit {
   @Input() gameId: number;
   @Output() createGameEvent: EventEmitter<number> = new EventEmitter();
 
-
   formGroup: FormGroup = new FormGroup({
       numberOfPlayers: new FormControl('')
     }
@@ -25,6 +24,7 @@ export class CreateGameBoxComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log('submit called');
     this.createGameEvent.emit(this.formGroup.controls['numberOfPlayers'].value);
     this.disableForm();
   }
