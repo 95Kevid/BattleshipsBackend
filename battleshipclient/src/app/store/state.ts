@@ -1,8 +1,7 @@
-import {Ship} from '../models/ship';
-import {Row} from '../models/row';
+import {ShipState} from './ship/ship.reducers';
+import {GridState} from './grid/grid.reducers';
 
 export interface State {
-  ships: Ship[];
-  tableRows: Row[];
-  tableHeaders: String[]
+  shipState: ShipState;
+  gridState: GridState;
 }

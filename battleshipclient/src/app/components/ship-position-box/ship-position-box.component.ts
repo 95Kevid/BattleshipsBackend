@@ -1,6 +1,8 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ShipPlaceRequest} from '../../models/ship-place-request';
+import {Observable} from 'rxjs';
+import {GridState} from '../../store/grid/grid.reducers';
 
 @Component({
   selector: 'app-ship-position-box',
@@ -10,7 +12,9 @@ import {ShipPlaceRequest} from '../../models/ship-place-request';
 export class ShipPositionBoxComponent implements OnInit {
 
   @Input() shipType: string;
+  @Input() tableHeaders$: Observable<string[]>;
   @Output() shipPlacementUpdate: EventEmitter<ShipPlaceRequest> = new EventEmitter();
+  selectableHeaders: string[];
 
 
   shipPlacingForm = new FormGroup({
@@ -19,12 +23,12 @@ export class ShipPositionBoxComponent implements OnInit {
     orientation: new FormControl('')
   });
 
-  constructor() {
-  }
+  constructor() {}
 
   private shipPlaceRequest: ShipPlaceRequest = new ShipPlaceRequest();
 
   ngOnInit() {
+    //this.tableHeaders$.subscribe(headers => this.selectableHeaders = headers);
   }
 
   submitPlacement() {

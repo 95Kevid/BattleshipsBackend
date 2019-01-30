@@ -1,12 +1,13 @@
 <h1>Grid component</h1>
   <table id = 'table-grid'>
     <tr>
+      <th></th>
       <th *ngFor="let tableHeader of tableHeaders$ | async">{{tableHeader}}</th>
     </tr>
     <tr *ngFor="let row of tableRows$ | async; let i = index">
       <td class = "row-column">{{i + 1}}</td>
       <td *ngFor="let cell of row.cells" [style.backgroundColor] = cell.colour>&nbsp;</td>
 </table>
-<button (click) = "placeShip()">click me</button>
+
 
 

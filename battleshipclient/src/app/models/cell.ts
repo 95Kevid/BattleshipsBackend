@@ -1,6 +1,6 @@
 export class Cell {
   col: string;
-  row: string;
+  row: number;
   colour: string;
   hit: boolean;
 

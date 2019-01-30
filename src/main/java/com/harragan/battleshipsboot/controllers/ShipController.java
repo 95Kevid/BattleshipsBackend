@@ -13,7 +13,7 @@ public class ShipController {
     @Autowired
     private ShipPlacingFacade shipPlacingFacade;
 
-    @RequestMapping(value = "/placedestoyer", method = RequestMethod.POST)
+    @RequestMapping(value = "/placedestroyer", method = RequestMethod.POST)
     public ResponseEntity<Destroyer> placeDestroyer(
             @RequestBody ShipPlaceRequestWrapper shipPlaceRequestWrapper)
     {

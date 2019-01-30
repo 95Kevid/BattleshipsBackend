@@ -1,30 +1,30 @@
 import {Action} from '@ngrx/store';
-import {Ship} from '../models/ship';
-import {ShipPlaceRequest} from '../models/ship-place-request';
+import {Ship} from '../../models/ship';
+import {ShipPlaceRequest} from '../../models/ship-place-request';
 
 export const ADD_SHIP_SUCCESS = 'ADD_SHIP_SUCCESS';
 
-export class AddSubmarineEndPointAction implements Action {
+export class AddSubmarineRequestAction implements Action {
   constructor(public payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_SUBMARINE';
 }
 
-export class AddBattleshipEndPointAction implements Action {
+export class AddBattleshipRequestAction implements Action {
   constructor(public readonly payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_BATTLESHIP';
 }
 
-export class AddDestroyerEndPointAction implements Action {
+export class AddDestroyerRequestAction implements Action {
   constructor(public payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_DESTROYER';
 }
 
-export class AddCarrierEndPointAction implements Action {
+export class AddCarrierRequestAction implements Action {
   constructor(public payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_CARRIER';
 }
 
-export class AddCruiserEndPointAction implements Action {
+export class AddCruiserRequestAction implements Action {
   constructor(public payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_CRUISER';
 }
@@ -34,11 +34,6 @@ export class AddCruiserEndPointAction implements Action {
 export class AddShipSuceededAction implements Action {
   readonly type = ADD_SHIP_SUCCESS;
   constructor(public payload: Ship) {}
-}
-
-export class InitialiseGridAction implements Action {
-  constructor(public payload: Number) {}
-  readonly type = 'INITIALISE_GRID';
 }
 
 export type ShipActions = AddShipSuceededAction;

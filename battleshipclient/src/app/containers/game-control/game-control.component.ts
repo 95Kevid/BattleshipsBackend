@@ -17,9 +17,6 @@ export class GameControlComponent implements OnInit {
     this.createPlayerService = createPlayerService;
   }
 
-  // gameCreationMenuHidden = true;
-  // playerCreationMenuHidden = true;
-  // joinGameMenuHidden = true;
   showGameCreationMenu = false;
   showPlayerCreationMenu = false;
   showJoinGameMenu = false;
@@ -33,12 +30,12 @@ export class GameControlComponent implements OnInit {
 
   joinGameButtonClicked() {
     this.showJoinGameMenu = true;
-    this.showPlayerCreationMenu = false;
+    this.showPlayerCreationMenu = true;
   }
 
   createGame(numberOfPlayers: number) {
     console.log('create game called with ' + numberOfPlayers);
-    this.showPlayerCreationMenu = false;
+    this.showPlayerCreationMenu = true;
     return this.gameService.createGame(numberOfPlayers);
   }
 
