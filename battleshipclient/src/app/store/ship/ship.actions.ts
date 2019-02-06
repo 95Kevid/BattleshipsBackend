@@ -32,8 +32,15 @@ export class AddCruiserRequestAction implements Action {
 
 
 export class AddShipSuceededAction implements Action {
-  readonly type = ADD_SHIP_SUCCESS;
+  readonly type = 'ADD_SHIP_SUCCESS';
   constructor(public payload: Ship) {}
 }
+
+export class ShipPlaceFailedAction implements Action {
+  readonly type = 'SHIP_PLACEMENT_FAILED';
+  constructor(public payload: string) {}
+}
+
+
 
 export type ShipActions = AddShipSuceededAction;

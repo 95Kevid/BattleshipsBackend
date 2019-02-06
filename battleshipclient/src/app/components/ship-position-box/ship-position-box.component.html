@@ -1,12 +1,16 @@
-<form [formGroup] = "shipPlacingForm" (ngSubmit)="submitPlacement()">
+<form [formGroup]="shipPlacingForm" (ngSubmit)="submitPlacement()">
   <p>
-  <label>{{shipType}} </label>
+    <label>{{shipType}} </label>
   </p>
   <label>Column </label>
   <select formControlName="col">
-  <option *ngFor="let header of tableHeaders$ | async" [ngValue]="header">{{header}}</option>
+    <option *ngFor="let header of tableHeaders$ | async" [ngValue]="header">{{header}}</option>
   </select>
-  <label>Row</label> <input type="text" formControlName="row">
+  <label>Row</label>
+  <select formControlName="row">
+    <option *ngFor="let rowNumber of rowNumber">{{rowNumber}}</option>
+
+  </select>
   <label>Orientation</label> <input type="text" formControlName="orientation">
   <button type="submit">Place ship</button>
 </form>

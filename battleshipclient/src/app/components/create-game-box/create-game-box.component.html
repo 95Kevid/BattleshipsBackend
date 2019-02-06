@@ -1,6 +1,7 @@
 <div id="create-game-box">
 <form [formGroup]="formGroup" (submit)="onSubmit()">
   <label>Enter number of Players</label><input type="text" formControlName="numberOfPlayers"/>
+  <label>Size of game arena</label><input type="text" formControlName="gridSize"/>
   <button type="submit" [disabled]="formDisabled">Create Game</button>
   <label>Game Id: </label>{{gameId}}
 </form>

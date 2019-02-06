@@ -1,0 +1,6 @@
+<app-ship-position-box shipType="Battleship" [tableHeaders$]="tableHeaders$" [lengthOfRows$]="lengthOfRows$" (shipPlacementUpdate)="placeBattleship($event)"></app-ship-position-box>
+<app-ship-position-box shipType="Destroyer" [tableHeaders$]="tableHeaders$" [lengthOfRows$]="lengthOfRows$"  (shipPlacementUpdate)="placeDestroyer($event)"></app-ship-position-box>
+<app-ship-position-box shipType="Cruiser" [tableHeaders$]="tableHeaders$" (shipPlacementUpdate)="placeCruiser($event)"></app-ship-position-box>
+<app-ship-position-box shipType="Carrier" [tableHeaders$]="tableHeaders$" (shipPlacementUpdate)="placeCarrier($event)"></app-ship-position-box>
+<app-ship-position-box shipType="Submarine" [tableHeaders$]="tableHeaders$" (shipPlacementUpdate)="placeSubmarine($event)"></app-ship-position-box>
+

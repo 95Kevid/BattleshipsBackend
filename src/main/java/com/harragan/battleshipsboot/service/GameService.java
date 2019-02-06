@@ -22,8 +22,8 @@ public class GameService {
         this.gameRepository = gameRepository;
     }
 
-    public int createGame(int numberOfPlayers) {
-        Game game = new Game(numberOfPlayers);
+    public int createGame(int numberOfPlayers, int gameArenaSize) {
+        Game game = new Game(numberOfPlayers, gameArenaSize);
         Game savedGame = saveGame(game);
         return savedGame.getId();
     }

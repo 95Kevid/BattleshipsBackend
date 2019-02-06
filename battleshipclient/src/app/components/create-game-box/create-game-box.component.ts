@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
+import {CreateGameRequest} from '../../models/create-game-request';
 
 @Component({
   selector: 'app-create-game-box',
@@ -11,10 +12,11 @@ export class CreateGameBoxComponent implements OnInit {
   constructor() { }
 
   @Input() gameId: number;
-  @Output() createGameEvent: EventEmitter<number> = new EventEmitter();
+  @Output() createGameEvent: EventEmitter<CreateGameRequest> = new EventEmitter();
 
   formGroup: FormGroup = new FormGroup({
-      numberOfPlayers: new FormControl('')
+      numberOfPlayers: new FormControl(''),
+      gridSize: new FormControl('')
     }
   );
 
@@ -25,7 +27,14 @@ export class CreateGameBoxComponent implements OnInit {
 
   onSubmit() {
     console.log('submit called');
-    this.createGameEvent.emit(this.formGroup.controls['numberOfPlayers'].value);
+    const numberOfPlayers: number = this.formGroup.controls['numberOfPlayers'].value;
+    const gridSize: number = this.formGroup.controls['gridSize'].value;
+    const createGameRequest: CreateGameRequest = {
+      numberOfPlayers: numberOfPlayers,
+      gridSize: gridSize
+    }
+
+    this.createGameEvent.emit(createGameRequest);
     this.disableForm();
   }
 

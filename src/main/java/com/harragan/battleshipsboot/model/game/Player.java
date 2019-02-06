@@ -28,13 +28,10 @@ public class Player {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    public Player() {
-        gameArena = new GameArena();
-    }
+    public Player() {}
 
     public Player(String playerName) {
         this.playerName = playerName;
-        this.gameArena = new GameArena();
     }
 
     public GameArena getGameArena() {return gameArena;}

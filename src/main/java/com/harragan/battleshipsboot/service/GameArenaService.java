@@ -13,6 +13,11 @@ import java.util.Optional;
 @Service
 public class GameArenaService {
 
+    public GameArena createGameArena(int gameArenaSize) {
+        GameArena gameArena = new GameArena(gameArenaSize);
+        return gameArena;
+    }
+
     public void addShip(Ship ship, GameArena gameArena){
         setOccupiedPositionsOfShip(ship);
         checkShipCanBePlaced(ship, gameArena);
@@ -32,7 +37,7 @@ public class GameArenaService {
                     + " has already been placed on the board");
         }
 
-        if(isShipOffBoard(ship)) {
+        if(isShipOffBoard(ship, gameArena)) {
             throw new IllegalBoardPlacementException("Ship is positioned off board."
             + " Please ensure that all positions are valid positions.");
 
@@ -56,13 +61,13 @@ public class GameArenaService {
         return null;
     }
 
-    public boolean isShipOffBoard(Ship ship) {
+    public boolean isShipOffBoard(Ship ship, GameArena gameArena) {
         if(ship.getOrient() == Orientation.VERTICAL && ship.getOccupiedPosition(0).getRow()
-                + ship.getLength() > 11) {
+                + ship.getLength() > gameArena.getGameArenaSize() + 1) {
             return true;
         }
         if(ship.getOrient() == Orientation.HORIZONTAL
-                && ship.getOccupiedPosition(0).getCol() + ship.getLength() > 'K') {
+                && ship.getOccupiedPosition(0).getCol() + ship.getLength() > gameArena.getGameArenaSize() + 65) {
             return true;
         }
         return false;

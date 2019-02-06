@@ -14,15 +14,13 @@ import {AppState} from '../store';
 })
 
 export class GridComponent implements OnInit {
-
-  gridSize = 10;
+  gridSize: number;
   tableHeaders$: Observable<string[]>;
   tableRows$: Observable<Row[]>;
 
   constructor(private shipPlacingService: ShipPlacingService, private store: Store<AppState>) {}
 
   ngOnInit() {
-    this.store.dispatch(new InitialiseGridAction(this.gridSize));
     this.tableHeaders$ = this.store.select(state => state.gridState.tableHeaders);
     this.tableRows$ = this.store.select(state => state.gridState.tableRows);
     this.tableHeaders$.subscribe(console.log);

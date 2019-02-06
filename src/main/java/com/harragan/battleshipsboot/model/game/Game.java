@@ -18,6 +18,8 @@ public class Game {
 
     private int noOfPlayers;
 
+    private int gameArenaSize;
+
     public int getTurnIndex() {
         return turnIndex;
     }
@@ -29,9 +31,10 @@ public class Game {
     public Game() {
     }
 
-    public Game(int noOfPlayers) {
+    public Game(int noOfPlayers, int gameArenaSize) {
         this.players = new LinkedList<>();
         this.noOfPlayers = noOfPlayers;
+        this.gameArenaSize = gameArenaSize;
     }
 
     public int getId() {
@@ -50,5 +53,9 @@ public class Game {
 
     public int getMaxPlayers() {
         return noOfPlayers;
+    }
+
+    public int getGameArenaSize() {
+        return gameArenaSize;
     }
 }

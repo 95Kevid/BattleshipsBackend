@@ -1,7 +1,7 @@
 // import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 //
 // import { GridComponent } from './grid.component';
-// import {ShipPlacerUIComponent} from '../containers/ship-placing/ship-placer-u-i.component';
+// import {ShipPositionComponent} from '../containers/ship-placing/ship-placer-u-i.component';
 // import {Cell} from '../models/cell';
 // import {Row} from '../models/row';
 //
@@ -13,7 +13,7 @@
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
 //       declarations: [ GridComponent,
-//         ShipPlacerUIComponent
+//         ShipPositionComponent
 //       ]
 //     })
 //     .compileComponents();

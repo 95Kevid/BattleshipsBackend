@@ -5,12 +5,16 @@ import {GridActions} from './grid.actions';
 
 export interface GridState {
   tableRows: Row[];
+  lengthOfRows: number;
   tableHeaders: string[];
+  gridSize: number;
 }
 
 export const initialGridState: GridState = {
   tableRows : [],
-  tableHeaders : []
+  tableHeaders : [],
+  lengthOfRows: 0,
+  gridSize: 0
 };
 
 export function gridReducers(state: GridState = initialGridState, action: GridActions) {
@@ -59,6 +63,7 @@ function initialiseGrid(state: GridState = initialGridState, action: GridActions
     const outputState = {...state};
     outputState.tableHeaders = tableHeaders;
     outputState.tableRows = tableRows;
+    outputState.lengthOfRows = tableRows.length;
     return outputState;
 }
 

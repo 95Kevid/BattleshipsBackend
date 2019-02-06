@@ -15,4 +15,8 @@ public class ExceptionResponse {
     public String getMessage() {
         return exception.getMessage();
     }
+
+    public HttpStatus getStatus() {
+        return httpStatus;
+    }
 }

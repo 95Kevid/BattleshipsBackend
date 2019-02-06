@@ -1,6 +1,7 @@
 package com.harragan.battleshipsboot.service;
 
 import com.harragan.battleshipsboot.model.game.Game;
+import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
 import org.assertj.core.api.Assertions;
@@ -33,15 +34,18 @@ public class GameServiceTest {
     public void initTest() {
        MockitoAnnotations.initMocks(this);
        gameService = new GameService(gameRepository);
-       game1 = new Game(2);
-       game2 = new Game(2);
+       game1 = new Game(2, 10);
+       game2 = new Game(2, 10);
 
        player1 = new Player();
        player1.setId(1);
+       player1.setGameArena(new GameArena(10));
        player2 = new Player();
        player2.setId(2);
+       player2.setGameArena(new GameArena(10));
        player3 = new Player();
        player3.setId(3);
+       player3.setGameArena(new GameArena(10));
 
        player1.setName("Burny");
        player2.setName("Helga");
@@ -52,13 +56,13 @@ public class GameServiceTest {
     public void givenANumberOfPlayersWhenAGameIsInstantiatedAGameIDIsReturned() {
         game1.setId(12);
         when(gameRepository.save(any(Game.class))).thenReturn(game1);
-        int gameId1 = gameService.createGame(2);
+        int gameId1 = gameService.createGame(2, 10);
         verify(gameRepository, times(1)).save(any(Game.class));
         assertThat(gameId1).as("1rst run, the gameId should be 12").isEqualTo(12);
 
         game2.setId(189);
         when(gameRepository.save(any(Game.class))).thenReturn(game2);
-        int gameId2 = gameService.createGame(2);
+        int gameId2 = gameService.createGame(2, 10);
         verify(gameRepository, times(2)).save(any(Game.class));
 
         assertThat(gameId2).isEqualTo(189).as("2nd run gameId should be 189");
@@ -75,7 +79,7 @@ public class GameServiceTest {
 
     @Test
     public void givenAGameIdAGameIsReturned() {
-        Game game = new Game(2);
+        Game game = new Game(2, 10);
         game.setId(12);
         when(gameRepository.findById(14)).thenReturn(Optional.of(game));
         Game returnedGame = gameService.getGame(14);
@@ -94,7 +98,7 @@ public class GameServiceTest {
         player2.setReadyToStartGame(true);
         player3.setReadyToStartGame(false);
 
-        Game game1 = new Game();
+        Game game1 = new Game(3, 10);
         game1.setPlayers(players);
         game1.setId(9);
 
@@ -107,7 +111,7 @@ public class GameServiceTest {
 
         Assertions.assertThat(gameService.getPlayersToPlayersReady(game1.getId()))
                 .isEqualTo(correctPlayersToPlayersNotReady)
-                .as("2 of the 3 players should be ready");
+                .as("1 of the 3 players should be ready");
 
         Assertions.assertThat(gameService.getPlayersToPlayersReady(game1.getId()))
                 .isNotEqualTo(incorrectPlayersToPlayersNotReady)

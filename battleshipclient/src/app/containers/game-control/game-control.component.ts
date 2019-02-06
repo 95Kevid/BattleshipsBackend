@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {GameService} from '../../services/game.service';
 import {PlayerService} from '../../services/player.service';
+import {CreateGameRequest} from '../../models/create-game-request';
+import {GridState} from '../../store/grid/grid.reducers';
+import {Store} from '@ngrx/store';
+import {InitialiseGridAction} from '../../store/grid/grid.actions';
 
 @Component({
   selector: 'app-game-control',
@@ -11,10 +15,12 @@ export class GameControlComponent implements OnInit {
 
   private gameService: GameService;
   private createPlayerService: PlayerService;
+  private store: Store<GridState>;
 
-  constructor(gameService: GameService, createPlayerService: PlayerService) {
+  constructor(gameService: GameService, createPlayerService: PlayerService, store: Store<GridState>) {
     this.gameService = gameService;
     this.createPlayerService = createPlayerService;
+    this.store = store;
   }
 
   showGameCreationMenu = false;
@@ -33,10 +39,11 @@ export class GameControlComponent implements OnInit {
     this.showPlayerCreationMenu = true;
   }
 
-  createGame(numberOfPlayers: number) {
-    console.log('create game called with ' + numberOfPlayers);
+  createGame(createGameRequest: CreateGameRequest) {
+    console.log('create game called with ' + createGameRequest.numberOfPlayers);
     this.showPlayerCreationMenu = true;
-    return this.gameService.createGame(numberOfPlayers);
+    this.store.dispatch(new InitialiseGridAction(createGameRequest.gridSize));
+    return this.gameService.createGame(createGameRequest);
   }
 
   createPlayer(playerName: string)  {

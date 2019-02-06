@@ -3,6 +3,7 @@ package com.harragan.battleshipsboot.facades;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
+import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
 import org.junit.Before;
@@ -35,7 +36,8 @@ public class PlayerAddingFacadeTest {
     @Mock
     private Player burny;
 
-    private Player helga;
+    @Mock
+    private GameArenaService gameArenaService;
 
     private Game game;
 
@@ -43,8 +45,8 @@ public class PlayerAddingFacadeTest {
     public void initTest() {
         MockitoAnnotations.initMocks(this);
         playerAddingFacade = new PlayerAddingFacade(playerService,  gameService
-                ,playerRepository,  gameRepository);
-        game = new Game();
+                ,playerRepository,  gameRepository, gameArenaService);
+        game = new Game(2,10);
         game.setId(1);
     }
 
@@ -52,6 +54,7 @@ public class PlayerAddingFacadeTest {
     public void givenWhenAPlayerNameAndAGameIdIsProvidedAPlayerIsCreated() {
         String playerName = "Burny";
         when(playerService.createPlayer(playerName, playerRepository)).thenReturn(burny);
+        when(gameService.getGame(1)).thenReturn(game);
 
         playerAddingFacade.createPlayerAndJoinToGame(playerName, game.getId());
 
@@ -59,5 +62,4 @@ public class PlayerAddingFacadeTest {
         verify(gameService, times(1)).joinPlayerToGame(1, burny);
         playerAddingFacade.createPlayerAndJoinToGame(playerName, game.getId());
     }
-
 }

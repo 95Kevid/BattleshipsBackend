@@ -1,15 +1,16 @@
 import {Injectable} from '@angular/core';
 import {Actions, Effect, ofType} from '@ngrx/effects';
-import {map, switchMap} from 'rxjs/operators';
+import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 import {ShipPlacingService} from '../../services/ship-placing.service';
 import {
   AddBattleshipRequestAction,
-  AddCarrierRequestAction, AddDestroyerRequestAction,
+  AddCarrierRequestAction, AddCruiserRequestAction, AddDestroyerRequestAction,
   AddShipSuceededAction,
   AddSubmarineRequestAction,
-  ShipActions
+  ShipPlaceFailedAction
 } from './ship.actions';
 import {RenderShipAction} from '../grid/grid.actions';
+import {of} from 'rxjs';
 @Injectable()
 export class ShipEffects {
 
@@ -17,47 +18,62 @@ export class ShipEffects {
   }
 
   @Effect()
-  public addBattleShip$ = this.actions$.pipe(
+  public addBattleship$ = this.actions$.pipe(
     ofType<AddBattleshipRequestAction>('CALL_ADD_BATTLESHIP'),
     map(action => action.payload),
-    switchMap(payload => this.shipPlacingService.placeBattleship(payload)),
-    switchMap(ship => [new AddShipSuceededAction(ship),
-        new RenderShipAction(ship)])
-    );
-
-  @Effect()
-  public addSubmarine$ = this.actions$.pipe(
-    ofType<AddSubmarineRequestAction>('CALL_ADD_SUBMARINE'),
-    map(action => action.payload),
-    switchMap(payload => this.shipPlacingService.placeSubmarine(payload)),
-    switchMap(ship => [new AddShipSuceededAction(ship),
-      new RenderShipAction(ship)])
-  );
-
-  @Effect()
-  public addCruiser$ = this.actions$.pipe(
-    ofType<AddCarrierRequestAction>('CALL_ADD_CRUISER'),
-    map(action => action.payload),
-    switchMap(payload => this.shipPlacingService.placeCruiser(payload)),
-    switchMap(ship => [new AddShipSuceededAction(ship),
-      new RenderShipAction(ship)])
-  );
-
-  @Effect()
-  public addCarrier$ = this.actions$.pipe(
-    ofType<AddCarrierRequestAction>('CALL_ADD_CARRIER'),
-    map(action => action.payload),
-    switchMap(payload => this.shipPlacingService.placeCarrier(payload)),
-    switchMap(ship => [new AddShipSuceededAction(ship),
-      new RenderShipAction(ship)])
-  );
+    switchMap(payload => this.shipPlacingService.placeDestroyer(payload).pipe(
+      mergeMap(ship => [new AddShipSuceededAction(ship),
+        new RenderShipAction(ship)]),
+      catchError((error) => {
+        return of(new ShipPlaceFailedAction(error));
+      }))
+    ));
 
   @Effect()
   public addDestroyer$ = this.actions$.pipe(
     ofType<AddDestroyerRequestAction>('CALL_ADD_DESTROYER'),
     map(action => action.payload),
-    switchMap(payload => this.shipPlacingService.placeDestroyer(payload)),
-    switchMap(ship => [new AddShipSuceededAction(ship),
-      new RenderShipAction(ship)])
-  );
+    switchMap(payload => this.shipPlacingService.placeDestroyer(payload).pipe(
+      mergeMap(ship => [new AddShipSuceededAction(ship),
+        new RenderShipAction(ship)]),
+      catchError((error) => {
+        return of(new ShipPlaceFailedAction(error));
+      }))
+    ));
+
+  @Effect()
+  public addCarrier$ = this.actions$.pipe(
+    ofType<AddCarrierRequestAction>('CALL_ADD_CARRIER'),
+    map(action => action.payload),
+    switchMap(payload => this.shipPlacingService.placeCarrier(payload).pipe(
+      mergeMap(ship => [new AddShipSuceededAction(ship),
+        new RenderShipAction(ship)]),
+      catchError((error) => {
+        return of(new ShipPlaceFailedAction(error));
+      }))
+    ));
+
+  @Effect()
+  public addCruiser$ = this.actions$.pipe(
+    ofType<AddCruiserRequestAction>('CALL_ADD_CRUISER'),
+    map(action => action.payload),
+    switchMap(payload => this.shipPlacingService.placeCruiser(payload).pipe(
+      mergeMap(ship => [new AddShipSuceededAction(ship),
+        new RenderShipAction(ship)]),
+      catchError((error) => {
+        return of(new ShipPlaceFailedAction(error));
+      }))
+    ));
+
+  @Effect()
+  public addSubmarine$ = this.actions$.pipe(
+    ofType<AddSubmarineRequestAction>('CALL_ADD_SUBMARINE'),
+    map(action => action.payload),
+    switchMap(payload => this.shipPlacingService.placeSubmarine(payload).pipe(
+      map(ship => of(new AddShipSuceededAction(ship),
+        new RenderShipAction(ship))),
+      catchError((error) => {
+        return of(new ShipPlaceFailedAction(error));
+      }))
+    ));
 }

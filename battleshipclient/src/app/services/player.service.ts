@@ -11,7 +11,7 @@ export class PlayerService {
   playerId: number;
 
   createPlayer(gameId: number, playerName: string) {
-      this.http.post<number>(this.url, {gameId: gameId, playerName: playerName})
+      this.http.post<number>(this.url, {gameId: gameId, playerName: playerName, })
         .subscribe(player => this.playerId = player);
       return this.playerId;
   }

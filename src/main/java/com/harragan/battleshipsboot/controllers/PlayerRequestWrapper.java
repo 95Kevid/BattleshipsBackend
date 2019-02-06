@@ -20,5 +20,4 @@ public class PlayerRequestWrapper {
         return playerName;
     }
 
-
 }

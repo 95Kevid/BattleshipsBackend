@@ -25,6 +25,14 @@ public class GameArena {
     @OneToMany(cascade = PERSIST)
     private Set<Ship> sunkShips = new HashSet<>();
 
+    private int gameArenaSize;
+
+    public GameArena(){}
+
+    public GameArena(int gameArenaSize){
+        this.gameArenaSize = gameArenaSize;
+    }
+
     public List<Ship> getSunkShips() {
         return new ArrayList<>(sunkShips);
     }
@@ -61,6 +69,10 @@ public class GameArena {
 
     public void setShotBoardPositions(List<BoardPosition> shotBoardPositions) {
         this.shotBoardPositions = shotBoardPositions;
+    }
+
+    public int getGameArenaSize() {
+        return gameArenaSize;
     }
 
     public void setSunkShips(Set<Ship> sunkShips) {

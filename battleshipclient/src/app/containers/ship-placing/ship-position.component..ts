@@ -13,25 +13,28 @@ import {
 } from '../../store/ship/ship.actions';
 import {Observable} from 'rxjs';
 import {GridState} from '../../store/grid/grid.reducers';
+import {Row} from '../../models/row';
 
 @Component({
   selector: 'app-ship-placer',
-  templateUrl: './ship-placer-u-i.component.html',
-  styleUrls: ['./ship-placer-u-i.component.scss']
+  templateUrl: './ship-position.component..html',
+  styleUrls: ['./ship-position.component..scss']
 })
-export class ShipPlacerUIComponent implements OnInit {
+export class ShipPositionComponent implements OnInit {
 
   title: String = 'Ship Placing';
   playerService: PlayerService;
   gameService: GameService;
   store: Store<State>;
   tableHeaders$: Observable<string[]>;
+  lengthOfRows$: Observable<number>;
 
   constructor(playerService: PlayerService, gameService: GameService, store: Store<State>) {
     this.playerService = playerService;
     this.gameService = gameService;
     this.store = store;
     this.tableHeaders$ = this.store.select(state => state.gridState.tableHeaders);
+    this.lengthOfRows$ = this.store.select(state => state.gridState.lengthOfRows);
   }
 
   ngOnInit() {

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {CreateGameRequest} from '../models/create-game-request';
 
 
 @Injectable({
@@ -11,9 +12,9 @@ export class GameService {
   gameId: number;
   constructor(private http: HttpClient) {}
 
-  createGame(numberOfPlayers: number): number {
-    this.http.post<number>(this.url + numberOfPlayers, null).subscribe(result => this.gameId = result);
+  createGame(createGameRequest: CreateGameRequest): number {
+    const request = createGameRequest;
+    this.http.post<number>(this.url + request.numberOfPlayers + '/' + request.gridSize, null).subscribe(result => this.gameId = result);
     return this.gameId;
   }
-
 }

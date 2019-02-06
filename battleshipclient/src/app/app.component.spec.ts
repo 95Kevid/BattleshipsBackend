@@ -1,6 +1,6 @@
 import {TestBed, async, ComponentFixture} from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import {ShipPlacerUIComponent} from './containers/ship-placing/ship-placer-u-i.component';
+import {ShipPositionComponent} from './containers/ship-placing/ship-position.component.';
 import {GridComponent} from './grid/grid.component';
 
 describe('AppComponent', () => {
@@ -12,7 +12,7 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent,
-        ShipPlacerUIComponent,
+        ShipPositionComponent,
         GridComponent
       ],
     });

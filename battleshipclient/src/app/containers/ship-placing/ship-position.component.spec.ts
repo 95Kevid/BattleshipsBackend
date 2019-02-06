@@ -1,22 +1,22 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShipPlacerUIComponent } from './ship-placer-u-i.component';
+import { ShipPositionComponent } from './ship-position.component.';
 import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
 
-describe('ShipPlacerUIComponent', () => {
-  let component: ShipPlacerUIComponent;
-  let fixture: ComponentFixture<ShipPlacerUIComponent>;
+describe('ShipPositionComponent', () => {
+  let component: ShipPositionComponent;
+  let fixture: ComponentFixture<ShipPositionComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShipPlacerUIComponent ]
+      declarations: [ ShipPositionComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShipPlacerUIComponent);
+    fixture = TestBed.createComponent(ShipPositionComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

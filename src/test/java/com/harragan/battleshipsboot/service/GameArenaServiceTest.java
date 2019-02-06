@@ -24,8 +24,14 @@ public class GameArenaServiceTest {
 
     @Before
     public void initateTest() {
-        gameArena = new GameArena();
+        gameArena = new GameArena(10);
         gameArenaService = new GameArenaService();
+    }
+
+    @Test
+    public void given_a_game_arena_size_a_game_arena_is_created_with_the_correct_size() {
+        GameArena gameArena = gameArenaService.createGameArena(10);
+        assertSame(10, gameArena.getGameArenaSize());
     }
 
     @Test
