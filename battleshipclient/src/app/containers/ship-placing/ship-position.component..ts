@@ -28,6 +28,7 @@ export class ShipPositionComponent implements OnInit {
   store: Store<State>;
   tableHeaders$: Observable<string[]>;
   lengthOfRows$: Observable<number>;
+  rowNumbers: number[];
 
   constructor(playerService: PlayerService, gameService: GameService, store: Store<State>) {
     this.playerService = playerService;
@@ -38,7 +39,7 @@ export class ShipPositionComponent implements OnInit {
   }
 
   ngOnInit() {
-
+    this.lengthOfRows$.subscribe(length => this.calculateAvailableRows(length));
   }
 
   placeSubmarine(shipPlaceRequest: ShipPlaceRequest) {
@@ -70,5 +71,15 @@ export class ShipPositionComponent implements OnInit {
     shipPlaceRequest.playerId = this.playerService.playerId;
     console.log('placeBattleship method in ship-placer component called');
     this.store.dispatch(new AddBattleshipRequestAction(shipPlaceRequest));
+  }
+
+  calculateAvailableRows(length: number) {
+    const array: number[] = new Array(length);
+    for (let i = 0; i < length; i++) {
+      array[i] = i + 1;
+    }
+
+    this.rowNumbers = array;
+    console.log('This is the array: ' + array);
   }
 }

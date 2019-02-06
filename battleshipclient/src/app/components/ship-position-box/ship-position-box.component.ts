@@ -10,7 +10,7 @@ import {Row} from '../../models/row';
   templateUrl: './ship-position-box.component.html',
   styleUrls: ['./ship-position-box.component.scss']
 })
-export class ShipPositionBoxComponent implements OnInit {
+export class ShipPositionBoxComponent {
 
   constructor() {
 
@@ -18,9 +18,8 @@ export class ShipPositionBoxComponent implements OnInit {
 
   @Input() shipType: string;
   @Input() tableHeaders$: Observable<string[]>;
-  @Input() lengthOfRows$: Observable<number>;
+  @Input() rowNumbers: number[];
   @Output() shipPlacementUpdate: EventEmitter<ShipPlaceRequest> = new EventEmitter();
-  rowNumbers: number[];
 
   shipPlacingForm = new FormGroup({
     col: new FormControl(''),
@@ -30,22 +29,10 @@ export class ShipPositionBoxComponent implements OnInit {
 
   private shipPlaceRequest: ShipPlaceRequest = new ShipPlaceRequest();
 
-  ngOnInit() {
-    this.lengthOfRows$.subscribe(length => this.calculateAvailableRows(length));
-  }
-
   submitPlacement() {
     this.shipPlaceRequest.boardPosition.col = this.shipPlacingForm.get('col').value;
     this.shipPlaceRequest.boardPosition.row = this.shipPlacingForm.get('row').value;
     this.shipPlaceRequest.orientation = this.shipPlacingForm.get('orientation').value;
     this.shipPlacementUpdate.emit(this.shipPlaceRequest);
-  }
-
-  calculateAvailableRows(length: number) {
-    const array: number[] = new Array(length);
-    for (let i = 0; i < length; i++) {
-      array[i] = i + 1;
-    }
-    this.rowNumbers =  array;
   }
 }

@@ -21,7 +21,7 @@ export class ShipEffects {
   public addBattleship$ = this.actions$.pipe(
     ofType<AddBattleshipRequestAction>('CALL_ADD_BATTLESHIP'),
     map(action => action.payload),
-    switchMap(payload => this.shipPlacingService.placeDestroyer(payload).pipe(
+    switchMap(payload => this.shipPlacingService.placeBattleship(payload).pipe(
       mergeMap(ship => [new AddShipSuceededAction(ship),
         new RenderShipAction(ship)]),
       catchError((error) => {
@@ -70,8 +70,8 @@ export class ShipEffects {
     ofType<AddSubmarineRequestAction>('CALL_ADD_SUBMARINE'),
     map(action => action.payload),
     switchMap(payload => this.shipPlacingService.placeSubmarine(payload).pipe(
-      map(ship => of(new AddShipSuceededAction(ship),
-        new RenderShipAction(ship))),
+      mergeMap(ship => [ new AddShipSuceededAction(ship),
+        new RenderShipAction(ship)]),
       catchError((error) => {
         return of(new ShipPlaceFailedAction(error));
       }))

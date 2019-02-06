@@ -10,7 +10,7 @@ export class AddSubmarineRequestAction implements Action {
 }
 
 export class AddBattleshipRequestAction implements Action {
-  constructor(public readonly payload: ShipPlaceRequest) {}
+  constructor(public payload: ShipPlaceRequest) {}
   readonly type = 'CALL_ADD_BATTLESHIP';
 }
 

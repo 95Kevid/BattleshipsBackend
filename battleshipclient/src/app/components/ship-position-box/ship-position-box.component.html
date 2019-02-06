@@ -2,15 +2,21 @@
   <p>
     <label>{{shipType}} </label>
   </p>
+
   <label>Column </label>
   <select formControlName="col">
     <option *ngFor="let header of tableHeaders$ | async" [ngValue]="header">{{header}}</option>
   </select>
+
   <label>Row</label>
   <select formControlName="row">
-    <option *ngFor="let rowNumber of rowNumber">{{rowNumber}}</option>
-
+    <option *ngFor="let rowNumber of rowNumbers" [ngValue]="rowNumber">{{rowNumber}}</option>
   </select>
-  <label>Orientation</label> <input type="text" formControlName="orientation">
+
+  <label>Orientation</label>
+  <select formControlName="orientation">
+  <option>HORIZONTAL</option>
+  <option>VERTICAL</option>
+  </select>
   <button type="submit">Place ship</button>
 </form>
