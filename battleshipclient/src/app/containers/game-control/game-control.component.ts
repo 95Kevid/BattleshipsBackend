@@ -26,6 +26,8 @@ export class GameControlComponent implements OnInit {
   showGameCreationMenu = false;
   showPlayerCreationMenu = false;
   showJoinGameMenu = false;
+  showShipPlacerMenu = false;
+  showGrid = false;
 
   ngOnInit() {
   }
@@ -48,6 +50,8 @@ export class GameControlComponent implements OnInit {
 
   createPlayer(playerName: string)  {
     this.createPlayerService.createPlayer(this.gameService.gameId, playerName);
+    this.showShipPlacerMenu = true;
+    this.showGrid = true;
   }
 
   getGameId(): number {

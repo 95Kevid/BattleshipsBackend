@@ -2,3 +2,5 @@
 <button (click)="joinGameButtonClicked()" [disabled]="showGameCreationMenu" >Join Game</button>
 <app-create-game-box *ngIf= "showGameCreationMenu" [gameId]="getGameId()" (createGameEvent)="createGame($event)"></app-create-game-box>
 <app-create-player-box *ngIf="showPlayerCreationMenu" (createPlayerRequest)="createPlayer($event)"></app-create-player-box>
+<app-grid *ngIf="showGrid"></app-grid>
+<app-ship-placer *ngIf="showShipPlacerMenu"></app-ship-placer>

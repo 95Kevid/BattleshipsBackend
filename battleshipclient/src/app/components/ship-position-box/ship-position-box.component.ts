@@ -27,6 +27,8 @@ export class ShipPositionBoxComponent {
     orientation: new FormControl('')
   });
 
+  buttonDisabled = false;
+
   private shipPlaceRequest: ShipPlaceRequest = new ShipPlaceRequest();
 
   submitPlacement() {
@@ -34,5 +36,11 @@ export class ShipPositionBoxComponent {
     this.shipPlaceRequest.boardPosition.row = this.shipPlacingForm.get('row').value;
     this.shipPlaceRequest.orientation = this.shipPlacingForm.get('orientation').value;
     this.shipPlacementUpdate.emit(this.shipPlaceRequest);
+    this.disableShipPlacementForm();
+  }
+
+  disableShipPlacementForm() {
+    this.shipPlacingForm.disable();
+    this.buttonDisabled = true;
   }
 }
