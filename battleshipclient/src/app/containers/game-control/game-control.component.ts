@@ -5,6 +5,8 @@ import {CreateGameRequest} from '../../models/create-game-request';
 import {GridState} from '../../store/grid/grid.reducers';
 import {Store} from '@ngrx/store';
 import {InitialiseGridAction} from '../../store/grid/grid.actions';
+import {Observable} from 'rxjs';
+import {PollingService} from '../../services/polling.service';
 
 @Component({
   selector: 'app-game-control',
@@ -16,11 +18,13 @@ export class GameControlComponent implements OnInit {
   private gameService: GameService;
   private createPlayerService: PlayerService;
   private store: Store<GridState>;
+  private gameStartPolling$: Observable<PlayersToPlayersReady>;
 
-  constructor(gameService: GameService, createPlayerService: PlayerService, store: Store<GridState>) {
+  constructor(gameService: GameService, createPlayerService: PlayerService, store: Store<GridState>, pollingService: PollingService) {
     this.gameService = gameService;
     this.createPlayerService = createPlayerService;
     this.store = store;
+    this.gameStartPolling$ = pollingService.pollToStartGame();
   }
 
   showGameCreationMenu = false;
@@ -30,6 +34,7 @@ export class GameControlComponent implements OnInit {
   showGrid = false;
 
   ngOnInit() {
+
   }
 
   createGameButtonClicked() {
@@ -57,5 +62,4 @@ export class GameControlComponent implements OnInit {
   getGameId(): number {
     return this.gameService.gameId;
   }
-
 }

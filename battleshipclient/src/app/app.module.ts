@@ -16,6 +16,7 @@ import {reducers} from './store';
 import {StoreDevtoolsModule} from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
 import {ShipEffects} from './store/ship/ship.effects';
+import { GameStatusBoxComponent } from './components/game-status-box/game-status-box/game-status-box.component';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {ShipEffects} from './store/ship/ship.effects';
     CreateGameBoxComponent,
     GameControlComponent,
     CreatePlayerBoxComponent,
+    GameStatusBoxComponent,
   ],
   imports: [
     BrowserModule,
