@@ -4,13 +4,16 @@ import {catchError, map, mergeMap, switchMap} from 'rxjs/operators';
 import {ShipPlacingService} from '../../services/ship-placing.service';
 import {
   AddBattleshipRequestAction,
-  AddCarrierRequestAction, AddCruiserRequestAction, AddDestroyerRequestAction,
+  AddCarrierRequestAction,
+  AddCruiserRequestAction,
+  AddDestroyerRequestAction,
   AddShipSuceededAction,
   AddSubmarineRequestAction,
   ShipPlaceFailedAction
 } from './ship.actions';
 import {RenderShipAction} from '../grid/grid.actions';
 import {of} from 'rxjs';
+
 @Injectable()
 export class ShipEffects {
 
@@ -70,7 +73,7 @@ export class ShipEffects {
     ofType<AddSubmarineRequestAction>('CALL_ADD_SUBMARINE'),
     map(action => action.payload),
     switchMap(payload => this.shipPlacingService.placeSubmarine(payload).pipe(
-      mergeMap(ship => [ new AddShipSuceededAction(ship),
+      mergeMap(ship => [new AddShipSuceededAction(ship),
         new RenderShipAction(ship)]),
       catchError((error) => {
         return of(new ShipPlaceFailedAction(error));

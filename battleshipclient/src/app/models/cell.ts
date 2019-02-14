@@ -6,6 +6,6 @@ export class Cell {
 
   public equals(cell: Cell) {
     return cell.col === this.col
-    && cell.row === this.row;
+      && cell.row === this.row;
   }
 }

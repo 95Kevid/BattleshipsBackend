@@ -1,18 +1,18 @@
 // import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 //
-// import { GridComponent } from './grid.component';
+// import { GridBoxComponent } from './grid.component';
 // import {ShipPositionComponent} from '../containers/ship-placing/ship-placer-u-i.component';
 // import {Cell} from '../models/cell';
 // import {Row} from '../models/row';
 //
-// describe('GridComponent', () => {
-//   let component: GridComponent;
-//   let fixture: ComponentFixture<GridComponent>;
+// describe('GridBoxComponent', () => {
+//   let component: GridBoxComponent;
+//   let fixture: ComponentFixture<GridBoxComponent>;
 //
 //
 //   beforeEach(async(() => {
 //     TestBed.configureTestingModule({
-//       declarations: [ GridComponent,
+//       declarations: [ GridBoxComponent,
 //         ShipPositionComponent
 //       ]
 //     })
@@ -20,7 +20,7 @@
 //   }));
 //
 //   beforeEach(() => {
-//     fixture = TestBed.createComponent(GridComponent);
+//     fixture = TestBed.createComponent(GridBoxComponent);
 //     component = fixture.componentInstance;
 //     fixture.detectChanges();
 //     component.loadGrid();

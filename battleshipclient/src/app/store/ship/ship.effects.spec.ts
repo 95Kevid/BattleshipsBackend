@@ -1,8 +1,8 @@
-import { TestBed, inject } from '@angular/core/testing';
-import { provideMockActions } from '@ngrx/effects/testing';
-import { Observable } from 'rxjs';
+import {TestBed} from '@angular/core/testing';
+import {provideMockActions} from '@ngrx/effects/testing';
+import {Observable} from 'rxjs';
 
-import { ShipEffects } from './ship.effects';
+import {ShipEffects} from './ship.effects';
 
 describe('ShipEffects', () => {
   let actions$: Observable<any>;

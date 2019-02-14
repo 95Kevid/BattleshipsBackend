@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {CreateGameRequest} from '../../models/create-game-request';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-create-game-box',
@@ -9,9 +10,10 @@ import {CreateGameRequest} from '../../models/create-game-request';
 })
 export class CreateGameBoxComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
-  @Input() gameId: number;
+  @Input() gameId$: Observable<number>;
   @Output() createGameEvent: EventEmitter<CreateGameRequest> = new EventEmitter();
 
   formGroup: FormGroup = new FormGroup({
@@ -32,7 +34,7 @@ export class CreateGameBoxComponent implements OnInit {
     const createGameRequest: CreateGameRequest = {
       numberOfPlayers: numberOfPlayers,
       gridSize: gridSize
-    }
+    };
 
     this.createGameEvent.emit(createGameRequest);
     this.disableForm();
@@ -42,5 +44,4 @@ export class CreateGameBoxComponent implements OnInit {
     this.formGroup.disable();
     this.formDisabled = true;
   }
-
 }

@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ShipPositionComponent } from './ship-position.component.';
+import {ShipPositionComponent} from './ship-position.component.';
 import {By} from '@angular/platform-browser';
 import {DebugElement} from '@angular/core';
 
@@ -10,9 +10,9 @@ describe('ShipPositionComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ShipPositionComponent ]
+      declarations: [ShipPositionComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

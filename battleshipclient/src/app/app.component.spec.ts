@@ -1,7 +1,7 @@
-import {TestBed, async, ComponentFixture} from '@angular/core/testing';
-import { AppComponent } from './app.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {AppComponent} from './app.component';
 import {ShipPositionComponent} from './containers/ship-placing/ship-position.component.';
-import {GridComponent} from './grid/grid.component';
+import {GridBoxComponent} from './components/grid/grid-box.component';
 
 describe('AppComponent', () => {
 
@@ -13,7 +13,7 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         ShipPositionComponent,
-        GridComponent
+        GridBoxComponent
       ],
     });
 
@@ -25,10 +25,6 @@ describe('AppComponent', () => {
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   });
-
-
-
-
 
 
   // it('should create a grid with width of board size of 10', () => {

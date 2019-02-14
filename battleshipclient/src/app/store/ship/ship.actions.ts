@@ -5,42 +5,54 @@ import {ShipPlaceRequest} from '../../models/ship-place-request';
 export const ADD_SHIP_SUCCESS = 'ADD_SHIP_SUCCESS';
 
 export class AddSubmarineRequestAction implements Action {
-  constructor(public payload: ShipPlaceRequest) {}
+  constructor(public payload: ShipPlaceRequest) {
+  }
+
   readonly type = 'CALL_ADD_SUBMARINE';
 }
 
 export class AddBattleshipRequestAction implements Action {
-  constructor(public payload: ShipPlaceRequest) {}
+  constructor(public payload: ShipPlaceRequest) {
+  }
+
   readonly type = 'CALL_ADD_BATTLESHIP';
 }
 
 export class AddDestroyerRequestAction implements Action {
-  constructor(public payload: ShipPlaceRequest) {}
+  constructor(public payload: ShipPlaceRequest) {
+  }
+
   readonly type = 'CALL_ADD_DESTROYER';
 }
 
 export class AddCarrierRequestAction implements Action {
-  constructor(public payload: ShipPlaceRequest) {}
+  constructor(public payload: ShipPlaceRequest) {
+  }
+
   readonly type = 'CALL_ADD_CARRIER';
 }
 
 export class AddCruiserRequestAction implements Action {
-  constructor(public payload: ShipPlaceRequest) {}
+  constructor(public payload: ShipPlaceRequest) {
+  }
+
   readonly type = 'CALL_ADD_CRUISER';
 }
 
 
-
 export class AddShipSuceededAction implements Action {
   readonly type = 'ADD_SHIP_SUCCESS';
-  constructor(public payload: Ship) {}
+
+  constructor(public payload: Ship) {
+  }
 }
 
 export class ShipPlaceFailedAction implements Action {
   readonly type = 'SHIP_PLACEMENT_FAILED';
-  constructor(public payload: string) {}
-}
 
+  constructor(public payload: string) {
+  }
+}
 
 
 export type ShipActions = AddShipSuceededAction;

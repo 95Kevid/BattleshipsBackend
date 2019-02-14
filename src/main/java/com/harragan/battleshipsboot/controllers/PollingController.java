@@ -16,7 +16,7 @@ public class PollingController {
     @Autowired
     private PollingFacade pollingFacade;
 
-    @RequestMapping(value = "/waitingPlayerPoll", method = RequestMethod.GET)
+    @RequestMapping(value = "/waitingplayerpoll", method = RequestMethod.POST)
     public ResponseEntity<PlayersToPlayersReady> checkForWaitingPlayers(@RequestBody int gameId) {
         PlayersToPlayersReady playersToPlayersNotReady = pollingFacade
                 .getNumberOfNotReadyPlayersToReadyPlayers(gameId);

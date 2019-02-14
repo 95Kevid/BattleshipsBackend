@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 
@@ -6,13 +6,15 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class PlayerService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
+
   private url = 'http://localhost:9721/addplayer';
   playerId: number;
 
   createPlayer(gameId: number, playerName: string) {
-      this.http.post<number>(this.url, {gameId: gameId, playerName: playerName, })
-        .subscribe(player => this.playerId = player);
-      return this.playerId;
+    this.http.post<number>(this.url, {gameId: gameId, playerName: playerName,})
+      .subscribe(player => this.playerId = player);
+    return this.playerId;
   }
 }

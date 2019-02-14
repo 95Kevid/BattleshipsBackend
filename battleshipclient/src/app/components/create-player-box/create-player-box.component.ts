@@ -8,7 +8,8 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class CreatePlayerBoxComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+  }
 
   @Input() playerId: number;
   @Output() createPlayerRequest = new EventEmitter();
@@ -16,6 +17,7 @@ export class CreatePlayerBoxComponent implements OnInit {
     playerName: new FormControl()
   });
   formIsDisabled = false;
+
   ngOnInit() {
   }
 

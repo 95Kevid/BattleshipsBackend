@@ -1,6 +1,7 @@
 import {Row} from '../../models/row';
 import {Cell} from '../../models/cell';
 import {GridActions} from './grid.actions';
+import {GridParameters} from '../../models/gridParameters';
 
 
 export interface GridState {
@@ -11,21 +12,33 @@ export interface GridState {
 }
 
 export const initialGridState: GridState = {
-  tableRows : [],
-  tableHeaders : [],
+  tableRows: [],
+  tableHeaders: [],
   lengthOfRows: 0,
   gridSize: 0
 };
 
+function renderShip(state: GridState, occupiedBoardPositions: Cell[]) {
+  const outputState = {...state};
+  for (const shipCell of occupiedBoardPositions) {
+    outputState.tableRows[shipCell.row - 1].cells[shipCell.col.charCodeAt(0) - 65].colour = 'pink';
+  }
+  return outputState;
+}
+
 export function gridReducers(state: GridState = initialGridState, action: GridActions) {
   switch (action.type) {
-    case 'INITIALISE_GRID': return initialiseGrid(state, action);
+    case 'INITIALISE_GRID': {
+      const gridParameters = initialiseGrid(action.payload);
+      return {
+        ...state,
+        tableHeaders: gridParameters.tableHeaders,
+        tableRows: gridParameters.tableRows,
+        lengthOfRows: gridParameters.tableRows.length,
+      };
+    }
     case 'RENDER_SHIP': {
-      const outputState = {...state};
-      for (const shipCell of action.payload.occupiedBoardPositions) {
-        outputState.tableRows[shipCell.row - 1].cells[shipCell.col.charCodeAt(0) - 65].colour = 'pink';
-      }
-      return outputState;
+      return renderShip(state, action.payload.occupiedBoardPositions);
     }
     default: {
       return state;
@@ -33,39 +46,35 @@ export function gridReducers(state: GridState = initialGridState, action: GridAc
   }
 }
 
-function initialiseGrid(state: GridState = initialGridState, action: GridActions) {
-    console.log('INITIALISE GRID ACTION RECEIVED');
-    const tableHeaders: string[] = [];
-    const tableRows: Row[] = [];
-    for (let i = 0; i < action.payload; i++) {
-      tableHeaders[i] = String.fromCharCode(65 + i);
-    }
+function initialiseGrid(gridSize: number): GridParameters {
+  const gridParameters: GridParameters = new GridParameters();
+  gridParameters.tableHeaders = [];
+  gridParameters.tableRows = [];
 
-    for (let i = 0; i < action.payload; i++) {
-      const cells: Cell[] = [];
-      for (let j = 0; j < action.payload; j++) {
-        const cell: Cell = {
-          col: tableHeaders[j].toString(),
-          row: (i),
-          colour: 'blue',
-          hit: false,
-          equals: c => {
-            return c.col === cell.col
-              && c.row === cell.row;
-          }
-        };
-        cells[j] = cell;
-      }
-      const row: Row = new Row(cells);
-      tableRows[i] = row;
-      console.log(tableRows);
+  for (let i = 0; i < gridSize; i++) {
+    gridParameters.tableHeaders[i] = String.fromCharCode(65 + i);
+  }
+
+  for (let i = 0; i < gridSize; i++) {
+    const cells: Cell[] = [];
+    for (let j = 0; j < gridSize; j++) {
+      const cell: Cell = {
+        col: gridParameters.tableHeaders[j].toString(),
+        row: (i),
+        colour: 'blue',
+        hit: false,
+        equals: c => {
+          return c.col === cell.col
+            && c.row === cell.row;
+        }
+      };
+      cells[j] = cell;
     }
-    const outputState = {...state};
-    outputState.tableHeaders = tableHeaders;
-    outputState.tableRows = tableRows;
-    outputState.lengthOfRows = tableRows.length;
-    return outputState;
+    gridParameters.tableRows[i] = new Row(cells);
+  }
+  return gridParameters;
 }
+
 
 
 

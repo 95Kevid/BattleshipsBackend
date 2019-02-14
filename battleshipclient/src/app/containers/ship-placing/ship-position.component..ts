@@ -12,8 +12,6 @@ import {
   AddSubmarineRequestAction
 } from '../../store/ship/ship.actions';
 import {Observable} from 'rxjs';
-import {GridState} from '../../store/grid/grid.reducers';
-import {Row} from '../../models/row';
 
 @Component({
   selector: 'app-ship-placer',

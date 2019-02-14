@@ -1,9 +1,7 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ShipPlaceRequest} from '../../models/ship-place-request';
 import {Observable} from 'rxjs';
-import {GridState} from '../../store/grid/grid.reducers';
-import {Row} from '../../models/row';
 
 @Component({
   selector: 'app-ship-position-box',
