@@ -1,6 +1,7 @@
 package com.harragan.battleshipsboot.service;
 
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
+import com.harragan.battleshipsboot.service.exceptions.IllegalGameStartException;
 import org.springframework.stereotype.Service;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
@@ -39,7 +40,15 @@ public class PlayerService {
             throw new IllegalArgumentException("There is no player in the repository with that Id.");
         }
         Player player = playerOptional.get();
-        player.setReadyToStartGame(true);
-        playerRepository.save(player);
+
+        if(player.getGameArena().isAllShipsPlaced()) {
+            player.setReadyToStartGame(true);
+            playerRepository.save(player);
+        }
+        else {
+            throw new IllegalGameStartException("The Player has not placed all their ships.");
+        }
     }
+
+
 }

@@ -1,7 +1,0 @@
-enum ShipType {
-  BATTLESHIP,
-  DESTROYER,
-  CRUISER,
-  CARRIER,
-  SUMBARINE
-}
