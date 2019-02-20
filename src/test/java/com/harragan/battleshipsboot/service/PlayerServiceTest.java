@@ -48,6 +48,9 @@ public class PlayerServiceTest {
     public void givenAPlayeridAPlayerIsMarkedAsStarted() {
         Player playerJo = new Player("Jo White");
         playerJo.setId(1);
+        
+        playerJo.setGameArena(new GameArena());
+        playerJo.getGameArena().setAllShipsPlaced(true);
         when(playerRepository.findById(playerJo.getId())).thenReturn(Optional.of(playerJo));
         playerService.setPlayerIsReady(1, playerRepository);
         assertThat(playerJo.isReadyToStartGame());
