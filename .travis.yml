@@ -8,4 +8,4 @@ services:
     docker
 
 before_install:
-    docker build -t battleships/spring-backend
+    docker build -t battleships/spring-backend .
