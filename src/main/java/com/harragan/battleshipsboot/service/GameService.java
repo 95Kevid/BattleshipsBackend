@@ -88,4 +88,11 @@ public class GameService {
     public Game saveGame(Game game) {
         return gameRepository.save(game);
     }
+
+    public int checkForTurn(int gameId) {
+        Game game = getGame(gameId);
+        LinkedList<Player> players = game.getPlayers();
+        Player player = players.get(game.getTurnIndex());
+        return player.getId();
+    }
 }

@@ -86,4 +86,8 @@ public class GameArena {
     public void setAllShipsPlaced(boolean input) {
         allShipsPlaced = input;
     }
+
+    public void shoot(BoardPosition position) {
+
+    }
 }
