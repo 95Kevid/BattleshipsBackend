@@ -6,7 +6,8 @@ import com.harragan.battleshipsboot.repositorys.GameRepository
 import com.nhaarman.mockito_kotlin.mock
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.Before
-import org.junit.jupiter.api.Test
+import org.junit.Test
+
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import java.util.*
@@ -30,7 +31,8 @@ class GameServiceTestKt {
         game1.id = 1
     }
 
-    @Test fun firstPlayerThatJoinsGameIsTheFirstPlayerWhosTurnItIs() {
+    @Test
+    fun firstPlayerThatJoinsGameIsTheFirstPlayerWhosTurnItIs() {
         `when`(gameRepository.findById(1)).thenReturn(Optional.of(game1))
          gameService.joinPlayerToGame(1, player1)
          gameService.joinPlayerToGame(1, player2)
