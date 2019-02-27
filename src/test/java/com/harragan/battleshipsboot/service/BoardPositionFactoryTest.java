@@ -1,14 +1,16 @@
 package com.harragan.battleshipsboot.service;
 
 import org.junit.Test;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+
+import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
 
 public class BoardPositionFactoryTest {
 
     @Test
     public void invalid_board_positions_can_not_be_created() {
         BoardPositionFactory bps = new BoardPositionFactory();
-        assertThrows(IllegalArgumentException.class, () -> bps.createBoardPosition('*', 6));
-        assertThrows(IllegalArgumentException.class, () -> bps.createBoardPosition('/', 10));
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> bps.createBoardPosition('*', 6));
+        assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> bps.createBoardPosition('/',10));
     }
 }
