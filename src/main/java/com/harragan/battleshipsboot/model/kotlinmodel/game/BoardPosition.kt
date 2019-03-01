@@ -8,11 +8,11 @@ import javax.persistence.Id
 @Entity
 data class BoardPosition @JvmOverloads constructor(
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Id
-    val id : Int,
-        val col : Char,
-        val row : Int,
-        val isHit : Boolean
+        @Id
+        val id: Int,
+        val col: Char,
+        val row: Int,
+        val isHit: Boolean
 )
 
 

@@ -1,13 +1,13 @@
 package com.harragan.battleshipsboot.controllers;
 
 public class CreateGameRequestWrapper {
-    private Integer numberOfPlayers;
+  private Integer numberOfPlayers;
 
-    public CreateGameRequestWrapper(Integer numberOfPlayers) {
-        this.numberOfPlayers = numberOfPlayers;
-    }
+  public CreateGameRequestWrapper(Integer numberOfPlayers) {
+    this.numberOfPlayers = numberOfPlayers;
+  }
 
-    public Integer getNumberOfPlayers() {
-        return numberOfPlayers;
-    }
+  public Integer getNumberOfPlayers() {
+    return numberOfPlayers;
+  }
 }

@@ -1,9 +1,6 @@
 package com.harragan.battleshipsboot.repositorys;
 
-import org.springframework.data.repository.CrudRepository;
 import com.harragan.battleshipsboot.model.game.Game;
+import org.springframework.data.repository.CrudRepository;
 
-
-public interface GameRepository extends CrudRepository<Game, Integer> {
-
-}
+public interface GameRepository extends CrudRepository<Game, Integer> {}

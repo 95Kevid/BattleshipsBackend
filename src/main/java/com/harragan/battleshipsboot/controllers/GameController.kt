@@ -15,7 +15,7 @@ class GameController {
     @Autowired
     private val gameService: GameService? = null
 
-    @RequestMapping(value = "/creategame/{numberOfPlayers}/{arenaSize}", method = [RequestMethod.POST])
+    @RequestMapping(value = ["/creategame/{numberOfPlayers}/{arenaSize}"], method = [RequestMethod.POST])
     fun createGame(@PathVariable numberOfPlayers: Int, @PathVariable arenaSize: Int): ResponseEntity<Int> {
         val gameId = gameService!!.createGame(numberOfPlayers, arenaSize)
         return ResponseEntity(gameId, HttpStatus.CREATED)

@@ -6,10 +6,10 @@ import javax.persistence.MappedSuperclass
 
 @MappedSuperclass
 interface Ship {
-    val id :Int
-    val length : Int
-    val boardPosition : BoardPosition
-    val occupiedBoardPositions : List<BoardPosition>
-    val orientation : Orientation
-    val isSunk : Boolean
+    val id: Int
+    val length: Int
+    val boardPosition: BoardPosition
+    val occupiedBoardPositions: List<BoardPosition>
+    val orientation: Orientation
+    val isSunk: Boolean
 }

@@ -1,6 +1,5 @@
 package com.harragan.battleshipsboot.controllers
 
-import com.harragan.battleshipsboot.controllers.PlayerRequestWrapper
 import com.harragan.battleshipsboot.facades.PlayerAddingFacade
 import com.harragan.battleshipsboot.repositorys.PlayerRepository
 import com.harragan.battleshipsboot.service.PlayerService
@@ -22,7 +21,7 @@ class PlayerController {
     private val playerRepository: PlayerRepository? = null
 
     @RequestMapping(value = "/addplayer", method = [RequestMethod.POST])
-    fun createPlayer(@RequestBody playerRequestWrapper: PlayerRequestWrapper) : ResponseEntity<Int> {
+    fun createPlayer(@RequestBody playerRequestWrapper: PlayerRequestWrapper): ResponseEntity<Int> {
         val playerId: Int = playerAddingFacade!!.createPlayerAndJoinToGame(playerRequestWrapper.playerName
                 , playerRequestWrapper.gameId)
         return ResponseEntity(playerId, HttpStatus.CREATED)
