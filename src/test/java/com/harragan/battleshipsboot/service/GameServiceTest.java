@@ -7,6 +7,7 @@ import com.harragan.battleshipsboot.repositorys.GameRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import com.harragan.battleshipsboot.model.game.Player;
@@ -20,7 +21,6 @@ import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class GameServiceTest {
 
-    private GameService gameService;
     private Game game1;
     private Game game2;
     private Player player1;
@@ -30,10 +30,12 @@ public class GameServiceTest {
     @Mock
     private GameRepository gameRepository;
 
+    @InjectMocks
+    private GameService gameService;
+
     @Before
     public void initTest() {
        MockitoAnnotations.initMocks(this);
-       gameService = new GameService(gameRepository);
        game1 = new Game(2, 10);
        game2 = new Game(2, 10);
 

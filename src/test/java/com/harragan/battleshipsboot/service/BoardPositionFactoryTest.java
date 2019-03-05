@@ -8,7 +8,7 @@ import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
 public class BoardPositionFactoryTest {
 
     @Test
-    public void invalid_board_positions_can_not_be_created() {
+    public void invalidBoardPositionsCanNotBeCreated() {
         BoardPositionFactory bps = new BoardPositionFactory();
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> bps.createBoardPosition('*', 6));
         assertThatExceptionOfType(IllegalArgumentException.class).isThrownBy(() -> bps.createBoardPosition('/',10));

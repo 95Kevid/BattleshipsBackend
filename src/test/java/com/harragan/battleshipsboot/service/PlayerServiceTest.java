@@ -2,6 +2,7 @@ package com.harragan.battleshipsboot.service;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
@@ -15,11 +16,12 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerServiceTest {
+
+    @InjectMocks
     private PlayerService playerService;
 
     @Before
     public void initTest() {
-        playerService = new PlayerService(playerRepository);
         MockitoAnnotations.initMocks(this);
     }
 
@@ -37,7 +39,7 @@ public class PlayerServiceTest {
     }
 
     @Test
-    public void givenWhenAPlayerIsInstantiatedAPlayerIdIsReturned() {
+    public void whenAPlayerIsInstantiatedAPlayerIdIsReturned() {
         Player playerJO = new Player("Jo White");
         when(playerRepository.save(any(Player.class))).thenReturn(playerJO);
         Player result = playerService.createPlayer("Jo White", playerRepository);
@@ -45,7 +47,7 @@ public class PlayerServiceTest {
     }
 
     @Test
-    public void givenAPlayeridAPlayerIsMarkedAsStarted() {
+    public void whenProvidedWithAPlayerIdThePlayerIsFlaggedAsStarted() {
         Player playerJo = new Player("Jo White");
         playerJo.setId(1);
 

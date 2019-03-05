@@ -5,9 +5,7 @@ import com.harragan.battleshipsboot.model.game.Player
 import com.harragan.battleshipsboot.repositorys.GameRepository
 import com.nhaarman.mockito_kotlin.mock
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.Before
 import org.junit.Test
-
 import org.mockito.Mockito.`when`
 import org.mockito.MockitoAnnotations
 import java.util.*

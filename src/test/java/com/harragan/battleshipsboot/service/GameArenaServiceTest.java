@@ -29,13 +29,13 @@ public class GameArenaServiceTest {
     }
 
     @Test
-    public void given_a_game_arena_size_a_game_arena_is_created_with_the_correct_size() {
+    public void givenAGameArenaSizeAGameArenaIsCreatedWithTheCorrectSize() {
         GameArena gameArena = gameArenaService.createGameArena(10);
         assertSame(10, gameArena.getGameArenaSize());
     }
 
     @Test
-    public void ships_can_be_placed_in_valid_locations_in_the_arena() {
+    public void shipsCanBePlacedInValidLocationsInTheArena() {
         gameArena.clearArena();
 
         BoardPosition positionA1 = new BoardPosition('A', 1);
@@ -64,7 +64,7 @@ public class GameArenaServiceTest {
     }
 
     @Test
-    public void ships_can_be_placed_on_the_edges_of_the_board_in_valid_positions () {
+    public void shipsCanBePlacedOnTheEdgesOfTheBoardInValidPositions () {
         gameArena.clearArena();
 
         BoardPosition positionA8 = new BoardPosition('A', 8);
@@ -79,7 +79,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void battleship_can_not_be_placed_offboard_vertically_from_positionA10() {
+    public void battleshipCanNotBePlacedOffBoardVerticallyFromPositionA10() {
         gameArena.clearArena();
         BoardPosition positionA10 = new BoardPosition('A',10);
         Battleship battleship =  new Battleship(Orientation.VERTICAL, positionA10);
@@ -87,7 +87,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void destroyer_can_not_be_placed_offboard_horizontally_from_positionJ1() {
+    public void destroyerCanNotBePlacedOffBoardHorizontallyFromPositionJ1() {
         gameArena.clearArena();
         BoardPosition positionA10 = new BoardPosition('J',1);
         Destroyer destroyer =  new Destroyer(Orientation.HORIZONTAL, positionA10);
@@ -95,7 +95,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void cruiser_can_not_be_placed_off_board_horizontally_from_positionI4() {
+    public void cruiserCanNotBePlacedOffBoardHorizontallyFromPositionI4() {
         gameArena.clearArena();
         BoardPosition positionI4 = new BoardPosition('I',4);
         Cruiser cruiser =  new Cruiser(Orientation.HORIZONTAL, positionI4);
@@ -103,7 +103,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void carrier_can_not_be_placed_offboard_horrizontally_from_positionG5() {
+    public void carrierCanNotBePlacedOffBoardHorrizontallyFromPositionG5() {
         gameArena.clearArena();
         BoardPosition positionG5 = new BoardPosition('G',5);
         Carrier carrier =  new Carrier(Orientation.HORIZONTAL, positionG5);
@@ -111,7 +111,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void ships_can_not_be_placed_on_another_ship_when_placing_vertically() {
+    public void shipsCanNotBePlacedOnAnotherShipWhenPlacingVertically() {
         gameArena.clearArena();
 
         BoardPosition positionA1 = new BoardPosition('A', 1);
@@ -133,7 +133,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void ships_can_not_be_placed_on_another_ship_when_placing_horizontally() {
+    public void shipsCanNotBePlacedOnAnotherShipWhenPlacingHorizontally() {
         gameArena.clearArena();
 
         BoardPosition positionA1 = new BoardPosition('A', 1);
@@ -153,7 +153,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void cruiser_can_not_be_placed_on_a_submarine_that_is_positioned_vertically_from_A8() {
+    public void cruiserCanNotBePlacedOnASubmarineThatIsPositionedVerticallyFromA8() {
         gameArena.clearArena();
 
         BoardPosition positionA8 = new BoardPosition('A', 8);
@@ -165,7 +165,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void cruiser_can_not_be_placed_on_a_carrier_that_is_positioned_horizontally_from_F3() {
+    public void cruiserCanNotBePlacedOnACarrierThatIsPositionedHorizontallyFromF3() {
         BoardPosition positionF3 = new BoardPosition('F', 3);
         BoardPosition positionG2 = new BoardPosition('G', 2);
         carrier = new Carrier(Orientation.HORIZONTAL, positionF3);
@@ -176,7 +176,7 @@ public class GameArenaServiceTest {
 
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void can_not_be_placed_on_each_other_vertically_or_horizontally() {
+    public void canNotBePlacedOnEachOtherVerticallyOrHorizontally() {
         gameArena.clearArena();
 
         BoardPosition positionA1 = new BoardPosition('A', 1);
@@ -195,7 +195,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void only_one_of_each_ship_can_be_positioned() {
+    public void onlyOneOfEachShipCanBePositioned() {
         gameArena.clearArena();
 
         BoardPosition positionA1 = new BoardPosition('A', 1);
@@ -212,7 +212,7 @@ public class GameArenaServiceTest {
     }
 
     @Test
-    public void positions_the_ship_occupies_that_are_hit_are_set_to_hit() {
+    public void positionsTheShipOccupiesThatAreHitAreSetToHit() {
         gameArena.clearArena();
 
         submarine = new Submarine(Orientation.VERTICAL, new BoardPosition('A', 1));
@@ -236,7 +236,7 @@ public class GameArenaServiceTest {
     }
 
     @Test
-    public void ships_sunk_when_all_hit_points_have_been_hit() {
+    public void shipsSunkWhenAllHitPointsHaveBeenHit() {
         gameArena.clearArena();
 
         submarine = new Submarine(Orientation.VERTICAL, new BoardPosition('A', 1));
@@ -255,7 +255,7 @@ public class GameArenaServiceTest {
     }
 
     @Test
-    public void list_of_sunk_ships_are_kept() {
+    public void listOfSunkShipsAreKept() {
         gameArena.clearArena();
 
         submarine = new Submarine(Orientation.VERTICAL, new BoardPosition('A', 1));
