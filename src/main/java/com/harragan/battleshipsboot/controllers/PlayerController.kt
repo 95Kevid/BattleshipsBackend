@@ -15,9 +15,8 @@ class PlayerController(
     @RequestMapping(value = ["/addplayer"], method = [RequestMethod.POST])
     @ResponseStatus(HttpStatus.CREATED)
     fun createPlayer(@RequestBody playerRequestWrapper: PlayerRequestWrapper): Int {
-        val playerId: Int = playerAddingFacade.createPlayerAndJoinToGame(playerRequestWrapper.playerName
+        return playerAddingFacade.createPlayerAndJoinToGame(playerRequestWrapper.playerName
                 , playerRequestWrapper.gameId)
-        return playerId
     }
 
     @RequestMapping(value = ["/readytostart/{playerNo}"], method = [RequestMethod.POST])
