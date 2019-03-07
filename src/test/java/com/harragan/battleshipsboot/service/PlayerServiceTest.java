@@ -29,8 +29,8 @@ public class PlayerServiceTest {
 
     @Test
     public void playersCanBeAssignedAGameArenaWithAnId() {
-        GameArena gameArena = new GameArena();
-        Player player = new Player();
+        final GameArena gameArena = new GameArena();
+        final Player player = new Player();
         player.setId(1);
         playerService.setArenaToPlayer(gameArena, player);
         assertThat(player.getGameArena()).isEqualTo(gameArena);
@@ -38,15 +38,15 @@ public class PlayerServiceTest {
 
     @Test
     public void whenAPlayerIsInstantiatedAPlayerIdIsReturned() {
-        Player playerJO = new Player("Jo White");
+        final Player playerJO = new Player("Jo White");
         when(playerRepository.save(any(Player.class))).thenReturn(playerJO);
-        Player result = playerService.createPlayer("Jo White", playerRepository);
+        final Player result = playerService.createPlayer("Jo White", playerRepository);
         assertThat(playerJO).isEqualTo(result);
     }
 
     @Test
     public void whenProvidedWithAPlayerIdThePlayerIsFlaggedAsStarted() {
-        Player playerJo = new Player("Jo White");
+        final Player playerJo = new Player("Jo White");
         playerJo.setId(1);
 
         playerJo.setGameArena(new GameArena());

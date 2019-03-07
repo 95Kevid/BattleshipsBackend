@@ -48,7 +48,7 @@ public class PlayerAddingFacadeTest {
 
     @Test
     public void givenWhenAPlayerNameAndAGameIdIsProvidedAPlayerIsCreated() {
-        String playerName = "Burny";
+        final String playerName = "Burny";
         when(playerService.createPlayer(playerName, playerRepository)).thenReturn(burny);
         when(gameService.getGame(1)).thenReturn(game);
 

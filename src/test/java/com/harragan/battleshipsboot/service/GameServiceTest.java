@@ -57,16 +57,16 @@ public class GameServiceTest {
     }
 
     @Test
-    public void givenANumberOfPlayersWhenAGameIsInstantiatedAGameIDIsReturned() {
+    public void givenANumberOfPlayersWhenAGameIsInstantiatedAGameIdIsReturned() {
         game1.setId(12);
         when(gameRepository.save(any(Game.class))).thenReturn(game1);
-        int gameId1 = gameService.createGame(2, 10);
+        final int gameId1 = gameService.createGame(2, 10);
         verify(gameRepository, times(1)).save(any(Game.class));
         assertThat(gameId1).as("1rst run, the gameId should be 12").isEqualTo(12);
 
         game2.setId(189);
         when(gameRepository.save(any(Game.class))).thenReturn(game2);
-        int gameId2 = gameService.createGame(2, 10);
+        final int gameId2 = gameService.createGame(2, 10);
         verify(gameRepository, times(2)).save(any(Game.class));
 
         assertThat(gameId2).isEqualTo(189).as("2nd run gameId should be 189");
@@ -82,10 +82,10 @@ public class GameServiceTest {
 
     @Test
     public void givenAGameIdAGameIsReturned() {
-        Game game = new Game(2, 10);
+        final Game game = new Game(2, 10);
         game.setId(12);
         when(gameRepository.findById(14)).thenReturn(Optional.of(game));
-        Game returnedGame = gameService.getGame(14);
+        final Game returnedGame = gameService.getGame(14);
         assertThat(returnedGame)
                 .as("The correct game that corresponds to " + "the Id of 14 should be returned")
                 .isEqualTo(game);
@@ -93,7 +93,7 @@ public class GameServiceTest {
 
     @Test
     public void givenAGameIdThenReturnTheNumberOfPlayersToNumberOfNotReadyPlayers() {
-        LinkedList<Player> players = new LinkedList<>();
+        final LinkedList<Player> players = new LinkedList<>();
         players.add(player1);
         players.add(player2);
         players.add(player3);
@@ -102,14 +102,14 @@ public class GameServiceTest {
         player2.setReadyToStartGame(true);
         player3.setReadyToStartGame(false);
 
-        Game game1 = new Game(3, 10);
+        final Game game1 = new Game(3, 10);
         game1.setPlayers(players);
         game1.setId(9);
 
         when(gameRepository.findById(9)).thenReturn(Optional.of(game1));
 
-        PlayersToPlayersReady correctPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 1);
-        PlayersToPlayersReady incorrectPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 3);
+        final PlayersToPlayersReady correctPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 1);
+        final PlayersToPlayersReady incorrectPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 3);
 
         Assertions.assertThat(gameService.getPlayersToPlayersReady(game1.getId()))
                 .isEqualTo(correctPlayersToPlayersNotReady)

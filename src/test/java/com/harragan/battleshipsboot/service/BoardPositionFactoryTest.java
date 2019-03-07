@@ -8,7 +8,7 @@ public class BoardPositionFactoryTest {
 
     @Test
     public void invalidBoardPositionsCanNotBeCreated() {
-        BoardPositionFactory bps = new BoardPositionFactory();
+        final BoardPositionFactory bps = new BoardPositionFactory();
         assertThatExceptionOfType(IllegalArgumentException.class)
                 .isThrownBy(() -> bps.createBoardPosition('*', 6));
         assertThatExceptionOfType(IllegalArgumentException.class)

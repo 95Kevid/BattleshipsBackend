@@ -33,7 +33,7 @@ public class GameArenaServiceTest {
 
     @Test
     public void givenAGameArenaSizeAGameArenaIsCreatedWithTheCorrectSize() {
-        GameArena gameArena = gameArenaService.createGameArena(10);
+        final GameArena gameArena = gameArenaService.createGameArena(10);
         assertSame(10, gameArena.getGameArenaSize());
     }
 
@@ -41,11 +41,11 @@ public class GameArenaServiceTest {
     public void shipsCanBePlacedInValidLocationsInTheArena() {
         gameArena.clearArena();
 
-        BoardPosition positionA1 = new BoardPosition('A', 1);
-        BoardPosition positionF1 = new BoardPosition('F', 1);
-        BoardPosition positionG6 = new BoardPosition('G', 6);
-        BoardPosition positionF10 = new BoardPosition('F', 10);
-        BoardPosition positionA10 = new BoardPosition('A', 10);
+        final BoardPosition positionA1 = new BoardPosition('A', 1);
+        final BoardPosition positionF1 = new BoardPosition('F', 1);
+        final BoardPosition positionG6 = new BoardPosition('G', 6);
+        final BoardPosition positionF10 = new BoardPosition('F', 10);
+        final BoardPosition positionA10 = new BoardPosition('A', 10);
 
         battleship = new Battleship(Orientation.VERTICAL, positionF1);
         carrier = new Carrier(Orientation.HORIZONTAL, positionF10);
@@ -70,12 +70,12 @@ public class GameArenaServiceTest {
     public void shipsCanBePlacedOnTheEdgesOfTheBoardInValidPositions() {
         gameArena.clearArena();
 
-        BoardPosition positionA8 = new BoardPosition('A', 8);
-        BoardPosition positionG1 = new BoardPosition('G', 1);
-        BoardPosition positionJ6 = new BoardPosition('J', 6);
-        Submarine submarine = new Submarine(Orientation.VERTICAL, positionA8);
-        Cruiser cruiser = new Cruiser(Orientation.HORIZONTAL, positionG1);
-        Carrier carrier = new Carrier(Orientation.VERTICAL, positionJ6);
+        final BoardPosition positionA8 = new BoardPosition('A', 8);
+        final BoardPosition positionG1 = new BoardPosition('G', 1);
+        final BoardPosition positionJ6 = new BoardPosition('J', 6);
+        final Submarine submarine = new Submarine(Orientation.VERTICAL, positionA8);
+        final Cruiser cruiser = new Cruiser(Orientation.HORIZONTAL, positionG1);
+        final Carrier carrier = new Carrier(Orientation.VERTICAL, positionJ6);
         gameArenaService.addShip(submarine, gameArena);
         gameArenaService.addShip(cruiser, gameArena);
         gameArenaService.addShip(carrier, gameArena);
@@ -84,32 +84,32 @@ public class GameArenaServiceTest {
     @Test(expected = IllegalBoardPlacementException.class)
     public void battleshipCanNotBePlacedOffBoardVerticallyFromPositionA10() {
         gameArena.clearArena();
-        BoardPosition positionA10 = new BoardPosition('A', 10);
-        Battleship battleship = new Battleship(Orientation.VERTICAL, positionA10);
+        final BoardPosition positionA10 = new BoardPosition('A', 10);
+        final Battleship battleship = new Battleship(Orientation.VERTICAL, positionA10);
         gameArenaService.addShip(battleship, gameArena);
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
     public void destroyerCanNotBePlacedOffBoardHorizontallyFromPositionJ1() {
         gameArena.clearArena();
-        BoardPosition positionA10 = new BoardPosition('J', 1);
-        Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, positionA10);
+        final BoardPosition positionA10 = new BoardPosition('J', 1);
+        final Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, positionA10);
         gameArenaService.addShip(destroyer, gameArena);
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
     public void cruiserCanNotBePlacedOffBoardHorizontallyFromPositionI4() {
         gameArena.clearArena();
-        BoardPosition positionI4 = new BoardPosition('I', 4);
-        Cruiser cruiser = new Cruiser(Orientation.HORIZONTAL, positionI4);
+        final BoardPosition positionI4 = new BoardPosition('I', 4);
+        final Cruiser cruiser = new Cruiser(Orientation.HORIZONTAL, positionI4);
         gameArenaService.addShip(cruiser, gameArena);
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
     public void carrierCanNotBePlacedOffBoardHorrizontallyFromPositionG5() {
         gameArena.clearArena();
-        BoardPosition positionG5 = new BoardPosition('G', 5);
-        Carrier carrier = new Carrier(Orientation.HORIZONTAL, positionG5);
+        final BoardPosition positionG5 = new BoardPosition('G', 5);
+        final Carrier carrier = new Carrier(Orientation.HORIZONTAL, positionG5);
         gameArenaService.addShip(carrier, gameArena);
     }
 
@@ -117,10 +117,10 @@ public class GameArenaServiceTest {
     public void shipsCanNotBePlacedOnAnotherShipWhenPlacingVertically() {
         gameArena.clearArena();
 
-        BoardPosition positionA1 = new BoardPosition('A', 1);
-        BoardPosition positionA3 = new BoardPosition('A', 3);
-        BoardPosition positionF4 = new BoardPosition('F', 4);
-        BoardPosition positionF6 = new BoardPosition('F', 6);
+        final BoardPosition positionA1 = new BoardPosition('A', 1);
+        final BoardPosition positionA3 = new BoardPosition('A', 3);
+        final BoardPosition positionF4 = new BoardPosition('F', 4);
+        final BoardPosition positionF6 = new BoardPosition('F', 6);
 
         battleship = new Battleship(Orientation.VERTICAL, positionF4);
         carrier = new Carrier(Orientation.VERTICAL, positionA1);
@@ -138,10 +138,10 @@ public class GameArenaServiceTest {
     public void shipsCanNotBePlacedOnAnotherShipWhenPlacingHorizontally() {
         gameArena.clearArena();
 
-        BoardPosition positionA1 = new BoardPosition('A', 1);
-        BoardPosition positionC1 = new BoardPosition('C', 1);
-        BoardPosition positionF4 = new BoardPosition('F', 4);
-        BoardPosition positionD4 = new BoardPosition('D', 4);
+        final BoardPosition positionA1 = new BoardPosition('A', 1);
+        final BoardPosition positionC1 = new BoardPosition('C', 1);
+        final BoardPosition positionF4 = new BoardPosition('F', 4);
+        final BoardPosition positionD4 = new BoardPosition('D', 4);
 
         battleship = new Battleship(Orientation.HORIZONTAL, positionA1);
         carrier = new Carrier(Orientation.HORIZONTAL, positionF4);
@@ -158,8 +158,8 @@ public class GameArenaServiceTest {
     public void cruiserCanNotBePlacedOnASubmarineThatIsPositionedVerticallyFromA8() {
         gameArena.clearArena();
 
-        BoardPosition positionA8 = new BoardPosition('A', 8);
-        BoardPosition positionA10 = new BoardPosition('A', 10);
+        final BoardPosition positionA8 = new BoardPosition('A', 8);
+        final BoardPosition positionA10 = new BoardPosition('A', 10);
         submarine = new Submarine(Orientation.VERTICAL, positionA8);
         cruiser = new Cruiser(Orientation.HORIZONTAL, positionA10);
         gameArenaService.addShip(submarine, gameArena);
@@ -168,8 +168,8 @@ public class GameArenaServiceTest {
 
     @Test(expected = IllegalBoardPlacementException.class)
     public void cruiserCanNotBePlacedOnACarrierThatIsPositionedHorizontallyFromF3() {
-        BoardPosition positionF3 = new BoardPosition('F', 3);
-        BoardPosition positionG2 = new BoardPosition('G', 2);
+        final BoardPosition positionF3 = new BoardPosition('F', 3);
+        final BoardPosition positionG2 = new BoardPosition('G', 2);
         carrier = new Carrier(Orientation.HORIZONTAL, positionF3);
         cruiser = new Cruiser(Orientation.VERTICAL, positionG2);
         gameArenaService.addShip(carrier, gameArena);
@@ -180,8 +180,8 @@ public class GameArenaServiceTest {
     public void canNotBePlacedOnEachOtherVerticallyOrHorizontally() {
         gameArena.clearArena();
 
-        BoardPosition positionA1 = new BoardPosition('A', 1);
-        BoardPosition positionA3 = new BoardPosition('A', 3);
+        final BoardPosition positionA1 = new BoardPosition('A', 1);
+        final BoardPosition positionA3 = new BoardPosition('A', 3);
 
         battleship = new Battleship(Orientation.VERTICAL, new BoardPosition('A', 7));
         submarine = new Submarine(Orientation.HORIZONTAL, new BoardPosition('A', 7));
@@ -199,8 +199,8 @@ public class GameArenaServiceTest {
     public void onlyOneOfEachShipCanBePositioned() {
         gameArena.clearArena();
 
-        BoardPosition positionA1 = new BoardPosition('A', 1);
-        BoardPosition positionF10 = new BoardPosition('F', 10);
+        final BoardPosition positionA1 = new BoardPosition('A', 1);
+        final BoardPosition positionF10 = new BoardPosition('F', 10);
 
         carrier = new Carrier(Orientation.HORIZONTAL, positionF10);
         submarine = new Submarine(Orientation.VERTICAL, positionA1);
@@ -222,10 +222,10 @@ public class GameArenaServiceTest {
         gameArenaService.addShip(submarine, gameArena);
         gameArenaService.addShip(battleship, gameArena);
 
-        BoardPosition position1 = new BoardPosition('A', 3);
-        BoardPosition position2 = new BoardPosition('D', 4);
-        BoardPosition position3 = new BoardPosition('C', 4);
-        BoardPosition position4 = new BoardPosition('E', 4);
+        final BoardPosition position1 = new BoardPosition('A', 3);
+        final BoardPosition position2 = new BoardPosition('D', 4);
+        final BoardPosition position3 = new BoardPosition('C', 4);
+        final BoardPosition position4 = new BoardPosition('E', 4);
 
         gameArenaService.registerHit(position1, gameArena);
         gameArenaService.registerHit(position2, gameArena);
@@ -287,11 +287,11 @@ public class GameArenaServiceTest {
     @Test
     public void givenWhenAllShipsArePlacedTheVariableAllShipsPlacedIsTrue() {
         gameArena.clearArena();
-        Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, new BoardPosition('A', 1));
-        Carrier carrier = new Carrier(Orientation.HORIZONTAL, new BoardPosition('A', 2));
-        Cruiser cruiser = new Cruiser(Orientation.HORIZONTAL, new BoardPosition('A', 3));
-        Submarine submarine = new Submarine(Orientation.HORIZONTAL, new BoardPosition('A', 4));
-        Battleship battleship = new Battleship(Orientation.HORIZONTAL, new BoardPosition('A', 5));
+        final Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, new BoardPosition('A', 1));
+        final Carrier carrier = new Carrier(Orientation.HORIZONTAL, new BoardPosition('A', 2));
+        final Cruiser cruiser = new Cruiser(Orientation.HORIZONTAL, new BoardPosition('A', 3));
+        final Submarine submarine = new Submarine(Orientation.HORIZONTAL, new BoardPosition('A', 4));
+        final Battleship battleship = new Battleship(Orientation.HORIZONTAL, new BoardPosition('A', 5));
 
         gameArenaService.addShip(destroyer, gameArena);
         gameArenaService.addShip(carrier, gameArena);

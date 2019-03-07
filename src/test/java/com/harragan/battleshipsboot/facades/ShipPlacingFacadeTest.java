@@ -44,9 +44,9 @@ public class ShipPlacingFacadeTest {
     }
 
     @Test
-    public void givenAShipPositionGameIDAndPlayerIdThenAShipIsPositionedOnThatPlayersGameArena() {
-        Game game = new Game();
-        Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, new BoardPosition('A', 1));
+    public void givenAShipPositionGameIdAndPlayerIdThenAShipIsPositionedOnThatPlayersGameArena() {
+        final Game game = new Game();
+        final Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, new BoardPosition('A', 1));
         game.setId(1);
 
         when(gameService.getGame(1)).thenReturn(game);

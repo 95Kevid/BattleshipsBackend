@@ -28,13 +28,12 @@ public class PollingFacadeTest {
     }
 
     @Test
-    public void
-    givenWhenAGameIdIsProvidedThenANumberOfPlayersInTheGameIsProvidedWithANumberOfPlayersThatAreNotReady() {
-        PlayersToPlayersReady expectedPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 2);
+    public void givenWhenAGameIdIsProvidedThenANumberOfPlayersInTheGameIsProvidedWithANumberOfPlayersThatAreNotReady() {
+        final PlayersToPlayersReady expectedPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 2);
 
         when(gameService.getPlayersToPlayersReady(1)).thenReturn(expectedPlayersToPlayersNotReady);
 
-        PlayersToPlayersReady actualPlayersToPlayersNotReady =
+        final PlayersToPlayersReady actualPlayersToPlayersNotReady =
                 pollingFacade.getNumberOfNotReadyPlayersToReadyPlayers(1);
 
         assertThat(expectedPlayersToPlayersNotReady).isEqualTo(actualPlayersToPlayersNotReady);
