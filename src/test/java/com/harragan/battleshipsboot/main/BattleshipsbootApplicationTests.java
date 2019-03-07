@@ -12,5 +12,4 @@ public class BattleshipsbootApplicationTests {
     @Test
     public void contextLoads() {
     }
-
 }

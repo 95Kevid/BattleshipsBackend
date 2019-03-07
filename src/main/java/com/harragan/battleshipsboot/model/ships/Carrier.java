@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 
 @Entity
 public class Carrier extends Ship {
-  public Carrier(Orientation orient, BoardPosition boardPosition) {
-    super(5, orient, boardPosition);
-  }
+    public Carrier(final Orientation orient, final BoardPosition boardPosition) {
+        super(5, orient, boardPosition);
+    }
 
-  public Carrier() {}
+    public Carrier() {
+    }
 }

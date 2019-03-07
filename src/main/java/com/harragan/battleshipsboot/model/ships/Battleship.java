@@ -8,9 +8,10 @@ import javax.persistence.Entity;
 @Entity
 public class Battleship extends Ship {
 
-  public Battleship(Orientation orient, BoardPosition boardPosition) {
-    super(4, orient, boardPosition);
-  }
+    public Battleship(final Orientation orient, final BoardPosition boardPosition) {
+        super(4, orient, boardPosition);
+    }
 
-  public Battleship() {}
+    public Battleship() {
+    }
 }

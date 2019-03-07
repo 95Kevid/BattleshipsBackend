@@ -1,6 +1,11 @@
 package com.harragan.battleshipsboot.facades;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
+
 import com.harragan.battleshipsboot.model.game.Game;
+import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import com.harragan.battleshipsboot.service.GameArenaService;
@@ -8,28 +13,18 @@ import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
 import org.junit.Before;
 import org.junit.Test;
-import static org.assertj.core.api.Assertions.assertThat;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import com.harragan.battleshipsboot.model.game.Player;
-
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class PlayerAddingFacadeTest {
 
-    private PlayerAddingFacade playerAddingFacade;
-
-    @Mock
-    private PlayerService playerService;
-
-    @Mock
-    private PlayerRepository playerRepository;
-
     @Mock
     GameRepository gameRepository;
-
+    private PlayerAddingFacade playerAddingFacade;
+    @Mock
+    private PlayerService playerService;
+    @Mock
+    private PlayerRepository playerRepository;
     @Mock
     private GameService gameService;
 
@@ -44,9 +39,10 @@ public class PlayerAddingFacadeTest {
     @Before
     public void initTest() {
         MockitoAnnotations.initMocks(this);
-        playerAddingFacade = new PlayerAddingFacade(playerService,  gameService
-                ,playerRepository,  gameRepository, gameArenaService);
-        game = new Game(2,10);
+        playerAddingFacade =
+                new PlayerAddingFacade(
+                        playerService, gameService, playerRepository, gameRepository, gameArenaService);
+        game = new Game(2, 10);
         game.setId(1);
     }
 

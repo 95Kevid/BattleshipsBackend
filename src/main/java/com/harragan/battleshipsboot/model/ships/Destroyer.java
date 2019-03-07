@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 
 @Entity
 public class Destroyer extends Ship {
-  public Destroyer(Orientation orient, BoardPosition boardPosition) {
-    super(2, orient, boardPosition);
-  }
+    public Destroyer(final Orientation orient, final BoardPosition boardPosition) {
+        super(2, orient, boardPosition);
+    }
 
-  public Destroyer() {}
+    public Destroyer() {
+    }
 }

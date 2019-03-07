@@ -1,7 +1,14 @@
 package com.harragan.battleshipsboot.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
+
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameArena;
+import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
 import org.assertj.core.api.Assertions;
@@ -10,14 +17,9 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import com.harragan.battleshipsboot.model.game.Player;
 
-import java.util.*;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
+import java.util.LinkedList;
+import java.util.Optional;
 
 public class GameServiceTest {
 
@@ -35,23 +37,23 @@ public class GameServiceTest {
 
     @Before
     public void initTest() {
-       MockitoAnnotations.initMocks(this);
-       game1 = new Game(2, 10);
-       game2 = new Game(2, 10);
+        MockitoAnnotations.initMocks(this);
+        game1 = new Game(2, 10);
+        game2 = new Game(2, 10);
 
-       player1 = new Player();
-       player1.setId(1);
-       player1.setGameArena(new GameArena(10));
-       player2 = new Player();
-       player2.setId(2);
-       player2.setGameArena(new GameArena(10));
-       player3 = new Player();
-       player3.setId(3);
-       player3.setGameArena(new GameArena(10));
+        player1 = new Player();
+        player1.setId(1);
+        player1.setGameArena(new GameArena(10));
+        player2 = new Player();
+        player2.setId(2);
+        player2.setGameArena(new GameArena(10));
+        player3 = new Player();
+        player3.setId(3);
+        player3.setGameArena(new GameArena(10));
 
-       player1.setName("Burny");
-       player2.setName("Helga");
-       player3.setName("Fred");
+        player1.setName("Burny");
+        player2.setName("Helga");
+        player3.setName("Fred");
     }
 
     @Test
@@ -70,7 +72,6 @@ public class GameServiceTest {
         assertThat(gameId2).isEqualTo(189).as("2nd run gameId should be 189");
     }
 
-
     @Test
     public void givenAPlayerandAGameIdThenAPlayerIsAddedToAGame() {
         gameService = new GameService(gameRepository);
@@ -85,8 +86,9 @@ public class GameServiceTest {
         game.setId(12);
         when(gameRepository.findById(14)).thenReturn(Optional.of(game));
         Game returnedGame = gameService.getGame(14);
-        assertThat(returnedGame).as("The correct game that corresponds to " +
-                "the Id of 14 should be returned").isEqualTo(game);
+        assertThat(returnedGame)
+                .as("The correct game that corresponds to " + "the Id of 14 should be returned")
+                .isEqualTo(game);
     }
 
     @Test
@@ -106,10 +108,8 @@ public class GameServiceTest {
 
         when(gameRepository.findById(9)).thenReturn(Optional.of(game1));
 
-        PlayersToPlayersReady correctPlayersToPlayersNotReady
-                = new PlayersToPlayersReady(3,1);
-        PlayersToPlayersReady incorrectPlayersToPlayersNotReady
-                = new PlayersToPlayersReady(3,3);
+        PlayersToPlayersReady correctPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 1);
+        PlayersToPlayersReady incorrectPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 3);
 
         Assertions.assertThat(gameService.getPlayersToPlayersReady(game1.getId()))
                 .isEqualTo(correctPlayersToPlayersNotReady)

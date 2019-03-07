@@ -1,33 +1,31 @@
 package com.harragan.battleshipsboot.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
+
+import com.harragan.battleshipsboot.model.game.GameArena;
+import com.harragan.battleshipsboot.model.game.Player;
+import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static org.mockito.Mockito.*;
-
-import com.harragan.battleshipsboot.model.game.GameArena;
-import com.harragan.battleshipsboot.model.game.Player;
-import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 
 import java.util.Optional;
-
-import static org.assertj.core.api.Assertions.assertThat;
 
 public class PlayerServiceTest {
 
     @InjectMocks
     private PlayerService playerService;
+    @Mock
+    private PlayerRepository playerRepository;
 
     @Before
     public void initTest() {
         MockitoAnnotations.initMocks(this);
     }
-
-    @Mock
-    private PlayerRepository playerRepository;
-
 
     @Test
     public void playersCanBeAssignedAGameArenaWithAnId() {

@@ -4,34 +4,35 @@ import com.harragan.battleshipsboot.model.game.BoardPosition;
 import com.harragan.battleshipsboot.model.game.Orientation;
 
 public class ShipPlaceRequestWrapper {
-  private int playerId;
-  private int gameId;
-  private BoardPosition boardPosition;
-  private Orientation orientation;
+    private int playerId;
+    private int gameId;
+    private BoardPosition boardPosition;
+    private Orientation orientation;
 
-  public ShipPlaceRequestWrapper() {}
+    public ShipPlaceRequestWrapper() {
+    }
 
-  public ShipPlaceRequestWrapper(
-      int playerId, int gameId, BoardPosition boardPosition, Orientation orientation) {
-    this.playerId = playerId;
-    this.gameId = gameId;
-    this.boardPosition = boardPosition;
-    this.orientation = orientation;
-  }
+    public ShipPlaceRequestWrapper(
+            final int playerId, final int gameId, final BoardPosition boardPosition, final Orientation orientation) {
+        this.playerId = playerId;
+        this.gameId = gameId;
+        this.boardPosition = boardPosition;
+        this.orientation = orientation;
+    }
 
-  public int getPlayerId() {
-    return playerId;
-  }
+    public int getPlayerId() {
+        return playerId;
+    }
 
-  public int getGameId() {
-    return gameId;
-  }
+    public int getGameId() {
+        return gameId;
+    }
 
-  public BoardPosition getBoardPosition() {
-    return boardPosition;
-  }
+    public BoardPosition getBoardPosition() {
+        return boardPosition;
+    }
 
-  public Orientation getOrientation() {
-    return orientation;
-  }
+    public Orientation getOrientation() {
+        return orientation;
+    }
 }

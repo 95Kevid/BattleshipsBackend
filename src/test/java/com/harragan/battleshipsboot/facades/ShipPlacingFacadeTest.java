@@ -1,8 +1,15 @@
 package com.harragan.battleshipsboot.facades;
 
-import com.harragan.battleshipsboot.model.game.*;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
+
+import com.harragan.battleshipsboot.model.game.BoardPosition;
+import com.harragan.battleshipsboot.model.game.Game;
+import com.harragan.battleshipsboot.model.game.GameArena;
+import com.harragan.battleshipsboot.model.game.Orientation;
+import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.model.ships.Destroyer;
-import com.harragan.battleshipsboot.service.BoardPositionFactory;
 import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
@@ -10,9 +17,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
 
 public class ShipPlacingFacadeTest {
 
@@ -54,6 +58,4 @@ public class ShipPlacingFacadeTest {
         verify(gameArenaService, times(1)).addShip(destroyer, gameArena);
         verify(gameService, times(1)).getGame(1);
     }
-
-
 }

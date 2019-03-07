@@ -7,9 +7,10 @@ import javax.persistence.Entity;
 
 @Entity
 public class Cruiser extends Ship {
-  public Cruiser(Orientation orient, BoardPosition boardPosition) {
-    super(3, orient, boardPosition);
-  }
+    public Cruiser(final Orientation orient, final BoardPosition boardPosition) {
+        super(3, orient, boardPosition);
+    }
 
-  public Cruiser() {}
+    public Cruiser() {
+    }
 }

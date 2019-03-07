@@ -11,41 +11,41 @@ import java.util.Optional;
 @Service
 public class PlayerService {
 
-  private PlayerRepository playerRepository;
+    private PlayerRepository playerRepository;
 
-  public PlayerService(PlayerRepository playerRepository) {
-    this.playerRepository = playerRepository;
-  }
-
-  public void setArenaToPlayer(GameArena gameArena, Player player) {
-    player.setGameArena(gameArena);
-  }
-
-  public Player createPlayer(String playerName, PlayerRepository playerRepository) {
-    Player player = playerRepository.save(new Player(playerName));
-    return player;
-  }
-
-  public Player getPlayerById(int playerId) {
-    Optional<Player> playerOptional = playerRepository.findById(playerId);
-    if (!playerOptional.isPresent()) {
-      throw new IllegalArgumentException("There is no player in the repository with that Id.");
+    public PlayerService(final PlayerRepository playerRepository) {
+        this.playerRepository = playerRepository;
     }
-    return playerOptional.get();
-  }
 
-  public void setPlayerIsReady(int playerId, final PlayerRepository playerRepository) {
-    Optional<Player> playerOptional = playerRepository.findById(playerId);
-    if (!playerOptional.isPresent()) {
-      throw new IllegalArgumentException("There is no player in the repository with that Id.");
+    public void setArenaToPlayer(final GameArena gameArena, final Player player) {
+        player.setGameArena(gameArena);
     }
-    Player player = playerOptional.get();
 
-    if (player.getGameArena().isAllShipsPlaced()) {
-      player.setReadyToStartGame(true);
-      playerRepository.save(player);
-    } else {
-      throw new IllegalGameStartException("The Player has not placed all their ships.");
+    public Player createPlayer(final String playerName, final PlayerRepository playerRepository) {
+        final Player player = playerRepository.save(new Player(playerName));
+        return player;
     }
-  }
+
+    public Player getPlayerById(final int playerId) {
+        final Optional<Player> playerOptional = playerRepository.findById(playerId);
+        if (!playerOptional.isPresent()) {
+            throw new IllegalArgumentException("There is no player in the repository with that Id.");
+        }
+        return playerOptional.get();
+    }
+
+    public void setPlayerIsReady(final int playerId, final PlayerRepository playerRepository) {
+        final Optional<Player> playerOptional = playerRepository.findById(playerId);
+        if (!playerOptional.isPresent()) {
+            throw new IllegalArgumentException("There is no player in the repository with that Id.");
+        }
+        final Player player = playerOptional.get();
+
+        if (player.getGameArena().isAllShipsPlaced()) {
+            player.setReadyToStartGame(true);
+            playerRepository.save(player);
+        } else {
+            throw new IllegalGameStartException("The Player has not placed all their ships.");
+        }
+    }
 }
