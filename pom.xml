@@ -92,7 +92,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>2.17</version>
                 <configuration>
-                    <configLocation>pom.xml</configLocation>
+                    <configLocation>dev/check_style_rules.xml</configLocation>
                     <encoding>UTF-8</encoding>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <consoleOutput>true</consoleOutput>
