@@ -38,10 +38,10 @@ public class PlayerServiceTest {
 
     @Test
     public void whenAPlayerIsInstantiatedAPlayerIdIsReturned() {
-        final Player playerJO = new Player("Jo White");
-        when(playerRepository.save(any(Player.class))).thenReturn(playerJO);
+        final Player playerJo = new Player("Jo White");
+        when(playerRepository.save(any(Player.class))).thenReturn(playerJo);
         final Player result = playerService.createPlayer("Jo White", playerRepository);
-        assertThat(playerJO).isEqualTo(result);
+        assertThat(playerJo).isEqualTo(result);
     }
 
     @Test
