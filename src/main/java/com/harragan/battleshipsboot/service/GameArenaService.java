@@ -122,7 +122,7 @@ public class GameArenaService {
                 ship.setOccupiedPosition(occupiedBoardPositions);
             }
         } else {
-            for (final int i = 1; i < ship.getLength(); i++) {
+            for (int i = 1; i < ship.getLength(); i++) {
                 final char inputCol = ship.getOccupiedPosition(0).getCol();
                 final int input = inputCol + i;
                 final BoardPosition pos =
