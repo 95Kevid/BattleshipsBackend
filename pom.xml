@@ -9,6 +9,7 @@
     <packaging>jar</packaging>
 
     <name>battleshipsboot</name>
+
     <description>Demo project for Spring Boot</description>
 
     <parent>
@@ -91,7 +92,7 @@
                 <artifactId>maven-checkstyle-plugin</artifactId>
                 <version>3.0.0</version>
                 <configuration>
-                    <configLocation>${user.dir}/check-style-rules.xml</configLocation>
+                    <configLocation>./check-style-rules.xml</configLocation>
                     <encoding>UTF-8</encoding>
                     <includeTestSourceDirectory>true</includeTestSourceDirectory>
                     <consoleOutput>true</consoleOutput>
