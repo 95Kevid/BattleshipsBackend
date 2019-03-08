@@ -2,7 +2,7 @@ services:
   - docker
 
 script:
-  - docker build -t 95Kevid/battleships_backend .
+  - docker build -t 95kevid/battleships_backend .
 
 deploy:
   provider: script
