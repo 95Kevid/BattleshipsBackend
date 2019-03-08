@@ -15,7 +15,7 @@ import java.util.Queue;
 @Service
 public class GameService {
 
-    private GameRepository gameRepository;
+    private final GameRepository gameRepository;
 
     @Autowired
     public GameService(final GameRepository gameRepository) {

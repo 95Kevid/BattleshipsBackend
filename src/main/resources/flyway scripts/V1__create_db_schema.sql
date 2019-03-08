@@ -60,7 +60,7 @@ create table ship(
   PRIMARY KEY(id)
   )
 
-create ship_occupied_board_positions(
+create table ship_occupied_board_positions(
   ship_id int(11),
   occupied_board_positions_id,
   PRIMARY KEY(id)

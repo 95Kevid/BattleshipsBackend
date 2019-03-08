@@ -6,21 +6,27 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler
+import org.springframework.web.bind.annotation.ResponseBody
+import org.springframework.web.bind.annotation.ResponseStatus
 import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 
 @ControllerAdvice
 class ExceptionHandler : ResponseEntityExceptionHandler() {
 
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalBoardPlacementException::class)
     fun handleBoardException(exception: IllegalBoardPlacementException
-                             , webRequest: WebRequest): ResponseEntity<String> {
-        return ResponseEntity(exception.message!!, HttpStatus.BAD_REQUEST)
+                             , webRequest: WebRequest): String {
+        return exception.message!!
     }
 
+    @ResponseBody
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalGameStartException::class)
     fun handleIllegalStartException(exception: IllegalGameStartException
-                                    , webRequest: WebRequest): ResponseEntity<String> {
-        return ResponseEntity(exception.message!!, HttpStatus.BAD_REQUEST)
+                                    , webRequest: WebRequest): String {
+        return exception.message!!
     }
 }

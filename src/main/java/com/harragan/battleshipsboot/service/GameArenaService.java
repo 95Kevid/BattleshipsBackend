@@ -139,6 +139,7 @@ public class GameArenaService {
         for (final BoardPosition occupiedBoardPosition : ship.getOccupiedBoardPositions()) {
             if (occupiedBoardPosition.equals(boardPosition)) {
                 occupiedBoardPosition.setHit();
+                break;
             }
         }
 

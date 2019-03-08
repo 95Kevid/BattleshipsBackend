@@ -12,7 +12,6 @@ public class Player {
 
     @OneToOne(cascade = CascadeType.PERSIST)
     private GameArena gameArena;
-
     private String playerName;
     private boolean readyToStartGame;
 
