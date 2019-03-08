@@ -3,3 +3,9 @@ services:
 
 script:
   - docker build -t battleships/spring-backend .
+
+deploy:
+  - provider: script
+  - script: bash docker_push
+   on:
+    - branch: develop
