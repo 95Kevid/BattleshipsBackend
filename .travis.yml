@@ -2,7 +2,7 @@ services:
   - docker
 
 script:
-  - docker build -t battleships/spring-backend .
+  - docker build -t 95Kevid/battleships_backend .
 
 deploy:
   provider: script
