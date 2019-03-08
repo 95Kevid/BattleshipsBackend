@@ -13,7 +13,3 @@ services:
         environment:
         MYSQL_ROOT_PASSWORD: passworD
         restart: always
-                
-				
-				
-	
