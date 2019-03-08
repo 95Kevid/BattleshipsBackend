@@ -19,6 +19,7 @@ public class PlayerServiceTest {
 
     @InjectMocks
     private PlayerService playerService;
+
     @Mock
     private PlayerRepository playerRepository;
 
