@@ -17,9 +17,8 @@ class PollingController {
     private val pollingFacade: PollingFacade? = null
 
     @RequestMapping(value = ["/waitingplayerpoll"], method = [RequestMethod.POST])
-    fun checkForWaitingPlayers(@RequestBody gameId: Int): ResponseEntity<PlayersToPlayersReady> {
-        val playersToPlayersNotReady = pollingFacade!!
-                .getNumberOfNotReadyPlayersToReadyPlayers(gameId)
-        return ResponseEntity(playersToPlayersNotReady, HttpStatus.OK)
+    fun checkForWaitingPlayers(@RequestBody gameId: Int): PlayersToPlayersReady{
+        return pollingFacade!!.getNumberOfNotReadyPlayersToReadyPlayers(gameId)
+
     }
 }
