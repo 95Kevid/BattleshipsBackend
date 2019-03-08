@@ -12,8 +12,6 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 class GameController(private val gameService: GameService) {
 
-
-
     @RequestMapping(value = ["/creategame/{numberOfPlayers}/{arenaSize}"], method = [RequestMethod.POST])
     fun createGame(@PathVariable numberOfPlayers: Int, @PathVariable arenaSize: Int): ResponseEntity<Int> {
         val gameId = gameService!!.createGame(numberOfPlayers, arenaSize)
