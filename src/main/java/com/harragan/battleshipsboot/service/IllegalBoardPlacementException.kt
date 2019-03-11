@@ -1,3 +1,3 @@
-package com.harragan.battleshipsboot.service.exceptions
+package com.harragan.battleshipsboot.service
 
 class IllegalBoardPlacementException (message: String) : RuntimeException(message)

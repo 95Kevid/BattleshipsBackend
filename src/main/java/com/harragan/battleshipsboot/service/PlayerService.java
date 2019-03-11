@@ -3,7 +3,7 @@ package com.harragan.battleshipsboot.service;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
-import com.harragan.battleshipsboot.service.exceptions.IllegalGameStartException;
+
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -22,8 +22,7 @@ public class PlayerService {
     }
 
     public Player createPlayer(final String playerName, final PlayerRepository playerRepository) {
-        final Player player = playerRepository.save(new Player(playerName));
-        return player;
+        return playerRepository.save(new Player(playerName));
     }
 
     public Player getPlayerById(final int playerId) {
