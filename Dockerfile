@@ -1,4 +1,4 @@
-FROM openjdk:8-alpine AS build
+FROM maven:3.6.0-jdk-11 AS build
 COPY src /usr/src/app/src
 COPY dev /usr/src/app/dev
 COPY pom.xml /usr/src/app
