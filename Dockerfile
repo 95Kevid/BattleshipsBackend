@@ -2,7 +2,6 @@ FROM maven:3.6.0-jdk-11 AS build
 COPY src /usr/src/app/src
 COPY dev /usr/src/app/dev
 COPY pom.xml /usr/src/app
-RUN apk add --no-cache bash
 RUN mvn -f /usr/src/app/pom.xml clean package
 
 FROM openjdk:8-alpine
