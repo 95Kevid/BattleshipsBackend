@@ -5,6 +5,7 @@ import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Orientation;
 import com.harragan.battleshipsboot.model.ships.Ship;
 
+import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

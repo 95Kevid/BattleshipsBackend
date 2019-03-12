@@ -12,6 +12,7 @@ import com.harragan.battleshipsboot.model.ships.Carrier;
 import com.harragan.battleshipsboot.model.ships.Cruiser;
 import com.harragan.battleshipsboot.model.ships.Destroyer;
 import com.harragan.battleshipsboot.model.ships.Submarine;
+import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 import org.junit.Before;
 import org.junit.Test;
 

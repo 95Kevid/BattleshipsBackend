@@ -1,7 +1,7 @@
 package com.harragan.battleshipsboot.controllers.exceptionhandling
 
-import com.harragan.battleshipsboot.service.IllegalBoardPlacementException
-import com.harragan.battleshipsboot.service.IllegalGameStartException
+import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException
+import com.harragan.battleshipsboot.service.exceptions.IllegalGameStartException
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.ControllerAdvice
 import org.springframework.web.bind.annotation.ExceptionHandler

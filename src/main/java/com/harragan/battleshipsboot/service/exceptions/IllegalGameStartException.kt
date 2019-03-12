@@ -1,3 +1,3 @@
-package com.harragan.battleshipsboot.service
+package com.harragan.battleshipsboot.service.exceptions
 
 class IllegalGameStartException(message: String) : RuntimeException(message)
