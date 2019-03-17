@@ -1,7 +1,9 @@
 package com.harragan.battleshipsboot.service;
 
-import com.harragan.battleshipsboot.model.game.BoardPosition;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BoardPositionFactory {
 
     public static BoardPosition createBoardPosition(final char col, final int row) {

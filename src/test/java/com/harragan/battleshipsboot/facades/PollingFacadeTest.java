@@ -13,29 +13,28 @@ import org.mockito.MockitoAnnotations;
 
 public class PollingFacadeTest {
 
-    private PollingFacade pollingFacade;
+  private PollingFacade pollingFacade;
 
-    @Mock
-    private GameService gameService;
+  @Mock private GameService gameService;
 
-    @Mock
-    private GameRepository gameRepository;
+  @Mock private GameRepository gameRepository;
 
-    @Before
-    public void initTest() {
-        MockitoAnnotations.initMocks(this);
-        pollingFacade = new PollingFacade(gameService, gameRepository);
-    }
+  @Before
+  public void initTest() {
+    MockitoAnnotations.initMocks(this);
+    pollingFacade = new PollingFacade(gameService);
+  }
 
-    @Test
-    public void givenWhenAGameIdIsProvidedThenANumberOfPlayersInTheGameIsProvidedWithANumberOfPlayersThatAreNotReady() {
-        final PlayersToPlayersReady expectedPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 2);
+  @Test
+  public void
+      givenWhenAGameIdIsProvidedThenANumberOfPlayersInTheGameIsProvidedWithANumberOfPlayersThatAreNotReady() {
+    final PlayersToPlayersReady expectedPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 2);
 
-        when(gameService.getPlayersToPlayersReady(1)).thenReturn(expectedPlayersToPlayersNotReady);
+    when(gameService.getPlayersToPlayersReady(1)).thenReturn(expectedPlayersToPlayersNotReady);
 
-        final PlayersToPlayersReady actualPlayersToPlayersNotReady =
-                pollingFacade.getNumberOfNotReadyPlayersToReadyPlayers(1);
+    final PlayersToPlayersReady actualPlayersToPlayersNotReady =
+        pollingFacade.getNumberOfNotReadyPlayersToReadyPlayers(1);
 
-        assertThat(expectedPlayersToPlayersNotReady).isEqualTo(actualPlayersToPlayersNotReady);
-    }
+    assertThat(expectedPlayersToPlayersNotReady).isEqualTo(actualPlayersToPlayersNotReady);
+  }
 }

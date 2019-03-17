@@ -2,8 +2,8 @@ package com.harragan.battleshipsboot.service;
 
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
-import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 
+import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import com.harragan.battleshipsboot.service.exceptions.IllegalGameStartException;
 import org.springframework.stereotype.Service;
 

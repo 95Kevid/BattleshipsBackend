@@ -1,0 +1,19 @@
+---
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/battleshipsboot
+    username: root
+    password: passworD
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  flyway:
+    url: jdbc:mariadb://localhost:3306/
+    password: passworD
+    user: root
+    schemas: battleshipsboot
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+server:
+  port: 9721

@@ -13,6 +13,7 @@ import com.harragan.battleshipsboot.model.ships.Cruiser;
 import com.harragan.battleshipsboot.model.ships.Destroyer;
 import com.harragan.battleshipsboot.model.ships.Submarine;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -32,13 +33,13 @@ public class GameArenaServiceTest {
     }
 
     @Test
-    public void givenAGameArenaSizeAGameArenaIsCreatedWithTheCorrectSize() {
+    public void whenAGameArenaIsInstantiatedThenItIsSetToTheCorrectSize() {
         final GameArena gameArena = gameArenaService.createGameArena(10);
         assertSame(10, gameArena.getGameArenaSize());
     }
 
     @Test
-    public void shipsCanBePlacedInValidLocationsInTheArena() {
+    public void whenShipsArePlacedInValidLocationsInTheArenaThenTheyAccessibleFromTheGameArena() {
         gameArena.clearArena();
 
         final BoardPosition positionA1 = new BoardPosition('A', 1);
@@ -67,7 +68,7 @@ public class GameArenaServiceTest {
     }
 
     @Test
-    public void shipsCanBePlacedOnTheEdgesOfTheBoardInValidPositions() {
+    public void whenShipsArePlacedOnTheEdgesOfTheBoardInValidPositionsThenAreAccessibleFromTheGameArena() {
         gameArena.clearArena();
 
         final BoardPosition positionA8 = new BoardPosition('A', 8);
@@ -82,7 +83,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void battleshipCanNotBePlacedOffBoardVerticallyFromPositionA10() {
+    public void whenABattleshipIsPlacedVerticallyAndPartlyOffTheGameArenaThenAnIllegalBoardPlacementExceptionIsThrown() {
         gameArena.clearArena();
         final BoardPosition positionA10 = new BoardPosition('A', 10);
         final Battleship battleship = new Battleship(Orientation.VERTICAL, positionA10);
@@ -90,7 +91,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void destroyerCanNotBePlacedOffBoardHorizontallyFromPositionJ1() {
+    public void whenADestroyerIsPlacedHorizontallyAndPartlyOffTheGameArenaThenAnIllegalBoardPlacementExceptionIsThrown() {
         gameArena.clearArena();
         final BoardPosition positionA10 = new BoardPosition('J', 1);
         final Destroyer destroyer = new Destroyer(Orientation.HORIZONTAL, positionA10);
@@ -98,7 +99,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void cruiserCanNotBePlacedOffBoardHorizontallyFromPositionI4() {
+    public void whenACruiserIsPlacedHorizontallyAndPartlyOffTheGameArenaThenAnIllegalBoardPlacementExceptionIsThrown() {
         gameArena.clearArena();
         final BoardPosition positionI4 = new BoardPosition('I', 4);
         final Cruiser cruiser = new Cruiser(Orientation.HORIZONTAL, positionI4);
@@ -106,7 +107,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void carrierCanNotBePlacedOffBoardHorrizontallyFromPositionG5() {
+    public void whenACarrierIsPlacedHorizontallyAndPartlyOffTheGameArenaThenAnIllegalBoardPlacementExceptionIsThrown() {
         gameArena.clearArena();
         final BoardPosition positionG5 = new BoardPosition('G', 5);
         final Carrier carrier = new Carrier(Orientation.HORIZONTAL, positionG5);
@@ -114,7 +115,7 @@ public class GameArenaServiceTest {
     }
 
     @Test(expected = IllegalBoardPlacementException.class)
-    public void shipsCanNotBePlacedOnAnotherShipWhenPlacingVertically() {
+    public void whenAShipIsPlacedOnAnotherVerticallyThenAnIllegalBoardPlacementExceptionIsThrown() {
         gameArena.clearArena();
 
         final BoardPosition positionA1 = new BoardPosition('A', 1);
@@ -134,8 +135,8 @@ public class GameArenaServiceTest {
         gameArenaService.addShip(destroyer, gameArena);
     }
 
-    @Test(expected = IllegalBoardPlacementException.class)
-    public void shipsCanNotBePlacedOnAnotherShipWhenPlacingHorizontally() {
+    @Test
+    public void whenAShipIsPlacedOnAnotherHorizontallyThenAnIllegalBoardPlacementExceptionIsThrown() {
         gameArena.clearArena();
 
         final BoardPosition positionA1 = new BoardPosition('A', 1);
@@ -143,7 +144,7 @@ public class GameArenaServiceTest {
         final BoardPosition positionF4 = new BoardPosition('F', 4);
         final BoardPosition positionD4 = new BoardPosition('D', 4);
 
-        battleship = new Battleship(Orientation.HORIZONTAL, positionA1);
+        destroyer = new Destroyer(Orientation.HORIZONTAL, positionA1);
         carrier = new Carrier(Orientation.HORIZONTAL, positionF4);
         submarine = new Submarine(Orientation.HORIZONTAL, positionC1);
         cruiser = new Cruiser(Orientation.HORIZONTAL, positionD4);
@@ -179,9 +180,6 @@ public class GameArenaServiceTest {
     @Test(expected = IllegalBoardPlacementException.class)
     public void canNotBePlacedOnEachOtherVerticallyOrHorizontally() {
         gameArena.clearArena();
-
-        final BoardPosition positionA1 = new BoardPosition('A', 1);
-        final BoardPosition positionA3 = new BoardPosition('A', 3);
 
         battleship = new Battleship(Orientation.VERTICAL, new BoardPosition('A', 7));
         submarine = new Submarine(Orientation.HORIZONTAL, new BoardPosition('A', 7));

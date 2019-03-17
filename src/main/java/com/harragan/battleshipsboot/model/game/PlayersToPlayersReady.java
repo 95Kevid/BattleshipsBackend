@@ -20,9 +20,12 @@ public class PlayersToPlayersReady {
     }
 
     @Override
-    public boolean equals(final Object object) {
-        final PlayersToPlayersReady input = (PlayersToPlayersReady) object;
-        return playersInGame == input.playersInGame && playersReady == input.playersReady;
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final PlayersToPlayersReady that = (PlayersToPlayersReady) o;
+        return playersInGame == that.playersInGame &&
+                playersReady == that.playersReady;
     }
 
     @Override

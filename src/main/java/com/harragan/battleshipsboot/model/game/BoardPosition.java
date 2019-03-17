@@ -41,16 +41,18 @@ public class BoardPosition {
         this.row = row;
     }
 
-    public boolean equals(final Object object) {
-        if (!(object instanceof BoardPosition)) {
-            throw new IllegalArgumentException("Object of type BoardPosition should of been provided");
-        }
-        final BoardPosition input = (BoardPosition) object;
-        return this.col == input.getCol() && this.row == input.getRow();
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        final BoardPosition that = (BoardPosition) o;
+        return col == that.col &&
+                row == that.row;
     }
 
+    @Override
     public int hashCode() {
-        return Objects.hash(col, row);
+        return Objects.hash(id, col, row, isHit);
     }
 
     public void setHit() {

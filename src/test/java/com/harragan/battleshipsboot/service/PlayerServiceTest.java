@@ -9,12 +9,15 @@ import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Optional;
 
+@RunWith(MockitoJUnitRunner.class)
 public class PlayerServiceTest {
 
     @InjectMocks

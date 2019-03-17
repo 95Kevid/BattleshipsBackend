@@ -12,6 +12,7 @@ class GameController(private val gameService: GameService) {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = ["/creategame/{numberOfPlayers}/{arenaSize}"], method = [RequestMethod.POST])
     fun createGame(@PathVariable numberOfPlayers: Int, @PathVariable arenaSize: Int): Int {
-        return gameService!!.createGame(numberOfPlayers, arenaSize)
+        return gameService.createGame(numberOfPlayers, arenaSize)
     }
 }
+

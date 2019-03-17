@@ -15,12 +15,12 @@ class PlayerController(
     @RequestMapping(value = ["/addplayer"], method = [RequestMethod.POST])
     @ResponseStatus(HttpStatus.CREATED)
     fun createPlayer(@RequestBody playerRequestWrapper: PlayerRequestWrapper): Int {
-        return playerAddingFacade.createPlayerAndJoinToGame(playerRequestWrapper.playerName
-                , playerRequestWrapper.gameId)
+        return playerAddingFacade.createPlayerAndJoinToGame(playerRequestWrapper.playerName,
+                playerRequestWrapper.gameId)
     }
 
     @RequestMapping(value = ["/readytostart/{playerNo}"], method = [RequestMethod.POST])
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.ACCEPTED)
     fun playerReady(@PathVariable playerNo: Int) {
         playerService.setPlayerIsReady(playerNo, playerRepository)
     }

@@ -11,7 +11,7 @@ public class MyConfiguration {
 
     @Bean // This is a temporary measure to disable cors during developement and testing
     public WebMvcConfigurer corsConfigurer() {
-        return new WebMvcConfigurerAdapter() {
+        return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(final CorsRegistry registry) {
                 registry.addMapping("/**").allowedMethods("HEAD", "GET", "PUT", "POST", "DELETE", "PATCH");

@@ -146,7 +146,7 @@
                 <configuration>
                     <jvmTarget>${java.version}</jvmTarget>
                 </configuration>
-            </plugin>
+            </plugin>S
         </plugins>
     </build>
 </project>

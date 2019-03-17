@@ -7,7 +7,6 @@ import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,7 +18,6 @@ public class PlayerAddingFacade {
     private GameRepository gameRepository;
     private GameArenaService gameArenaService;
 
-    @Autowired
     public PlayerAddingFacade(
             final PlayerService playerService,
             final GameService gameService,

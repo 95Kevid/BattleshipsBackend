@@ -1,10 +1,10 @@
 package com.harragan.battleshipsboot.service;
 
-import com.harragan.battleshipsboot.model.game.BoardPosition;
 import com.harragan.battleshipsboot.model.game.GameArena;
-import com.harragan.battleshipsboot.model.game.Orientation;
-import com.harragan.battleshipsboot.model.ships.Ship;
 
+import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.Orientation;
+import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 import org.springframework.stereotype.Service;
 
@@ -66,13 +66,13 @@ public class GameArenaService {
     }
 
     public boolean isShipOffBoard(final Ship ship, final GameArena gameArena) {
-        if (ship.getOrient() == Orientation.VERTICAL
-                && ship.getOccupiedPosition(0).getRow() + ship.getLength()
+        if (ship.getOrientation() == Orientation.VERTICAL
+                && ship.getOccupiedBoardPositions().get(0).getRow() + ship.getType().getLength()
                 > gameArena.getGameArenaSize() + 1) {
             return true;
         }
-        return ship.getOrient() == Orientation.HORIZONTAL
-                && ship.getOccupiedPosition(0).getCol() + ship.getLength()
+        return ship.getOrientation() == Orientation.HORIZONTAL
+                && ship.getOccupiedBoardPositions().get(0).getCol() + ship.getType().getLength()
                 > gameArena.getGameArenaSize() + 65;
     }
 
@@ -90,7 +90,7 @@ public class GameArenaService {
     }
 
     public void registerHit(final BoardPosition boardPosition, final GameArena gameArena) {
-        boardPosition.setHit();
+        boardPosition.setHit(true);
         for (final Ship ship : gameArena.getShipsOnBoard()) {
             if (ship.getOccupiedBoardPositions().contains(boardPosition)) {
                 setHitPositionOnShip(boardPosition, ship);
@@ -112,40 +112,46 @@ public class GameArenaService {
         return null;
     }
 
-    public void setOccupiedPositionsOfShip(final Ship ship) {
-        if (ship.getOrient() == Orientation.VERTICAL) {
-            for (int i = 1; i < ship.getLength(); i++) {
-                final BoardPosition pos =
-                        BoardPositionFactory.createBoardPosition(
-                                ship.getOccupiedPosition(0).getCol(), ship.getOccupiedPosition(0).getRow() + i);
-                final List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
-                occupiedBoardPositions.add(i, pos);
-                ship.setOccupiedPosition(occupiedBoardPositions);
-            }
+    private void setOccupiedPositionsOfShip(final Ship ship) {
+        if (ship.getOrientation() == Orientation.VERTICAL) {
+            setOccupiedPositionsOfShipWhenVertical(ship);
         } else {
-            for (int i = 1; i < ship.getLength(); i++) {
-                final char inputCol = ship.getOccupiedPosition(0).getCol();
-                final int input = inputCol + i;
-                final BoardPosition pos =
-                        BoardPositionFactory.createBoardPosition(
-                                (char) input, ship.getOccupiedPosition(0).getRow());
-                final List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
-                occupiedBoardPositions.add(i, pos);
-                ship.setOccupiedPosition(occupiedBoardPositions);
-            }
+            setOccupiedPositionsOfShipWhenHorizontal(ship);
         }
     }
 
-    public void setHitPositionOnShip(final BoardPosition boardPosition, final Ship ship) {
+    private void setOccupiedPositionsOfShipWhenHorizontal(final Ship ship) {
+        for (int i = 1; i < ship.getType().getLength(); i++) {
+            final char inputCol = ship.getOccupiedBoardPositions().get(0).getCol();
+            final int input = inputCol + i;
+            final BoardPosition pos =
+                    BoardPositionFactory.createBoardPosition(
+                            (char) input, ship.getOccupiedBoardPositions().get(0).getRow());
+            final List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
+            occupiedBoardPositions.add(i, pos);
+            ship.setOccupiedBoardPositions(occupiedBoardPositions);
+        }
+    }
+
+    private void setOccupiedPositionsOfShipWhenVertical(final Ship ship) {
+        for (int i = 1; i < ship.getType().getLength(); i++) {
+            final BoardPosition pos =
+                    BoardPositionFactory.createBoardPosition(
+                            ship.getOccupiedBoardPositions().get(0).getCol(), ship.getOccupiedBoardPositions().get(0).getRow() + i);
+            final List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
+            occupiedBoardPositions.add(i, pos);
+            ship.setOccupiedBoardPositions(occupiedBoardPositions);
+        }
+    }
+
+    private void setHitPositionOnShip(final BoardPosition boardPosition, final Ship ship) {
         for (final BoardPosition occupiedBoardPosition : ship.getOccupiedBoardPositions()) {
             if (occupiedBoardPosition.equals(boardPosition)) {
-                occupiedBoardPosition.setHit();
+                occupiedBoardPosition.setHit(true);
                 break;
             }
         }
-
         final boolean allPositionsHit = ship.getOccupiedBoardPositions().stream().allMatch(p -> p.isHit());
-
         if (allPositionsHit) {
             ship.setSunk(true);
         }

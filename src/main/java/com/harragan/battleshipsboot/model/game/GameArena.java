@@ -2,7 +2,8 @@ package com.harragan.battleshipsboot.model.game;
 
 import static javax.persistence.CascadeType.PERSIST;
 
-import com.harragan.battleshipsboot.model.ships.Ship;
+
+import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -13,6 +14,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 
 @Entity
 public class GameArena {

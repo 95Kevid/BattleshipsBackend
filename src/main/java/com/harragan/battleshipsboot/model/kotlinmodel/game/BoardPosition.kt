@@ -12,7 +12,7 @@ data class BoardPosition @JvmOverloads constructor(
         val id: Int,
         val col: Char,
         val row: Int,
-        val isHit: Boolean
+        var isHit: Boolean
 )
 
 
