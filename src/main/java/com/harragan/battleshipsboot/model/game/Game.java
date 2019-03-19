@@ -13,57 +13,56 @@ import javax.persistence.OneToMany;
 @Entity
 public class Game {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    @OneToMany(cascade = PERSIST)
-    private List<Player> players;
+  @OneToMany(cascade = PERSIST)
+  private List<Player> players;
 
-    private int turnIndex;
+  private int turnIndex;
 
-    private int noOfPlayers;
+  private int noOfPlayers;
 
-    private int gameArenaSize;
+  private int gameArenaSize;
 
-    public Game() {
-    }
+  public Game() {}
 
-    public Game(final int noOfPlayers, final int gameArenaSize) {
-        this.players = new LinkedList<>();
-        this.noOfPlayers = noOfPlayers;
-        this.gameArenaSize = gameArenaSize;
-    }
+  public Game(final int noOfPlayers, final int gameArenaSize) {
+    this.players = new LinkedList<>();
+    this.noOfPlayers = noOfPlayers;
+    this.gameArenaSize = gameArenaSize;
+  }
 
-    public int getTurnIndex() {
-        return turnIndex;
-    }
+  public int getTurnIndex() {
+    return turnIndex;
+  }
 
-    public void setTurnIndex(final int turnIndex) {
-        this.turnIndex = turnIndex;
-    }
+  public void setTurnIndex(final int turnIndex) {
+    this.turnIndex = turnIndex;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public void setId(final int id) {
-        this.id = id;
-    }
+  public void setId(final int id) {
+    this.id = id;
+  }
 
-    public LinkedList<Player> getPlayers() {
-        return new LinkedList<>(players);
-    }
+  public LinkedList<Player> getPlayers() {
+    return new LinkedList<>(players);
+  }
 
-    public void setPlayers(final LinkedList<Player> players) {
-        this.players = players;
-    }
+  public void setPlayers(final LinkedList<Player> players) {
+    this.players = players;
+  }
 
-    public int getMaxPlayers() {
-        return noOfPlayers;
-    }
+  public int getMaxPlayers() {
+    return noOfPlayers;
+  }
 
-    public int getGameArenaSize() {
-        return gameArenaSize;
-    }
+  public int getGameArenaSize() {
+    return gameArenaSize;
+  }
 }
