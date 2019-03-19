@@ -10,7 +10,7 @@ data class BoardPosition @JvmOverloads constructor(
 
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Id
-        var id: Int = 0,
+        var id: Int? = null,
         val col: Char,
         val row: Int,
         var isHit: Boolean = false

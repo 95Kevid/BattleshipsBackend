@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 class ShipController(private val shipPlacingFacade: ShipPlacingFacade) {
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = ["/placeShip"], method = [RequestMethod.POST])
-    fun placeShip(
+    fun placeship(
             @RequestBody shipPlaceRequestWrapper: ShipPlaceRequestWrapper): Ship {
         val ship = Ship(orientation = shipPlaceRequestWrapper.orientation, boardPosition = shipPlaceRequestWrapper.boardPosition, type = shipPlaceRequestWrapper.shipType)
         shipPlacingFacade.placeShip(shipPlaceRequestWrapper.playerId, shipPlaceRequestWrapper.gameId, ship)

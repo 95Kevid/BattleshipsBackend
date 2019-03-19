@@ -8,11 +8,11 @@ import javax.persistence.*
 data class Ship @JvmOverloads constructor(
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Id
-        var id: Int = -1,
+        var id: Int? = null,
         val orientation: Orientation,
-        @OneToOne
+        @OneToOne(cascade = [CascadeType.PERSIST])
         val boardPosition: BoardPosition,
-        @OneToMany
+        @OneToMany(cascade = [CascadeType.PERSIST])
         var occupiedBoardPositions: MutableList<BoardPosition> = ArrayList(),
         var isSunk: Boolean = false,
         val type: ShipType
