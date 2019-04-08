@@ -1,10 +1,9 @@
 package com.harragan.battleshipsboot.service;
 
-import com.harragan.battleshipsboot.model.game.BoardPosition;
 import com.harragan.battleshipsboot.model.game.GameArena;
-import com.harragan.battleshipsboot.model.game.Orientation;
-import com.harragan.battleshipsboot.model.ships.Ship;
-
+import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.Orientation;
+import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 import org.springframework.stereotype.Service;
 
@@ -14,140 +13,149 @@ import java.util.Optional;
 @Service
 public class GameArenaService {
 
-    public GameArena createGameArena(final int gameArenaSize) {
-        final GameArena gameArena = new GameArena(gameArenaSize);
-        return gameArena;
+  public GameArena createGameArena(final int gameArenaSize) {
+    final GameArena gameArena = new GameArena(gameArenaSize);
+    return gameArena;
+  }
+
+  public void addShip(final Ship ship, final GameArena gameArena) {
+    setOccupiedPositionsOfShip(ship);
+    checkShipCanBePlaced(ship, gameArena);
+    addShipToGameArena(ship, gameArena);
+  }
+
+  private void addShipToGameArena(final Ship ship, final GameArena gameArena) {
+    gameArena.addShip(ship);
+    if (gameArena.getShipsOnBoard().size() == 5) {
+      gameArena.setAllShipsPlaced(true);
+    }
+  }
+
+  private void checkShipCanBePlaced(final Ship ship, final GameArena gameArena) {
+    if (shipAlreadyExists(ship, gameArena)) {
+      throw new IllegalBoardPlacementException(
+          "The "
+              + ship.getClass().getSimpleName().toLowerCase()
+              + " has already been placed on the board");
     }
 
-    public void addShip(final Ship ship, final GameArena gameArena) {
-        setOccupiedPositionsOfShip(ship);
-        checkShipCanBePlaced(ship, gameArena);
-        addShipToGameArena(ship, gameArena);
+    if (isShipOffBoard(ship, gameArena)) {
+      throw new IllegalBoardPlacementException(
+          "Ship is positioned off board."
+              + " Please ensure that all positions are valid positions.");
     }
-
-    private void addShipToGameArena(final Ship ship, final GameArena gameArena) {
-        gameArena.addShip(ship);
-        if (gameArena.getShipsOnBoard().size() == 5) {
-            gameArena.setAllShipsPlaced(true);
-        }
+    if (positionsAlreadyOccupied(ship, gameArena)) {
+      throw new IllegalBoardPlacementException(
+          "This board position would cause the ship"
+              + " to overlap with another ship already placed on the board.");
     }
+  }
 
-    private void checkShipCanBePlaced(final Ship ship, final GameArena gameArena) {
-        if (shipAlreadyExists(ship, gameArena)) {
-            throw new IllegalBoardPlacementException(
-                    "The "
-                            + ship.getClass().getSimpleName().toLowerCase()
-                            + " has already been placed on the board");
-        }
+  private boolean shipAlreadyExists(final Ship ship, final GameArena gameArena) {
+    return (gameArena.isShipOnBoard(ship));
+  }
 
-        if (isShipOffBoard(ship, gameArena)) {
-            throw new IllegalBoardPlacementException(
-                    "Ship is positioned off board."
-                            + " Please ensure that all positions are valid positions.");
-        }
-        if (positionsAlreadyOccupied(ship, gameArena)) {
-            throw new IllegalBoardPlacementException(
-                    "This board position would cause the ship"
-                            + " to overlap with another ship already placed on the board.");
-        }
+  public Ship getShipAtPosition(final BoardPosition boardPosition, final GameArena gameArena) {
+    for (final Ship ship : gameArena.getShipsOnBoard()) {
+      if (ship.getOccupiedBoardPositions().contains(boardPosition)) {
+        return ship;
+      }
     }
+    return null;
+  }
 
-    private boolean shipAlreadyExists(final Ship ship, final GameArena gameArena) {
-        return (gameArena.isShipOnBoard(ship));
+  public boolean isShipOffBoard(final Ship ship, final GameArena gameArena) {
+    if (ship.getOrientation() == Orientation.VERTICAL
+        && ship.getOccupiedBoardPositions().get(0).getRow() + ship.getType().getLength()
+            > gameArena.getGameArenaSize() + 1) {
+      return true;
     }
+    return ship.getOrientation() == Orientation.HORIZONTAL
+        && ship.getOccupiedBoardPositions().get(0).getCol() + ship.getType().getLength()
+            > gameArena.getGameArenaSize() + 65;
+  }
 
-    public Ship getShipAtPosition(final BoardPosition boardPosition, final GameArena gameArena) {
-        for (final Ship ship : gameArena.getShipsOnBoard()) {
-            if (ship.getOccupiedBoardPositions().contains(boardPosition)) {
-                return ship;
-            }
-        }
-        return null;
+  private boolean positionsAlreadyOccupied(final Ship ship, final GameArena gameArena) {
+    for (final Ship gameArenaShip : gameArena.getShipsOnBoard()) {
+      final boolean isShipOccupyingPosition =
+          gameArenaShip.getOccupiedBoardPositions().stream()
+              .anyMatch(ship.getOccupiedBoardPositions()::contains);
+
+      if (isShipOccupyingPosition) {
+        return true;
+      }
     }
+    return false;
+  }
 
-    public boolean isShipOffBoard(final Ship ship, final GameArena gameArena) {
-        if (ship.getOrient() == Orientation.VERTICAL
-                && ship.getOccupiedPosition(0).getRow() + ship.getLength()
-                > gameArena.getGameArenaSize() + 1) {
-            return true;
+  public void registerHit(final BoardPosition boardPosition, final GameArena gameArena) {
+    boardPosition.setHit(true);
+    for (final Ship ship : gameArena.getShipsOnBoard()) {
+      if (ship.getOccupiedBoardPositions().stream()
+          .anyMatch(position -> position.positionEqual(boardPosition))) {
+        setHitPositionOnShip(boardPosition, ship);
+        if (ship.isSunk()) {
+          gameArena.addSunkenShip(ship);
         }
-        return ship.getOrient() == Orientation.HORIZONTAL
-                && ship.getOccupiedPosition(0).getCol() + ship.getLength()
-                > gameArena.getGameArenaSize() + 65;
+      }
+      gameArena.addShotPosition(boardPosition);
     }
+  }
 
-    private boolean positionsAlreadyOccupied(final Ship ship, final GameArena gameArena) {
-        for (final Ship gameArenaShip : gameArena.getShipsOnBoard()) {
-            final boolean isShipOccupyingPosition =
-                    gameArenaShip.getOccupiedBoardPositions().stream()
-                            .anyMatch(ship.getOccupiedBoardPositions()::contains);
+  public BoardPosition getOccupiedPositionsOfShip(
+      final BoardPosition boardPosition, final Ship ship) {
+    final Optional<BoardPosition> occupiedPosition =
+        ship.getOccupiedBoardPositions().stream().filter(p -> p.equals(boardPosition)).findFirst();
 
-            if (isShipOccupyingPosition) {
-                return true;
-            }
-        }
-        return false;
+    if (occupiedPosition.isPresent()) {
+      return occupiedPosition.get();
     }
+    return null;
+  }
 
-    public void registerHit(final BoardPosition boardPosition, final GameArena gameArena) {
-        boardPosition.setHit();
-        for (final Ship ship : gameArena.getShipsOnBoard()) {
-            if (ship.getOccupiedBoardPositions().contains(boardPosition)) {
-                setHitPositionOnShip(boardPosition, ship);
-                if (ship.isSunk()) {
-                    gameArena.addSunkenShip(ship);
-                }
-            }
-            gameArena.addShotPosition(boardPosition);
-        }
+  private void setOccupiedPositionsOfShip(final Ship ship) {
+    if (ship.getOrientation() == Orientation.VERTICAL) {
+      setOccupiedPositionsOfShipWhenVertical(ship);
+    } else {
+      setOccupiedPositionsOfShipWhenHorizontal(ship);
     }
+  }
 
-    public BoardPosition getOccupiedPositionsOfShip(final BoardPosition boardPosition, final Ship ship) {
-        final Optional<BoardPosition> occupiedPosition =
-                ship.getOccupiedBoardPositions().stream().filter(p -> p.equals(boardPosition)).findFirst();
-
-        if (occupiedPosition.isPresent()) {
-            return occupiedPosition.get();
-        }
-        return null;
+  private void setOccupiedPositionsOfShipWhenHorizontal(final Ship ship) {
+    for (int i = 1; i < ship.getType().getLength(); i++) {
+      final char inputCol = ship.getBoardPosition().getCol();
+      final int input = inputCol + i;
+      final BoardPosition pos =
+          BoardPositionFactory.createBoardPosition((char) input, ship.getBoardPosition().getRow());
+      final List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
+      occupiedBoardPositions.add(i, pos);
+      ship.setOccupiedBoardPositions(occupiedBoardPositions);
     }
+  }
 
-    public void setOccupiedPositionsOfShip(final Ship ship) {
-        if (ship.getOrient() == Orientation.VERTICAL) {
-            for (int i = 1; i < ship.getLength(); i++) {
-                final BoardPosition pos =
-                        BoardPositionFactory.createBoardPosition(
-                                ship.getOccupiedPosition(0).getCol(), ship.getOccupiedPosition(0).getRow() + i);
-                final List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
-                occupiedBoardPositions.add(i, pos);
-                ship.setOccupiedPosition(occupiedBoardPositions);
-            }
-        } else {
-            for (int i = 1; i < ship.getLength(); i++) {
-                final char inputCol = ship.getOccupiedPosition(0).getCol();
-                final int input = inputCol + i;
-                final BoardPosition pos =
-                        BoardPositionFactory.createBoardPosition(
-                                (char) input, ship.getOccupiedPosition(0).getRow());
-                final List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
-                occupiedBoardPositions.add(i, pos);
-                ship.setOccupiedPosition(occupiedBoardPositions);
-            }
-        }
+  private void setOccupiedPositionsOfShipWhenVertical(final Ship ship) {
+    for (int i = 1; i < ship.getType().getLength(); i++) {
+      final BoardPosition pos =
+          BoardPositionFactory.createBoardPosition(
+              ship.getOccupiedBoardPositions().get(0).getCol(),
+              ship.getOccupiedBoardPositions().get(0).getRow() + i);
+      final List<BoardPosition> occupiedBoardPositions = ship.getOccupiedBoardPositions();
+      occupiedBoardPositions.add(i, pos);
+      ship.setOccupiedBoardPositions(occupiedBoardPositions);
     }
+  }
 
-    public void setHitPositionOnShip(final BoardPosition boardPosition, final Ship ship) {
-        for (final BoardPosition occupiedBoardPosition : ship.getOccupiedBoardPositions()) {
-            if (occupiedBoardPosition.equals(boardPosition)) {
-                occupiedBoardPosition.setHit();
-                break;
-            }
-        }
-
-        final boolean allPositionsHit = ship.getOccupiedBoardPositions().stream().allMatch(p -> p.isHit());
-
-        if (allPositionsHit) {
-            ship.setSunk(true);
-        }
+  private void setHitPositionOnShip(final BoardPosition boardPosition, final Ship ship) {
+    for (final BoardPosition occupiedBoardPosition : ship.getOccupiedBoardPositions()) {
+      if (occupiedBoardPosition.positionEqual(boardPosition)) {
+        occupiedBoardPosition.setHit(true);
+        break;
+      }
     }
+    final boolean allPositionsHit =
+        ship.getOccupiedBoardPositions().stream().allMatch(p -> p.isHit());
+    if (allPositionsHit) {
+      ship.setSunk(true);
+    }
+  }
 }

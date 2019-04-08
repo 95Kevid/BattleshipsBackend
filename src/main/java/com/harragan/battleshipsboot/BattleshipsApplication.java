@@ -4,9 +4,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class BattleshipsbootApplication {
+public class BattleshipsApplication {
 
-    public static void main(final String[] args) {
-        SpringApplication.run(BattleshipsbootApplication.class, args);
-    }
+  public static void main(final String[] args) {
+    SpringApplication.run(BattleshipsApplication.class, args);
+  }
 }

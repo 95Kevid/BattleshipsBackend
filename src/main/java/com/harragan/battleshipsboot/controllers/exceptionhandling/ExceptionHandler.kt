@@ -11,14 +11,14 @@ import org.springframework.web.context.request.WebRequest
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler
 
 @ControllerAdvice
-class ExceptionHandler : ResponseEntityExceptionHandler() {
+class ExceptionHandler {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalBoardPlacementException::class)
-    fun handleBoardException(exception: IllegalBoardPlacementException
-                             , webRequest: WebRequest): String {
-        return exception.message!!
+    fun handleBoardException(exception: IllegalBoardPlacementException,
+                             webRequest: WebRequest): String {
+        return exception.message
     }
 
     @ResponseBody
@@ -26,6 +26,6 @@ class ExceptionHandler : ResponseEntityExceptionHandler() {
     @ExceptionHandler(IllegalGameStartException::class)
     fun handleIllegalStartException(exception: IllegalGameStartException
                                     , webRequest: WebRequest): String {
-        return exception.message!!
+        return exception.message
     }
 }

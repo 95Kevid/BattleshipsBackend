@@ -1,3 +1,3 @@
 package com.harragan.battleshipsboot.service.exceptions
 
-class IllegalGameStartException(message: String) : RuntimeException(message)
+class IllegalGameStartException(override val message: String) : RuntimeException(message)

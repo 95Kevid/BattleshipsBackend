@@ -10,47 +10,47 @@ import javax.persistence.OneToOne;
 @Entity
 public class Player {
 
-    @OneToOne(cascade = CascadeType.PERSIST)
-    private GameArena gameArena;
-    private String playerName;
-    private boolean readyToStartGame;
+  @OneToOne(cascade = CascadeType.PERSIST)
+  private GameArena gameArena;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+  private String playerName;
+  private boolean readyToStartGame;
 
-    public Player() {
-    }
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private int id;
 
-    public Player(final String playerName) {
-        this.playerName = playerName;
-    }
+  public Player() {}
 
-    public boolean isReadyToStartGame() {
-        return readyToStartGame;
-    }
+  public Player(final String playerName) {
+    this.playerName = playerName;
+  }
 
-    public void setReadyToStartGame(final boolean readyToStartGame) {
-        this.readyToStartGame = readyToStartGame;
-    }
+  public boolean isReadyToStartGame() {
+    return readyToStartGame;
+  }
 
-    public int getId() {
-        return id;
-    }
+  public void setReadyToStartGame(final boolean readyToStartGame) {
+    this.readyToStartGame = readyToStartGame;
+  }
 
-    public void setId(final int id) {
-        this.id = id;
-    }
+  public int getId() {
+    return id;
+  }
 
-    public GameArena getGameArena() {
-        return gameArena;
-    }
+  public void setId(final int id) {
+    this.id = id;
+  }
 
-    public void setGameArena(final GameArena gameArena) {
-        this.gameArena = gameArena;
-    }
+  public GameArena getGameArena() {
+    return gameArena;
+  }
 
-    public void setName(final String name) {
-        this.playerName = name;
-    }
+  public void setGameArena(final GameArena gameArena) {
+    this.gameArena = gameArena;
+  }
+
+  public void setName(final String name) {
+    this.playerName = name;
+  }
 }

@@ -1,0 +1,14 @@
+---
+spring:
+  datasource:
+    url: jdbc:mariadb://localhost:3306/battleships
+    username: root
+    password: passworD
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+
+server:
+  port: 9721

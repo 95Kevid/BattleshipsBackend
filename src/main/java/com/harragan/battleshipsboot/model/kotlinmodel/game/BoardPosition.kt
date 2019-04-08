@@ -7,12 +7,17 @@ import javax.persistence.Id
 
 @Entity
 data class BoardPosition @JvmOverloads constructor(
+
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Id
-        val id: Int,
+        var id: Int? = null,
         val col: Char,
         val row: Int,
-        val isHit: Boolean
-)
+        var isHit: Boolean = false
+) {
+    fun positionEqual(position: BoardPosition): Boolean {
+        return position.col.equals(this.col) && position.row == this.row
+    }
+}
 
 
