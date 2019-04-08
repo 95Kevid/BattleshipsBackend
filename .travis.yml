@@ -1,0 +1,11 @@
+services:
+  - docker
+
+script:
+  - docker build -t 95kevid/battleshipsboot .
+
+deploy:
+  provider: script
+  script: bash docker_push.sh
+  on:
+    branch: develop
