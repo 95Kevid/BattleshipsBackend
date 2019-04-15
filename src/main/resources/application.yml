@@ -3,12 +3,16 @@ spring:
   datasource:
     url: jdbc:mariadb://localhost:3306/battleships
     username: root
-    password: passworD
+    password: password
     driver-class-name: org.mariadb.jdbc.Driver
 
   jpa:
     hibernate:
       ddl-auto: create-drop
+
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true
 
 server:
   port: 9721
