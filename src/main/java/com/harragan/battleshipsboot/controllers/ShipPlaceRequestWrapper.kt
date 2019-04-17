@@ -1,6 +1,5 @@
 package com.harragan.battleshipsboot.controllers
 
-import com.fasterxml.jackson.annotation.JsonFormat
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition
 import com.harragan.battleshipsboot.model.kotlinmodel.game.Orientation
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.ShipType
