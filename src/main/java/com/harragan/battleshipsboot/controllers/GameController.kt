@@ -20,4 +20,3 @@ class GameController(
     fun joinGame(@RequestBody joinGameRequest: JoinGameRequest): Int =
            playerAddingFacade.createPlayerAndJoinToGame(joinGameRequest.playerName, joinGameRequest.gameId)
 }
-

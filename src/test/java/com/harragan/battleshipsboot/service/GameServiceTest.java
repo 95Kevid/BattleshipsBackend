@@ -10,6 +10,7 @@ import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.Before;
@@ -18,6 +19,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Optional;
 
@@ -25,19 +28,24 @@ public class GameServiceTest {
 
   private Game game1;
   private Game game2;
+  private Game game3;
   private Player player1;
   private Player player2;
   private Player player3;
 
-  @Mock private GameRepository gameRepository;
+  @Mock
+  private GameRepository gameRepository;
 
-  @InjectMocks private GameService gameService;
+  @InjectMocks
+  private GameService gameService;
 
   @Before
   public void initTest() {
     MockitoAnnotations.initMocks(this);
     game1 = new Game(2, 10);
     game2 = new Game(2, 10);
+    game3 = new Game(3, 10);
+
 
     player1 = new Player();
     player1.setId(1);

@@ -7,8 +7,7 @@ import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class GameArenaService {
@@ -98,7 +97,7 @@ public class GameArenaService {
           gameArena.addSunkenShip(ship);
         }
       }
-      gameArena.addShotPosition(boardPosition);
+      gameArena.addHitPosition(boardPosition);
     }
   }
 
@@ -157,5 +156,11 @@ public class GameArenaService {
     if (allPositionsHit) {
       ship.setSunk(true);
     }
+  }
+
+  public Set<BoardPosition> getHitPositions(final Set<GameArena> gameArenas) {
+    Set<BoardPosition> hitBoardPositions = new HashSet<>();
+    gameArenas.forEach(gameArena -> hitBoardPositions.addAll(gameArena.getHitPositions()));
+    return hitBoardPositions;
   }
 }

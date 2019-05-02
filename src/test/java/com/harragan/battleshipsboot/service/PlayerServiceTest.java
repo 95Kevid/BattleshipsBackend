@@ -57,4 +57,6 @@ public class PlayerServiceTest {
     playerService.setPlayerIsReady(1, playerRepository);
     assertThat(playerJo.isReadyToStartGame());
   }
+
+
 }
