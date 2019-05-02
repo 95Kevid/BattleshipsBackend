@@ -2,15 +2,10 @@ package com.harragan.battleshipsboot.model.game;
 
 import static javax.persistence.CascadeType.PERSIST;
 
-import org.springframework.data.annotation.Id;
-
 import java.util.LinkedList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Game {
