@@ -4,6 +4,7 @@ import static javax.persistence.CascadeType.PERSIST;
 
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
+import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -12,7 +13,6 @@ import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -28,7 +28,7 @@ public class GameArena {
   private boolean allShipsPlaced;
 
   @OneToMany(cascade = PERSIST)
-  private List<BoardPosition> shotBoardPositions = new ArrayList<>();
+  private Set<BoardPosition> hitBoardPositions = new HashSet<>();
 
   @OneToMany(cascade = PERSIST)
   private Set<Ship> sunkShips = new HashSet<>();
@@ -65,22 +65,18 @@ public class GameArena {
     return getShipsOnBoard().contains(ship);
   }
 
-  public void addShotPosition(final BoardPosition boardPosition) {
-    this.shotBoardPositions.add(boardPosition);
+  public void addHitPosition(final BoardPosition boardPosition) {
+    this.hitBoardPositions.add(boardPosition);
   }
 
   public void clearArena() {
     shipsOnBoard.clear();
-    shotBoardPositions.clear();
+    hitBoardPositions.clear();
     sunkShips.clear();
   }
 
   public void addSunkenShip(final Ship ship) {
     sunkShips.add(ship);
-  }
-
-  public void setShotBoardPositions(final List<BoardPosition> shotBoardPositions) {
-    this.shotBoardPositions = shotBoardPositions;
   }
 
   public int getGameArenaSize() {
@@ -96,4 +92,8 @@ public class GameArena {
   }
 
   public void shoot(final BoardPosition position) {}
+
+  public Set<BoardPosition> getHitPositions() {
+    return this.hitBoardPositions;
+  }
 }

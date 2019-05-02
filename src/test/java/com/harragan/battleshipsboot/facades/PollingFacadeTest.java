@@ -1,8 +1,5 @@
 package com.harragan.battleshipsboot.facades;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
-
 import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
 import com.harragan.battleshipsboot.service.GameService;
@@ -10,6 +7,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
 
 public class PollingFacadeTest {
 

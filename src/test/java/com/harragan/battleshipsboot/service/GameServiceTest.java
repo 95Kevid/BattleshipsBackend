@@ -1,11 +1,5 @@
 package com.harragan.battleshipsboot.service;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
-
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
@@ -21,23 +15,34 @@ import org.mockito.MockitoAnnotations;
 import java.util.LinkedList;
 import java.util.Optional;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
+
 public class GameServiceTest {
 
   private Game game1;
   private Game game2;
+  private Game game3;
   private Player player1;
   private Player player2;
   private Player player3;
 
-  @Mock private GameRepository gameRepository;
+  @Mock
+  private GameRepository gameRepository;
 
-  @InjectMocks private GameService gameService;
+  @InjectMocks
+  private GameService gameService;
 
   @Before
   public void initTest() {
     MockitoAnnotations.initMocks(this);
     game1 = new Game(2, 10);
     game2 = new Game(2, 10);
+    game3 = new Game(3, 10);
+
 
     player1 = new Player();
     player1.setId(1);

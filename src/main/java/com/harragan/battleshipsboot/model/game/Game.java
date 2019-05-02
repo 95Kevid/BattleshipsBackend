@@ -2,12 +2,14 @@ package com.harragan.battleshipsboot.model.game;
 
 import static javax.persistence.CascadeType.PERSIST;
 
+import org.springframework.data.annotation.Id;
+
 import java.util.LinkedList;
 import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -26,7 +28,8 @@ public class Game {
 
   private int gameArenaSize;
 
-  public Game() {}
+  public Game() {
+  }
 
   public Game(final int noOfPlayers, final int gameArenaSize) {
     this.players = new LinkedList<>();
