@@ -1,11 +1,14 @@
 package com.harragan.battleshipsboot.model.game;
 
-import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.ALL;
 
 import java.util.LinkedList;
 import java.util.List;
-
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Game {
@@ -14,7 +17,7 @@ public class Game {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @OneToMany(cascade = PERSIST)
+  @OneToMany(cascade = ALL)
   private List<Player> players;
 
   private int turnIndex;

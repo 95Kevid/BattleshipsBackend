@@ -69,12 +69,12 @@ public class GameArenaService {
   public boolean isShipOffBoard(final Ship ship, final GameArena gameArena) {
     if (ship.getOrientation() == Orientation.VERTICAL
         && ship.getOccupiedBoardPositions().get(0).getRow() + ship.getType().getLength()
-            > gameArena.getGameArenaSize() + 1) {
+        > gameArena.getGameArenaSize() + 1) {
       return true;
     }
     return ship.getOrientation() == Orientation.HORIZONTAL
         && ship.getOccupiedBoardPositions().get(0).getCol() + ship.getType().getLength()
-            > gameArena.getGameArenaSize() + 65;
+        > gameArena.getGameArenaSize() + 65;
   }
 
   private boolean positionsAlreadyOccupied(final Ship ship, final GameArena gameArena) {

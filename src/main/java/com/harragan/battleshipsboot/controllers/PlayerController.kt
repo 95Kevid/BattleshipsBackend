@@ -16,7 +16,7 @@ class PlayerController(
     @ResponseStatus(HttpStatus.CREATED)
     fun createPlayer(@RequestBody playerRequestWrapper: PlayerRequestWrapper): Int {
         return playerAddingFacade.createPlayerAndJoinToGame(playerRequestWrapper.playerName,
-                playerRequestWrapper.gameId)
+                playerRequestWrapper.gameId).playerId
     }
 
     @RequestMapping(value = ["/readytostart/{playerNo}"], method = [RequestMethod.POST])

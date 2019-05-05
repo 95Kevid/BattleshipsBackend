@@ -2,15 +2,11 @@ package com.harragan.battleshipsboot.service;
 
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
-import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import com.harragan.battleshipsboot.service.exceptions.IllegalGameStartException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
-import java.util.Set;
 
 @Service
 public class PlayerService {
@@ -50,5 +46,9 @@ public class PlayerService {
     } else {
       throw new IllegalGameStartException("The Player has not placed all their ships.");
     }
+  }
+
+  public void savePlayer(final Player player) {
+    playerRepository.save(player);
   }
 }

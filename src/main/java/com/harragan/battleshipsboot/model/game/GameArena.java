@@ -1,6 +1,6 @@
 package com.harragan.battleshipsboot.model.game;
 
-import static javax.persistence.CascadeType.PERSIST;
+import static javax.persistence.CascadeType.ALL;
 
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
@@ -9,7 +9,11 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class GameArena {
@@ -18,20 +22,21 @@ public class GameArena {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  @OneToMany(cascade = PERSIST)
+  @OneToMany(cascade = ALL)
   private Set<Ship> shipsOnBoard = new HashSet<>();
 
   private boolean allShipsPlaced;
 
-  @OneToMany(cascade = PERSIST)
-  private Set<BoardPosition> hitBoardPositions = new HashSet<>();
+  @OneToMany(cascade = ALL)
+  private Set<BoardPosition> shotBoardPositions = new HashSet<>();
 
-  @OneToMany(cascade = PERSIST)
+  @OneToMany(cascade = ALL)
   private Set<Ship> sunkShips = new HashSet<>();
 
   private int gameArenaSize;
 
-  public GameArena() {}
+  public GameArena() {
+  }
 
   public GameArena(final int gameArenaSize) {
     this.gameArenaSize = gameArenaSize;
@@ -62,12 +67,12 @@ public class GameArena {
   }
 
   public void addHitPosition(final BoardPosition boardPosition) {
-    this.hitBoardPositions.add(boardPosition);
+    this.shotBoardPositions.add(boardPosition);
   }
 
   public void clearArena() {
     shipsOnBoard.clear();
-    hitBoardPositions.clear();
+    shotBoardPositions.clear();
     sunkShips.clear();
   }
 
@@ -87,9 +92,7 @@ public class GameArena {
     allShipsPlaced = input;
   }
 
-  public void shoot(final BoardPosition position) {}
-
   public Set<BoardPosition> getHitPositions() {
-    return this.hitBoardPositions;
+    return this.shotBoardPositions;
   }
 }

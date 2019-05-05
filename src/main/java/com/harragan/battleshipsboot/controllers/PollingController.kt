@@ -4,7 +4,6 @@ import com.harragan.battleshipsboot.facades.GameStatusFacade
 import com.harragan.battleshipsboot.facades.PollingFacade
 import com.harragan.battleshipsboot.model.game.GameStatusResponse
 import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady
-import org.mariadb.jdbc.internal.logging.LoggerFactory.method
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestMethod

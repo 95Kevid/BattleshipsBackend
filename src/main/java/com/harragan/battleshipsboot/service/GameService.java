@@ -3,14 +3,14 @@ package com.harragan.battleshipsboot.service;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
-import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
-import org.aspectj.apache.bcel.util.Play;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Queue;
 
 @Service
 public class GameService {

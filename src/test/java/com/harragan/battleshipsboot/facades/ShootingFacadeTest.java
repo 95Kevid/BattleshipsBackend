@@ -1,5 +1,6 @@
 package com.harragan.battleshipsboot.facades;
 
+import com.harragan.battleshipsboot.controllers.ShootRequest;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
@@ -60,8 +61,10 @@ public class ShootingFacadeTest {
     players.add(player2);
     players.add(player3);
     game.setPlayers(players);
-    shootingFacade.shootPosition(1, 1, positionA1);
-    shootingFacade.shootPosition(1, 1, positionC4);
+    ShootRequest shootRequestA1 = new ShootRequest(1,1,positionA1);
+    ShootRequest shootRequestC4 = new ShootRequest(1,1,positionC4);
+    shootingFacade.shootPosition(shootRequestA1);
+    shootingFacade.shootPosition(shootRequestC4);
 
     GameArena gameArena1 = player1.getGameArena();
     GameArena gameArena2 = player2.getGameArena();
