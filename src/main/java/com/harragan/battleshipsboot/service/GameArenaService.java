@@ -5,6 +5,7 @@ import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.Orientation;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
+import com.harragan.battleshipsboot.service.exceptions.IllegalShotException;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -69,12 +70,12 @@ public class GameArenaService {
   public boolean isShipOffBoard(final Ship ship, final GameArena gameArena) {
     if (ship.getOrientation() == Orientation.VERTICAL
         && ship.getOccupiedBoardPositions().get(0).getRow() + ship.getType().getLength()
-            > gameArena.getGameArenaSize() + 1) {
+        > gameArena.getGameArenaSize() + 1) {
       return true;
     }
     return ship.getOrientation() == Orientation.HORIZONTAL
         && ship.getOccupiedBoardPositions().get(0).getCol() + ship.getType().getLength()
-            > gameArena.getGameArenaSize() + 65;
+        > gameArena.getGameArenaSize() + 65;
   }
 
   private boolean positionsAlreadyOccupied(final Ship ship, final GameArena gameArena) {
@@ -91,6 +92,7 @@ public class GameArenaService {
   }
 
   public void registerHit(final BoardPosition boardPosition, final GameArena gameArena) {
+    checkShotIsValid(boardPosition, gameArena);
     boardPosition.setHit(true);
     for (final Ship ship : gameArena.getShipsOnBoard()) {
       if (ship.getOccupiedBoardPositions().stream()
@@ -100,8 +102,8 @@ public class GameArenaService {
           gameArena.addSunkenShip(ship);
         }
       }
-      gameArena.addHitPosition(boardPosition);
     }
+    gameArena.addShotPosition(boardPosition);
   }
 
   public BoardPosition getOccupiedPositionsOfShip(
@@ -161,9 +163,18 @@ public class GameArenaService {
     }
   }
 
-  public Set<BoardPosition> getHitPositions(final Set<GameArena> gameArenas) {
-    final Set<BoardPosition> hitBoardPositions = new HashSet<>();
-    gameArenas.forEach(gameArena -> hitBoardPositions.addAll(gameArena.getHitPositions()));
-    return hitBoardPositions;
+  public Set<BoardPosition> getShotPositions(final Set<GameArena> gameArenas) {
+    final Set<BoardPosition> getShotPositions = new HashSet<>();
+    gameArenas.forEach(gameArena -> getShotPositions.addAll(gameArena.getShotPositions()));
+    return getShotPositions;
+  }
+
+  private void checkShotIsValid(BoardPosition boardPosition, GameArena gameArena) {
+    if(boardPosition.getCol() - 'A' > (gameArena.getGameArenaSize() - 1)
+        || boardPosition.getRow() > gameArena.getGameArenaSize()) {
+      throw new IllegalShotException("The board position provided is out of the bounds of the game arena."
+                            + " The arena size is " + gameArena.getGameArenaSize() + "x"
+                            + gameArena.getGameArenaSize() + ", Please take a shot within these bounds.");
+    }
   }
 }

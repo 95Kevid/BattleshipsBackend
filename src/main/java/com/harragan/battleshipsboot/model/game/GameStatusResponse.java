@@ -3,7 +3,6 @@ package com.harragan.battleshipsboot.model.game;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -25,7 +24,7 @@ public class GameStatusResponse {
   }
 
   public Set<BoardPosition> getHitBoardPositions() {
-    return new HashSet<>();
+    return hitPositions;
   }
 
   public Map<Player, Set<Ship>> getPlayersToSunkShips() {

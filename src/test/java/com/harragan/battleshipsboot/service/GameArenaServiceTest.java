@@ -6,6 +6,7 @@ import com.harragan.battleshipsboot.model.kotlinmodel.game.Orientation;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.ShipType;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
+import com.harragan.battleshipsboot.service.exceptions.IllegalShotException;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -324,17 +325,42 @@ public class GameArenaServiceTest {
     positionD8.setHit(true);
     positionB8.setHit(true);
 
-    gameArena1.addHitPosition(positionB8);
-    gameArena2.addHitPosition(positionA3);
-    gameArena3.addHitPosition(positionD8);
+    gameArena1.addShotPosition(positionB8);
+    gameArena2.addShotPosition(positionA3);
+    gameArena3.addShotPosition(positionD8);
 
     Set<GameArena> gameArenas = new HashSet<>();
     gameArenas.add(gameArena2);
     gameArenas.add(gameArena3);
-    Set<BoardPosition> hitBoardPositions = gameArenaService.getHitPositions(gameArenas);
+    Set<BoardPosition> hitBoardPositions = gameArenaService.getShotPositions(gameArenas);
 
     assertThat(hitBoardPositions.contains(positionA3) && hitBoardPositions.contains(positionD8)
         && !hitBoardPositions.contains(positionB8)).isTrue().as("The hit positions should include "
         + "A3 and D8, but not B8");
+  }
+
+  @Test(expected = IllegalShotException.class)
+  public void whenSuppliedWithAPositionThatIsHorizontallyOutOfTheGameArenaThenAnIllegalShotExceptionIsThown() {
+    gameArena1.clearArena();
+    BoardPosition positionK1 = BoardPositionFactory.createBoardPosition('K', 1);
+    gameArenaService.registerHit(positionK1, gameArena1);
+  }
+
+  @Test(expected = IllegalShotException.class)
+  public void whenSuppliedWithAPositionThatIsVerticallyOutOfTheGameArenaThenAnIllegalShotExceptionIsThown() {
+    gameArena1.clearArena();
+    BoardPosition positionA11 = BoardPositionFactory.createBoardPosition('A', 11);
+    gameArenaService.registerHit(positionA11, gameArena1);
+  }
+
+  @Test
+  public void whenSuppliedWithAPositionThenItIsAddedToHitPositions() {
+    gameArena1.clearArena();
+    BoardPosition positionA10 = BoardPositionFactory.createBoardPosition('A', 10);
+    BoardPosition positionB5 = BoardPositionFactory.createBoardPosition('B', 5);
+    gameArenaService.registerHit(positionA10, gameArena1);
+    gameArenaService.registerHit(positionB5, gameArena1);
+    Set<BoardPosition> hitPositions = gameArena1.getShotPositions();
+    System.out.println(hitPositions);
   }
 }

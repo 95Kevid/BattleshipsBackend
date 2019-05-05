@@ -37,10 +37,10 @@ public class GameStatusFacade {
     final Game game = gameService.getGame(gameId);
     final List<Player> players = game.getPlayers();
     final Set<GameArena> gameArenas = players.stream().map(Player::getGameArena).collect(Collectors.toSet());
-    final Set<BoardPosition> hitPositions = gameArenaService.getHitPositions(gameArenas);
+    final Set<BoardPosition> hitPositions = gameArenaService.getShotPositions(gameArenas);
     final Map<Player, Set<Ship>> playersToSunkShips = players.stream()
         .collect(Collectors.toMap(Function.identity(), this::extractSunkShips));
-    return new GameStatusResponse(gameService.checkForTurn(gameId), hitPositions, playersToSunkShips);
+    return new GameStatusResponse(gameService.checkForTurn(gameId).getId(), hitPositions, playersToSunkShips);
   }
 
   @NotNull

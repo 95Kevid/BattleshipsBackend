@@ -63,6 +63,8 @@ public class GameStatusFacadeTest {
     boardPositionC6 = BoardPositionFactory.createBoardPosition('C', 6);
     player1 = new Player("Kevin");
     player2 = new Player("David");
+    player1.setId(1);
+    player2.setId(2);
     player1.setGameArena(gameArena1);
     player2.setGameArena(gameArena2);
     players = new LinkedList<>(Arrays.asList(player1, player2));
@@ -108,8 +110,8 @@ public class GameStatusFacadeTest {
   }
 
   private void setupMocks() {
-    when(gameService.checkForTurn(1)).thenReturn(1);
-    when(gameArenaService.getHitPositions(gameArenas)).thenReturn(hitBoardPositions);
+    when(gameService.checkForTurn(1)).thenReturn(player1);
+    when(gameArenaService.getShotPositions(gameArenas)).thenReturn(hitBoardPositions);
     when(gameService.getGame(1)).thenReturn(game);
     when(game.getPlayers()).thenReturn(players);
   }

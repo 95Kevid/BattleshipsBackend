@@ -27,16 +27,45 @@ class GameServiceTestKt {
         player2.id = 2
         player3.id = 3
         game1.id = 1
+        `when`(gameRepository.findById(1)).thenReturn(Optional.of(game1))
     }
 
     @Test
     fun firstPlayerThatJoinsGameIsTheFirstPlayerWhosTurnItIs() {
-        `when`(gameRepository.findById(1)).thenReturn(Optional.of(game1))
-        gameService.joinPlayerToGame(1, player1)
-        gameService.joinPlayerToGame(1, player2)
-        gameService.joinPlayerToGame(1, player3)
-        assertThat(gameService.checkForTurn(1)).isEqualTo(1)
+        val players= LinkedList(Arrays.asList(player1, player2, player3))
+        game1.players = players
+        assertThat(gameService.checkForTurn(1)).isEqualTo(player1)
     }
+
+    @Test
+    fun secondPlayerThatJoinsGameIsTheSecondPlayerWhosTurnItIs() {
+        val players= LinkedList(Arrays.asList(player1, player2, player3))
+        game1.players = players
+        gameService.nextTurn(game1)
+        assertThat(gameService.checkForTurn(1)).isEqualTo(player2)
+    }
+
+    @Test
+    fun thirdPlayerThatJoinsGameIsTheSecondPlayerWhosTurnItIs() {
+        val players= LinkedList(Arrays.asList(player1, player2, player3))
+        game1.players = players
+        gameService.nextTurn(game1)
+        gameService.nextTurn(game1)
+        assertThat(gameService.checkForTurn(1)).isEqualTo(player3)
+    }
+
+    @Test
+    fun givenThatAllPlayersHasHadTheirTurnThenThePlayerThatSetTheGameUpHasTheirTurnAgain() {
+        val players= LinkedList(Arrays.asList(player1, player2, player3))
+        game1.players = players
+        gameService.nextTurn(game1)
+        gameService.nextTurn(game1)
+        gameService.nextTurn(game1)
+        assertThat(gameService.checkForTurn(1)).isEqualTo(player1)
+    }
+
+
+
 
 
 }

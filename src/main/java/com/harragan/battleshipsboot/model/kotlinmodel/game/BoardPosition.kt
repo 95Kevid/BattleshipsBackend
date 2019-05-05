@@ -16,7 +16,6 @@ data class BoardPosition @JvmOverloads constructor(
         var isHit: Boolean = false
 ) {
     fun positionEqual(position: BoardPosition): Boolean {
-        print("equals dadsfaadsf")
         return position.col.equals(this.col) && position.row == this.row
     }
 }

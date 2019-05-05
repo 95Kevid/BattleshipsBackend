@@ -10,9 +10,9 @@ data class Ship @JvmOverloads constructor(
         @Id
         var id: Int? = null,
         val orientation: Orientation,
-        @OneToOne(cascade = [CascadeType.PERSIST])
+        @OneToOne(cascade = [CascadeType.ALL])
         val boardPosition: BoardPosition,
-        @OneToMany(cascade = [CascadeType.PERSIST])
+        @OneToMany(cascade = [CascadeType.ALL])
         var occupiedBoardPositions: MutableList<BoardPosition> = ArrayList(),
         var isSunk: Boolean = false,
         val type: ShipType

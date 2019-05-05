@@ -17,6 +17,6 @@ class GameController(
 
     @ResponseStatus(HttpStatus.CREATED)
     @RequestMapping(value = ["/joingame"], method = [RequestMethod.POST])
-    fun joinGame(@RequestBody joinGameRequest: JoinGameRequest): Int =
-           playerAddingFacade.createPlayerAndJoinToGame(joinGameRequest.playerName, joinGameRequest.gameId)
+    fun joinGame(@RequestBody joinGameRequest: JoinGameRequest): JoinGameResponse =
+            playerAddingFacade.createPlayerAndJoinToGame(joinGameRequest.playerName, joinGameRequest.gameId)
 }

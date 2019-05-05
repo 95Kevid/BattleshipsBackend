@@ -3,14 +3,14 @@ package com.harragan.battleshipsboot.service;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
-import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
-import org.aspectj.apache.bcel.util.Play;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Queue;
 
 @Service
 public class GameService {
@@ -65,6 +65,7 @@ public class GameService {
     final Queue<Player> playersInGame = getPlayersFromGame(game);
     final Player currentPlayersTurn = playersInGame.remove();
     playersInGame.add(currentPlayersTurn);
+    game.setPlayers(new LinkedList<>(playersInGame));
   }
 
   public PlayersToPlayersReady getPlayersToPlayersReady(final int gameId) {
@@ -83,11 +84,10 @@ public class GameService {
     return gameRepository.save(game);
   }
 
-  public int checkForTurn(final int gameId) {
+  public Player checkForTurn(final int gameId) {
     final Game game = getGame(gameId);
-    final LinkedList<Player> players = game.getPlayers();
-    final Player player = players.get(game.getTurnIndex());
-    return player.getId();
+    final Queue<Player> players = game.getPlayers();
+    return players.peek();
   }
 
 }
