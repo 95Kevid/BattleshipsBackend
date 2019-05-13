@@ -29,7 +29,7 @@ public class ShootingFacade {
     final Player shooter = playerService.getPlayerById(shootRequest.getPlayerId());
     final Game game = gameService.getGame(shootRequest.getGameId());
     final Player playerTurn = gameService.checkForTurn(game.getId());
-    if(playerTurn == shooter) {
+    if (playerTurn == shooter) {
       final LinkedList<Player> players = game.getPlayers();
       players.stream()
           .filter(player -> player != shooter)
@@ -37,8 +37,7 @@ public class ShootingFacade {
           .forEach(gameArena -> gameArenaService.registerHit(shootRequest.getBoardPosition(), gameArena));
       gameService.nextTurn(game);
       gameService.saveGame(game);
-    }
-    else {
+    } else {
       throw new IllegalShotException("It is currently player with name of  " + playerTurn.getName()
           + " who's turn it is.");
     }
