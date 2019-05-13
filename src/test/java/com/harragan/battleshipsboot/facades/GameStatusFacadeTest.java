@@ -1,5 +1,8 @@
 package com.harragan.battleshipsboot.facades;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.GameStatusResponse;
@@ -18,9 +21,6 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.*;
-
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
 
 public class GameStatusFacadeTest {
 
@@ -76,7 +76,7 @@ public class GameStatusFacadeTest {
     List<BoardPosition> occupiedPositionsOfDestroyer = new ArrayList<>();
     occupiedPositionsOfDestroyer.add(boardPositionA1);
     occupiedPositionsOfDestroyer.add(boardPositionA2);
-    List<BoardPosition>occupiedPositionsOfSubmarine = new ArrayList<>();
+    List<BoardPosition> occupiedPositionsOfSubmarine = new ArrayList<>();
     occupiedPositionsOfSubmarine.add(boardPositionC4);
     occupiedPositionsOfSubmarine.add(boardPositionC5);
     occupiedPositionsOfSubmarine.add(boardPositionC6);

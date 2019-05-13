@@ -1,5 +1,9 @@
 package com.harragan.battleshipsboot.facades;
 
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
+import static org.mockito.internal.verification.VerificationModeFactory.times;
+
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
@@ -15,23 +19,24 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import static org.mockito.internal.verification.VerificationModeFactory.times;
-
 public class ShipPlacingFacadeTest {
 
   private ShipPlacingFacade shipPlacingFacade;
 
-  @Mock private GameArenaService gameArenaService;
+  @Mock
+  private GameArenaService gameArenaService;
 
-  @Mock private GameService gameService;
+  @Mock
+  private GameService gameService;
 
-  @Mock private PlayerService playerService;
+  @Mock
+  private PlayerService playerService;
 
-  @Mock private GameArena gameArena;
+  @Mock
+  private GameArena gameArena;
 
-  @Mock private Player burney;
+  @Mock
+  private Player burney;
 
   @Before
   public void initTest() {

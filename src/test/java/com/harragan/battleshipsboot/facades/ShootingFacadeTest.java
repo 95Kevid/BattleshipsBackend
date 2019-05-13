@@ -69,8 +69,8 @@ public class ShootingFacadeTest {
     players.add(player2);
     players.add(player3);
     game.setPlayers(players);
-    ShootRequest shootRequestA1 = new ShootRequest(1,1,positionA1);
-    ShootRequest shootRequestC4 = new ShootRequest(1,1,positionC4);
+    ShootRequest shootRequestA1 = new ShootRequest(1, 1, positionA1);
+    ShootRequest shootRequestC4 = new ShootRequest(1, 1, positionC4);
     shootingFacade.shootPosition(shootRequestA1);
     shootingFacade.shootPosition(shootRequestC4);
 
@@ -98,7 +98,7 @@ public class ShootingFacadeTest {
     players.add(player3);
     game.setPlayers(players);
     gameService.nextTurn(game);
-    ShootRequest shootRequestA1 = new ShootRequest(1,1,positionA1);
+    ShootRequest shootRequestA1 = new ShootRequest(1, 1, positionA1);
     assertThatExceptionOfType(IllegalShotException.class)
         .isThrownBy(() -> shootingFacade.shootPosition(shootRequestA1));
   }
@@ -114,7 +114,7 @@ public class ShootingFacadeTest {
     players.add(player2);
     players.add(player3);
     game.setPlayers(players);
-    ShootRequest shootRequestA1 = new ShootRequest(1,1,positionA1);
+    ShootRequest shootRequestA1 = new ShootRequest(1, 1, positionA1);
     shootingFacade.shootPosition(shootRequestA1);
 
     verify(gameService, times(1)).nextTurn(game);

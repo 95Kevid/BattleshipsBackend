@@ -1,5 +1,8 @@
 package com.harragan.battleshipsboot.facades;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.when;
+
 import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
 import com.harragan.battleshipsboot.service.GameService;
@@ -8,16 +11,15 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.when;
-
 public class PollingFacadeTest {
 
   private PollingFacade pollingFacade;
 
-  @Mock private GameService gameService;
+  @Mock
+  private GameService gameService;
 
-  @Mock private GameRepository gameRepository;
+  @Mock
+  private GameRepository gameRepository;
 
   @Before
   public void initTest() {
@@ -27,7 +29,7 @@ public class PollingFacadeTest {
 
   @Test
   public void
-      givenWhenAGameIdIsProvidedThenANumberOfPlayersInTheGameIsProvidedWithANumberOfPlayersThatAreNotReady() {
+  givenWhenAGameIdIsProvidedThenANumberOfPlayersInTheGameIsProvidedWithANumberOfPlayersThatAreNotReady() {
     final PlayersToPlayersReady expectedPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 2);
 
     when(gameService.getPlayersToPlayersReady(1)).thenReturn(expectedPlayersToPlayersNotReady);

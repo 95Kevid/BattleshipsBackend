@@ -1,8 +1,8 @@
 package com.harragan.battleshipsboot.service;
 
-import org.junit.Test;
-
 import static org.assertj.core.api.Assertions.assertThatExceptionOfType;
+
+import org.junit.Test;
 
 public class BoardPositionFactoryTest {
 

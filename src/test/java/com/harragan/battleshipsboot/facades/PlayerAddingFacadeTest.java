@@ -9,7 +9,6 @@ import com.harragan.battleshipsboot.controllers.JoinGameResponse;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
-import com.harragan.battleshipsboot.repositorys.GameRepository;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
@@ -46,7 +45,7 @@ public class PlayerAddingFacadeTest {
     game.setId(1);
     burny = new Player("Burny");
     burny.setId(1);
-    gameArena =  new GameArena(15);
+    gameArena = new GameArena(15);
     burny.setGameArena(gameArena);
   }
 

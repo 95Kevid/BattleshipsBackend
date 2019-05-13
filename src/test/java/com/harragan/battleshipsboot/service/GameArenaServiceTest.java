@@ -1,5 +1,10 @@
 package com.harragan.battleshipsboot.service;
 
+import static junit.framework.TestCase.assertSame;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
+
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.Orientation;
@@ -12,11 +17,6 @@ import org.junit.Test;
 
 import java.util.HashSet;
 import java.util.Set;
-
-import static junit.framework.TestCase.assertSame;
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class GameArenaServiceTest {
   private GameArena gameArena1;

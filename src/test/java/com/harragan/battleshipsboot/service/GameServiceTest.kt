@@ -32,14 +32,14 @@ class GameServiceTestKt {
 
     @Test
     fun firstPlayerThatJoinsGameIsTheFirstPlayerWhosTurnItIs() {
-        val players= LinkedList(Arrays.asList(player1, player2, player3))
+        val players = LinkedList(Arrays.asList(player1, player2, player3))
         game1.players = players
         assertThat(gameService.checkForTurn(1)).isEqualTo(player1)
     }
 
     @Test
     fun secondPlayerThatJoinsGameIsTheSecondPlayerWhosTurnItIs() {
-        val players= LinkedList(Arrays.asList(player1, player2, player3))
+        val players = LinkedList(Arrays.asList(player1, player2, player3))
         game1.players = players
         gameService.nextTurn(game1)
         assertThat(gameService.checkForTurn(1)).isEqualTo(player2)
@@ -47,7 +47,7 @@ class GameServiceTestKt {
 
     @Test
     fun thirdPlayerThatJoinsGameIsTheSecondPlayerWhosTurnItIs() {
-        val players= LinkedList(Arrays.asList(player1, player2, player3))
+        val players = LinkedList(Arrays.asList(player1, player2, player3))
         game1.players = players
         gameService.nextTurn(game1)
         gameService.nextTurn(game1)
@@ -56,16 +56,13 @@ class GameServiceTestKt {
 
     @Test
     fun givenThatAllPlayersHasHadTheirTurnThenThePlayerThatSetTheGameUpHasTheirTurnAgain() {
-        val players= LinkedList(Arrays.asList(player1, player2, player3))
+        val players = LinkedList(Arrays.asList(player1, player2, player3))
         game1.players = players
         gameService.nextTurn(game1)
         gameService.nextTurn(game1)
         gameService.nextTurn(game1)
         assertThat(gameService.checkForTurn(1)).isEqualTo(player1)
     }
-
-
-
 
 
 }

@@ -169,12 +169,12 @@ public class GameArenaService {
     return getShotPositions;
   }
 
-  private void checkShotIsValid(BoardPosition boardPosition, GameArena gameArena) {
-    if(boardPosition.getCol() - 'A' > (gameArena.getGameArenaSize() - 1)
+  private void checkShotIsValid(final BoardPosition boardPosition, final GameArena gameArena) {
+    if (boardPosition.getCol() - 'A' > (gameArena.getGameArenaSize() - 1)
         || boardPosition.getRow() > gameArena.getGameArenaSize()) {
       throw new IllegalShotException("The board position provided is out of the bounds of the game arena."
-                            + " The arena size is " + gameArena.getGameArenaSize() + "x"
-                            + gameArena.getGameArenaSize() + ", Please take a shot within these bounds.");
+          + " The arena size is " + gameArena.getGameArenaSize() + "x"
+          + gameArena.getGameArenaSize() + ", Please take a shot within these bounds.");
     }
   }
 }

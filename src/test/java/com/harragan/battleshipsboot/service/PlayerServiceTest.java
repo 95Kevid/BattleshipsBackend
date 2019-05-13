@@ -1,5 +1,9 @@
 package com.harragan.battleshipsboot.service;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.any;
+import static org.mockito.Mockito.when;
+
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
@@ -13,16 +17,14 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Optional;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.any;
-import static org.mockito.Mockito.when;
-
 @RunWith(MockitoJUnitRunner.class)
 public class PlayerServiceTest {
 
-  @InjectMocks private PlayerService playerService;
+  @InjectMocks
+  private PlayerService playerService;
 
-  @Mock private PlayerRepository playerRepository;
+  @Mock
+  private PlayerRepository playerRepository;
 
   @Before
   public void initTest() {
