@@ -21,7 +21,9 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 public class ShootingFacadeTest {
 
@@ -29,6 +31,7 @@ public class ShootingFacadeTest {
   private Player player2;
   private Player player3;
   private Game game;
+  private List<Player> players;
   @Mock
   private GameArenaService gameArenaService;
   @Mock
@@ -55,6 +58,10 @@ public class ShootingFacadeTest {
     player1.setName("Burny");
     player2.setName("Helga");
     player3.setName("Fred");
+    players = new ArrayList<>();
+    players.add(player1);
+    players.add(player2);
+    players.add(player3);
   }
 
   @Test
@@ -118,5 +125,25 @@ public class ShootingFacadeTest {
     shootingFacade.shootPosition(shootRequestA1);
 
     verify(gameService, times(1)).nextTurn(game);
+  }
+
+  @Test
+  public void whenSomeOfThePlayersAreNotReadyToStartAndAnAttemptIsMadeToMakeAShotThenAnIllegalShotExceptionIsThrown() {
+    when(gameService.getGame(1)).thenReturn(game);
+    when(gameService.checkForTurn(1)).thenReturn(player1);
+    when(playerService.getPlayerById(1)).thenReturn(player1);
+
+    BoardPosition positionA1 = BoardPositionFactory.createBoardPosition('A', 1);
+    LinkedList<Player> players = new LinkedList<>();
+    player1.setReadyToStartGame(false);
+    player1.setReadyToStartGame(true);
+    player1.setReadyToStartGame(true);
+    players.add(player1);
+    players.add(player2);
+    players.add(player3);
+    game.setPlayers(players);
+    ShootRequest shootRequestA1 = new ShootRequest(1, 1, positionA1);
+    assertThatExceptionOfType(IllegalShotException.class)
+        .isThrownBy(() -> shootingFacade.shootPosition(shootRequestA1));
   }
 }

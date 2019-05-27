@@ -10,6 +10,7 @@ import com.harragan.battleshipsboot.service.exceptions.IllegalShotException;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
+import java.util.List;
 
 @Service
 public class ShootingFacade {
@@ -28,18 +29,31 @@ public class ShootingFacade {
   public void shootPosition(final ShootRequest shootRequest) {
     final Player shooter = playerService.getPlayerById(shootRequest.getPlayerId());
     final Game game = gameService.getGame(shootRequest.getGameId());
+    checkIfAllPlayersAreReady(game);
+    checkForPlayersTurn(shooter, game);
+    final LinkedList<Player> players = game.getPlayers();
+    players.stream()
+        .filter(player -> player != shooter)
+        .map(player -> player.getGameArena())
+        .forEach(gameArena -> gameArenaService.registerHit(shootRequest.getBoardPosition(), gameArena));
+    gameService.nextTurn(game);
+    gameService.saveGame(game);
+  }
+
+  private void checkForPlayersTurn(final Player player, final Game game) {
     final Player playerTurn = gameService.checkForTurn(game.getId());
-    if (playerTurn == shooter) {
-      final LinkedList<Player> players = game.getPlayers();
-      players.stream()
-          .filter(player -> player != shooter)
-          .map(player -> player.getGameArena())
-          .forEach(gameArena -> gameArenaService.registerHit(shootRequest.getBoardPosition(), gameArena));
-      gameService.nextTurn(game);
-      gameService.saveGame(game);
-    } else {
-      throw new IllegalShotException("It is currently player with name of  " + playerTurn.getName()
-          + " who's turn it is.");
+    if (playerTurn == player) {
+      return;
     }
+    throw new IllegalShotException("It is currently player with name of  " + playerTurn.getName()
+        + " who's turn it is.");
+  }
+
+  private void checkIfAllPlayersAreReady(final Game game) {
+    final List<Player> players = game.getPlayers();
+    if (players.stream().allMatch(player -> player.isReadyToStartGame())) {
+      return;
+    }
+    throw new IllegalShotException("Not all the players are ready to start, please retry later.");
   }
 }
