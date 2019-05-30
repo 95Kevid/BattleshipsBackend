@@ -6,7 +6,7 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.harragan.battleshipsboot.controllers.ShootRequest;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.ShootRequest;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
@@ -21,9 +21,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 
 public class ShootingFacadeTest {
 
@@ -31,7 +29,7 @@ public class ShootingFacadeTest {
   private Player player2;
   private Player player3;
   private Game game;
-  private List<Player> players;
+  private LinkedList<Player> players;
   @Mock
   private GameArenaService gameArenaService;
   @Mock
@@ -58,10 +56,11 @@ public class ShootingFacadeTest {
     player1.setName("Burny");
     player2.setName("Helga");
     player3.setName("Fred");
-    players = new ArrayList<>();
+    players = new LinkedList<>();
     players.add(player1);
     players.add(player2);
     players.add(player3);
+    players.forEach(player -> player.setReadyToStartGame(true));
   }
 
   @Test
@@ -71,10 +70,7 @@ public class ShootingFacadeTest {
     when(gameService.checkForTurn(1)).thenReturn(player1);
     BoardPosition positionA1 = BoardPositionFactory.createBoardPosition('A', 1);
     BoardPosition positionC4 = BoardPositionFactory.createBoardPosition('C', 4);
-    LinkedList<Player> players = new LinkedList<>();
-    players.add(player1);
-    players.add(player2);
-    players.add(player3);
+
     game.setPlayers(players);
     ShootRequest shootRequestA1 = new ShootRequest(1, 1, positionA1);
     ShootRequest shootRequestC4 = new ShootRequest(1, 1, positionC4);
@@ -99,13 +95,10 @@ public class ShootingFacadeTest {
     when(gameService.checkForTurn(1)).thenReturn(player2);
     when(playerService.getPlayerById(1)).thenReturn(player1);
     BoardPosition positionA1 = BoardPositionFactory.createBoardPosition('A', 1);
-    LinkedList<Player> players = new LinkedList<>();
-    players.add(player1);
-    players.add(player2);
-    players.add(player3);
     game.setPlayers(players);
     gameService.nextTurn(game);
     ShootRequest shootRequestA1 = new ShootRequest(1, 1, positionA1);
+
     assertThatExceptionOfType(IllegalShotException.class)
         .isThrownBy(() -> shootingFacade.shootPosition(shootRequestA1));
   }
@@ -116,10 +109,6 @@ public class ShootingFacadeTest {
     when(gameService.checkForTurn(1)).thenReturn(player1);
     when(playerService.getPlayerById(1)).thenReturn(player1);
     BoardPosition positionA1 = BoardPositionFactory.createBoardPosition('A', 1);
-    LinkedList<Player> players = new LinkedList<>();
-    players.add(player1);
-    players.add(player2);
-    players.add(player3);
     game.setPlayers(players);
     ShootRequest shootRequestA1 = new ShootRequest(1, 1, positionA1);
     shootingFacade.shootPosition(shootRequestA1);
@@ -131,19 +120,31 @@ public class ShootingFacadeTest {
   public void whenSomeOfThePlayersAreNotReadyToStartAndAnAttemptIsMadeToMakeAShotThenAnIllegalShotExceptionIsThrown() {
     when(gameService.getGame(1)).thenReturn(game);
     when(gameService.checkForTurn(1)).thenReturn(player1);
-    when(playerService.getPlayerById(1)).thenReturn(player1);
-
+    when(playerService.getPlayerById(2)).thenReturn(player2);
     BoardPosition positionA1 = BoardPositionFactory.createBoardPosition('A', 1);
-    LinkedList<Player> players = new LinkedList<>();
     player1.setReadyToStartGame(false);
-    player1.setReadyToStartGame(true);
-    player1.setReadyToStartGame(true);
-    players.add(player1);
-    players.add(player2);
-    players.add(player3);
+    player2.setReadyToStartGame(true);
+    player3.setReadyToStartGame(true);
     game.setPlayers(players);
-    ShootRequest shootRequestA1 = new ShootRequest(1, 1, positionA1);
+    ShootRequest shootRequestA1 = new ShootRequest(2, 1, positionA1);
+
     assertThatExceptionOfType(IllegalShotException.class)
         .isThrownBy(() -> shootingFacade.shootPosition(shootRequestA1));
+  }
+
+  @Test
+  public void givenAPositionThatHasAlreadyBeenHitWhenThatPositionIsShotAtAgainThenAnIllegalShotExceptionIsThrown() {
+    when(gameService.getGame(1)).thenReturn(game);
+    when(gameService.checkForTurn(1)).thenReturn(player1);
+    when(playerService.getPlayerById(2)).thenReturn(player2);
+    BoardPosition positionD4 = BoardPositionFactory.createBoardPosition('D', 4);
+    positionD4.setHit(true);
+    players.forEach(player -> player.setReadyToStartGame(true));
+    game.setPlayers(players);
+    ShootRequest shootRequestD4 = new ShootRequest(2, 1, positionD4);
+
+    assertThatExceptionOfType(IllegalShotException.class)
+        .isThrownBy(() -> shootingFacade.shootPosition(shootRequestD4))
+        .withMessage("This position has already been hit.");
   }
 }

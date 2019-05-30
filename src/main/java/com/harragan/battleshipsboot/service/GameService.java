@@ -89,7 +89,6 @@ public class GameService {
     final Queue<Player> players = game.getPlayers();
     return players.peek();
   }
-
 }
 
 

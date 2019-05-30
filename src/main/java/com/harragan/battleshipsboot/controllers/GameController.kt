@@ -1,6 +1,8 @@
 package com.harragan.battleshipsboot.controllers
 
 import com.harragan.battleshipsboot.facades.PlayerAddingFacade
+import com.harragan.battleshipsboot.model.kotlinmodel.game.JoinGameRequest
+import com.harragan.battleshipsboot.model.kotlinmodel.game.JoinGameResponse
 import com.harragan.battleshipsboot.service.GameService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*

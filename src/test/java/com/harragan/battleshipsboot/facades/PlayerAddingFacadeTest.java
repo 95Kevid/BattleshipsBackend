@@ -5,7 +5,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.mockito.internal.verification.VerificationModeFactory.times;
 
-import com.harragan.battleshipsboot.controllers.JoinGameResponse;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.JoinGameResponse;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;

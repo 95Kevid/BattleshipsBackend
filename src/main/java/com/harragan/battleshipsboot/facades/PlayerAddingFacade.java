@@ -1,6 +1,6 @@
 package com.harragan.battleshipsboot.facades;
 
-import com.harragan.battleshipsboot.controllers.JoinGameResponse;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.JoinGameResponse;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;

@@ -1,6 +1,6 @@
 package com.harragan.battleshipsboot.facades;
 
-import com.harragan.battleshipsboot.controllers.ShootRequest;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.ShootRequest;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.service.GameArenaService;
@@ -45,7 +45,7 @@ public class ShootingFacade {
     if (playerTurn == player) {
       return;
     }
-    throw new IllegalShotException("It is currently player with name of  " + playerTurn.getName()
+    throw new IllegalShotException("It is currently player with name of " + playerTurn.getName()
         + " who's turn it is.");
   }
 

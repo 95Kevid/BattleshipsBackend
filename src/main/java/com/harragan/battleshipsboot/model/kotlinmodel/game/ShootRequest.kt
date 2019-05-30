@@ -1,4 +1,4 @@
-package com.harragan.battleshipsboot.controllers
+package com.harragan.battleshipsboot.model.kotlinmodel.game
 
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition
 

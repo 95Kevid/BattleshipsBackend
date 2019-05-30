@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
 @Entity
 public class Game {
@@ -16,11 +17,9 @@ public class Game {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
-
+  @OrderColumn
   @OneToMany(cascade = ALL)
   private List<Player> players;
-
-  private int turnIndex;
 
   private int noOfPlayers;
 
@@ -33,14 +32,6 @@ public class Game {
     this.players = new LinkedList<>();
     this.noOfPlayers = noOfPlayers;
     this.gameArenaSize = gameArenaSize;
-  }
-
-  public int getTurnIndex() {
-    return turnIndex;
-  }
-
-  public void setTurnIndex(final int turnIndex) {
-    this.turnIndex = turnIndex;
   }
 
   public int getId() {
