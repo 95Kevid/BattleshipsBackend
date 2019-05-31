@@ -1,5 +1,6 @@
 package com.harragan.battleshipsboot.facades;
 
+import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.ShootRequest;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.Player;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class ShootingFacade {
@@ -29,11 +31,14 @@ public class ShootingFacade {
   public void shootPosition(final ShootRequest shootRequest) {
     final Player shooter = playerService.getPlayerById(shootRequest.getPlayerId());
     final Game game = gameService.getGame(shootRequest.getGameId());
-    checkIfAllPlayersAreReady(game);
+    final List<Player> allPlayers = game.getPlayers();
+    final List<Player> otherPlayers = allPlayers.stream()
+        .filter(player -> player != shooter).collect(Collectors.toList());
+
+    checkIfAllPlayersAreReady(allPlayers);
     checkForPlayersTurn(shooter, game);
-    final LinkedList<Player> players = game.getPlayers();
-    players.stream()
-        .filter(player -> player != shooter)
+
+    otherPlayers.stream()
         .map(player -> player.getGameArena())
         .forEach(gameArena -> gameArenaService.registerHit(shootRequest.getBoardPosition(), gameArena));
     gameService.nextTurn(game);
@@ -49,8 +54,7 @@ public class ShootingFacade {
         + " who's turn it is.");
   }
 
-  private void checkIfAllPlayersAreReady(final Game game) {
-    final List<Player> players = game.getPlayers();
+  private void checkIfAllPlayersAreReady(final List<Player> players) {
     if (players.stream().allMatch(player -> player.isReadyToStartGame())) {
       return;
     }

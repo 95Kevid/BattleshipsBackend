@@ -2,11 +2,17 @@ package com.harragan.battleshipsboot.service;
 
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import com.harragan.battleshipsboot.service.exceptions.IllegalGameStartException;
 import org.springframework.stereotype.Service;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class PlayerService {
@@ -50,5 +56,11 @@ public class PlayerService {
 
   public void savePlayer(final Player player) {
     playerRepository.save(player);
+  }
+
+  public Map<Player, Set<BoardPosition>> getPlayersToShotPositions(final Set<Player> players) {
+    final Map<Player, Set<BoardPosition>> result = new HashMap<>();
+    players.forEach(player -> result.put(player, player.getGameArena().getShotPositions()));
+    return result;
   }
 }

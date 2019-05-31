@@ -1,5 +1,7 @@
 package com.harragan.battleshipsboot.model.game;
 
+import com.fasterxml.jackson.annotation.JsonValue;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,6 +16,7 @@ public class Player {
   private GameArena gameArena;
 
   private boolean readyToStartGame;
+
   private String playerName;
 
   @Id
@@ -27,6 +30,7 @@ public class Player {
     this.playerName = playerName;
   }
 
+  @JsonValue
   public String getName() {
     return playerName;
   }

@@ -92,6 +92,9 @@ public class GameArenaService {
   }
 
   public void registerHit(final BoardPosition boardPosition, final GameArena gameArena) {
+    if(isPositionAlreadyHit(boardPosition, gameArena)) {
+      return;
+    }
     checkShotIsValid(boardPosition, gameArena);
     boardPosition.setHit(true);
     for (final Ship ship : gameArena.getShipsOnBoard()) {
@@ -104,6 +107,10 @@ public class GameArenaService {
       }
     }
     gameArena.addShotPosition(boardPosition);
+  }
+
+  private boolean isPositionAlreadyHit(final BoardPosition boardPosition, final GameArena gameArena) {
+    return gameArena.getShotPositions().stream().anyMatch(bp -> bp.positionEqual(boardPosition));
   }
 
   public BoardPosition getOccupiedPositionsOfShip(

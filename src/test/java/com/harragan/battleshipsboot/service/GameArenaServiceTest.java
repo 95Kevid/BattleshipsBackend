@@ -312,33 +312,6 @@ public class GameArenaServiceTest {
     assertTrue(gameArena1.isAllShipsPlaced());
   }
 
-  @Test
-  public void whenACollectionOfGameArenasAreSuppliedThenACollectionOfDistinctBoardPositionsThatAreHitAreReturned() {
-    gameArena1.clearArena();
-    GameArena gameArena2 = new GameArena(26);
-    GameArena gameArena3 = new GameArena(18);
-
-    BoardPosition positionA3 = BoardPositionFactory.createBoardPosition('A', 3);
-    BoardPosition positionD8 = BoardPositionFactory.createBoardPosition('D', 8);
-    BoardPosition positionB8 = BoardPositionFactory.createBoardPosition('B', 8);
-    positionA3.setHit(true);
-    positionD8.setHit(true);
-    positionB8.setHit(true);
-
-    gameArena1.addShotPosition(positionB8);
-    gameArena2.addShotPosition(positionA3);
-    gameArena3.addShotPosition(positionD8);
-
-    Set<GameArena> gameArenas = new HashSet<>();
-    gameArenas.add(gameArena2);
-    gameArenas.add(gameArena3);
-    Set<BoardPosition> hitBoardPositions = gameArenaService.getShotPositions(gameArenas);
-
-    assertThat(hitBoardPositions.contains(positionA3) && hitBoardPositions.contains(positionD8)
-        && !hitBoardPositions.contains(positionB8)).isTrue().as("The hit positions should include "
-        + "A3 and D8, but not B8");
-  }
-
   @Test(expected = IllegalShotException.class)
   public void whenSuppliedWithAPositionThatIsHorizontallyOutOfTheGameArenaThenAnIllegalShotExceptionIsThown() {
     gameArena1.clearArena();

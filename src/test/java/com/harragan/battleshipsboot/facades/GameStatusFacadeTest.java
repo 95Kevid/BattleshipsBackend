@@ -47,7 +47,7 @@ public class GameStatusFacadeTest {
   private Set<BoardPosition> hitBoardPositions;
   private Ship destroyer;
   private Ship submarine;
-
+  private Map<Player, Set<BoardPosition>> playersToShotPositions;
 
   @Before
   public void initTest() {
@@ -84,6 +84,8 @@ public class GameStatusFacadeTest {
     submarine = new Ship(1, Orientation.VERTICAL, boardPositionC4, occupiedPositionsOfSubmarine, true, ShipType.SUBMARINE);
     gameArena1.addSunkenShip(destroyer);
     gameArena2.addSunkenShip(submarine);
+    playersToShotPositions =  new HashMap<>();
+    playersToShotPositions.put(player1, hitBoardPositions);
   }
 
   @Test
@@ -94,11 +96,10 @@ public class GameStatusFacadeTest {
   }
 
   @Test
-  public void whenAGameIdIsSuppliedThenAGameStatusResponseIsReturnedContainingTheHitBoardPositions() {
+  public void whenAGameIdIsSuppliedThenAGameStatusResponseIsReturnedContainingThePlayersToShotBoardPositions() {
     setupMocks();
     GameStatusResponse gameStatusResponse = gameStatusFacade.getGameStatus(1);
-    assertThat(gameStatusResponse.getHitBoardPositions().contains(boardPositionA1)
-        && gameStatusResponse.getHitBoardPositions().contains(boardPositionC4));
+    assertThat(gameStatusResponse.getPlayersToShotPositions().equals(playersToShotPositions));
   }
 
   @Test
@@ -114,6 +115,7 @@ public class GameStatusFacadeTest {
     when(gameArenaService.getShotPositions(gameArenas)).thenReturn(hitBoardPositions);
     when(gameService.getGame(1)).thenReturn(game);
     when(game.getPlayers()).thenReturn(players);
+    when(playerService.getPlayersToShotPositions(new HashSet<>(players))).thenReturn(playersToShotPositions);
   }
 
   private Map<Player, Set<Ship>> createMapOfPlayersToSunkenShips() {
