@@ -15,12 +15,12 @@ public class PlayerSerializer extends JsonSerializer<Player> {
   private ObjectMapper mapper = new ObjectMapper();
 
   @Override
-  public void serialize(Player value,
-                        JsonGenerator gen,
-                        SerializerProvider serializers)
+  public void serialize(final Player value,
+                        final JsonGenerator gen,
+                        final SerializerProvider serializers)
       throws IOException, JsonProcessingException {
 
-    StringWriter writer = new StringWriter();
+    final StringWriter writer = new StringWriter();
     mapper.writeValue(writer, value);
     gen.writeFieldName(writer.toString().replace("\"", ""));
   }

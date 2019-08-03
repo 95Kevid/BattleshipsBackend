@@ -1,7 +1,6 @@
 package com.harragan.battleshipsboot.facades;
 
 import com.harragan.battleshipsboot.model.game.Game;
-import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.GameStatusResponse;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
@@ -13,7 +12,6 @@ import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;

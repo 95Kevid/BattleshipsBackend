@@ -2,6 +2,7 @@ package com.harragan.battleshipsboot.model.game;
 
 import static javax.persistence.CascadeType.ALL;
 
+
 import java.util.LinkedList;
 import java.util.List;
 import javax.persistence.Entity;

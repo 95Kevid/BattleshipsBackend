@@ -2,7 +2,7 @@ services:
   - docker
 
 script:
-  - docker build -t 95kevid/battleshipsboot .
+  - docker build -t 95kevid/battleshipspringboot .
 
 deploy:
   provider: script

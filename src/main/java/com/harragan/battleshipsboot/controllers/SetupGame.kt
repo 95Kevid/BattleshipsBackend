@@ -51,6 +51,7 @@ class SetupGame(
         shipPlacingFacade.placeShip(2, 1, cruiser2)
 
         playerService.setPlayerIsReady(2, playerRepository)
+
     }
 }
 

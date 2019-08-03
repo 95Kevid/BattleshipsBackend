@@ -1,16 +1,14 @@
 package com.harragan.battleshipsboot.facades;
 
-import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
-import com.harragan.battleshipsboot.model.kotlinmodel.game.ShootRequest;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.Player;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.ShootRequest;
 import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
 import com.harragan.battleshipsboot.service.exceptions.IllegalShotException;
 import org.springframework.stereotype.Service;
 
-import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 

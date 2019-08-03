@@ -6,11 +6,11 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.harragan.battleshipsboot.model.kotlinmodel.game.ShootRequest;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.ShootRequest;
 import com.harragan.battleshipsboot.service.BoardPositionFactory;
 import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
@@ -21,10 +21,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.Set;
 
 public class ShootingFacadeTest {
 

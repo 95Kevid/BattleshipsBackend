@@ -18,6 +18,10 @@ data class BoardPosition @JvmOverloads constructor(
     fun positionEqual(position: BoardPosition): Boolean {
         return position.col.equals(this.col) && position.row == this.row
     }
+
+    override fun toString(): String {
+        return String.format("%s%d", col, row)
+    }
 }
 
 

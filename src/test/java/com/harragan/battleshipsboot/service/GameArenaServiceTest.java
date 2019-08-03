@@ -1,7 +1,6 @@
 package com.harragan.battleshipsboot.service;
 
 import static junit.framework.TestCase.assertSame;
-import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -15,7 +14,6 @@ import com.harragan.battleshipsboot.service.exceptions.IllegalShotException;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashSet;
 import java.util.Set;
 
 public class GameArenaServiceTest {

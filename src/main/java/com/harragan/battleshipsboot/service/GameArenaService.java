@@ -8,10 +8,12 @@ import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementExce
 import com.harragan.battleshipsboot.service.exceptions.IllegalShotException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class GameArenaService {
@@ -79,20 +81,22 @@ public class GameArenaService {
   }
 
   private boolean positionsAlreadyOccupied(final Ship ship, final GameArena gameArena) {
-    for (final Ship gameArenaShip : gameArena.getShipsOnBoard()) {
-      final boolean isShipOccupyingPosition =
-          gameArenaShip.getOccupiedBoardPositions().stream()
-              .anyMatch(ship.getOccupiedBoardPositions()::contains);
+    List<String> bp = gameArena.getShipsOnBoard().stream()
+            .map(Ship::getOccupiedBoardPositions)
+            .flatMap(positions -> positions.stream().map(BoardPosition::toString))
+            .collect(Collectors.toList());
 
-      if (isShipOccupyingPosition) {
-        return true;
-      }
-    }
-    return false;
+    List<String> shipPositions = ship.getOccupiedBoardPositions().stream()
+            .map(BoardPosition::toString)
+            .collect(Collectors.toList());
+
+    bp.retainAll(shipPositions);
+    return !bp.isEmpty();
+
   }
 
   public void registerHit(final BoardPosition boardPosition, final GameArena gameArena) {
-    if(isPositionAlreadyHit(boardPosition, gameArena)) {
+    if (isPositionAlreadyHit(boardPosition, gameArena)) {
       return;
     }
     checkShotIsValid(boardPosition, gameArena);
