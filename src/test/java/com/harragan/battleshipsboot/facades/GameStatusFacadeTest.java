@@ -53,7 +53,7 @@ public class GameStatusFacadeTest {
   public void initTest() {
     MockitoAnnotations.initMocks(this);
     gameStatusFacade = new GameStatusFacade(
-        gameService, gameArenaService, playerService);
+        gameService, playerService);
     gameArena1 = new GameArena();
     gameArena2 = new GameArena();
     boardPositionA1 = BoardPositionFactory.createBoardPosition('A', 1);
@@ -95,20 +95,6 @@ public class GameStatusFacadeTest {
     assertThat(gameStatusResponse.getPlayersTurnId()).isEqualTo(1);
   }
 
-  @Test
-  public void whenAGameIdIsSuppliedThenAGameStatusResponseIsReturnedContainingThePlayersToShotBoardPositions() {
-    setupMocks();
-    GameStatusResponse gameStatusResponse = gameStatusFacade.getGameStatus(1);
-    assertThat(gameStatusResponse.getPlayersToShotPositions().equals(playersToShotPositions));
-  }
-
-  @Test
-  public void whenAGameIdIsSuppliedThenAGameStatusResponseIsReturnedContainingAMapOfAnyPlayersThatHaveSunkShipsAndTheShipsThatAreSunk() {
-    setupMocks();
-    Map<Player, Set<Ship>> playersToSunkShips = createMapOfPlayersToSunkenShips();
-    GameStatusResponse gameStatusResponse = gameStatusFacade.getGameStatus(1);
-    assertThat(gameStatusResponse.getPlayersToSunkShips()).isEqualTo(playersToSunkShips);
-  }
 
   private void setupMocks() {
     when(gameService.checkForTurn(1)).thenReturn(player1);

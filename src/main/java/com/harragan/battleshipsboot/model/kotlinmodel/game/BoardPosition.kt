@@ -13,7 +13,8 @@ data class BoardPosition @JvmOverloads constructor(
         var id: Int? = null,
         val col: Char,
         val row: Int,
-        var isHit: Boolean = false
+        var isHit: Boolean = false,
+        var colour: String = "blue"
 ) {
     fun positionEqual(position: BoardPosition): Boolean {
         return position.col.equals(this.col) && position.row == this.row

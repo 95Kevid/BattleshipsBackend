@@ -1,5 +1,6 @@
 package com.harragan.battleshipsboot.model.game;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonValue;
 
 import javax.persistence.CascadeType;
@@ -13,9 +14,11 @@ import javax.persistence.OneToOne;
 @Entity
 public class Player {
 
+  @JsonIgnore
   @OneToOne(cascade = CascadeType.ALL)
   private GameArena gameArena;
 
+  @JsonIgnore
   private boolean readyToStartGame;
 
   private String playerName;
@@ -31,7 +34,6 @@ public class Player {
     this.playerName = playerName;
   }
 
-  @JsonValue
   public String getName() {
     return playerName;
   }
@@ -47,6 +49,7 @@ public class Player {
   public void setReadyToStartGame(final boolean readyToStartGame) {
     this.readyToStartGame = readyToStartGame;
   }
+
 
   public int getId() {
     return id;

@@ -3,6 +3,7 @@ package com.harragan.battleshipsboot.facades;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.GameStatusResponse;
 import com.harragan.battleshipsboot.model.game.Player;
+import com.harragan.battleshipsboot.model.game.PlayerInGameInfo;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 import com.harragan.battleshipsboot.service.GameArenaService;
@@ -21,13 +22,10 @@ import java.util.stream.Collectors;
 public class GameStatusFacade {
 
   private final GameService gameService;
-  private final GameArenaService gameArenaService;
   private final PlayerService playerService;
 
-  public GameStatusFacade(final GameService gameService, final GameArenaService gameArenaService,
-                          final PlayerService playerService) {
+  public GameStatusFacade(final GameService gameService, final PlayerService playerService) {
     this.gameService = gameService;
-    this.gameArenaService = gameArenaService;
     this.playerService = playerService;
   }
 
@@ -37,7 +35,17 @@ public class GameStatusFacade {
     final Map<Player, Set<BoardPosition>> playersToHitPositions = playerService.getPlayersToShotPositions(players);
     final Map<Player, Set<Ship>> playersToSunkShips = players.stream()
         .collect(Collectors.toMap(Function.identity(), this::extractSunkShips));
-    return new GameStatusResponse(gameService.checkForTurn(gameId).getId(), playersToHitPositions, playersToSunkShips);
+    final Set<PlayerInGameInfo> playerInGameInfos = game.getPlayers().stream()
+            .map(player -> createPlayerInGameInfo(playersToHitPositions, playersToSunkShips, player))
+            .collect(Collectors.toSet());
+
+    return new GameStatusResponse(gameService.checkForTurn(gameId).getId(), playerInGameInfos);
+  }
+
+  @NotNull
+  private PlayerInGameInfo createPlayerInGameInfo(Map<Player, Set<BoardPosition>> playersToHitPositions, Map<Player, Set<Ship>> playersToSunkShips, Player player) {
+    return new PlayerInGameInfo(player.getId(), player.getName(),
+    playersToHitPositions.get(player), playersToSunkShips.get(player));
   }
 
   @NotNull
