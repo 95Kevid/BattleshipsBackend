@@ -6,7 +6,6 @@ import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.model.game.PlayerInGameInfo;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
-import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
 import org.jetbrains.annotations.NotNull;
@@ -43,9 +42,10 @@ public class GameStatusFacade {
   }
 
   @NotNull
-  private PlayerInGameInfo createPlayerInGameInfo(Map<Player, Set<BoardPosition>> playersToHitPositions, Map<Player, Set<Ship>> playersToSunkShips, Player player) {
+  private PlayerInGameInfo createPlayerInGameInfo(Map<Player, Set<BoardPosition>> playersToHitPositions,
+                                                  Map<Player, Set<Ship>> playersToSunkShips, Player player) {
     return new PlayerInGameInfo(player.getId(), player.getName(),
-    playersToHitPositions.get(player), playersToSunkShips.get(player));
+    playersToHitPositions.get(player), playersToSunkShips.get(player), player.isWinner());
   }
 
   @NotNull

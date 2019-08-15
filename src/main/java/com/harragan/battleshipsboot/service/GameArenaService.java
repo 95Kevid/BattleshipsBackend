@@ -4,6 +4,7 @@ import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.Orientation;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
+import com.harragan.battleshipsboot.model.kotlinmodel.ships.ShipType;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
 import com.harragan.battleshipsboot.service.exceptions.IllegalShotException;
 import org.springframework.stereotype.Service;
@@ -111,6 +112,13 @@ public class GameArenaService {
       }
     }
     gameArena.addShotPosition(boardPosition);
+    checkForAllShipsSunk(gameArena);
+  }
+
+  private void checkForAllShipsSunk(GameArena gameArena) {
+    if (ShipType.values().length == gameArena.getSunkShips().size()) {
+      gameArena.setAllShipsSunk(true);
+    }
   }
 
   private boolean isPositionAlreadyHit(final BoardPosition boardPosition, final GameArena gameArena) {

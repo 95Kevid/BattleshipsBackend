@@ -14,6 +14,7 @@ import com.harragan.battleshipsboot.model.kotlinmodel.ships.ShipType;
 import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
+import com.harragan.battleshipsboot.service.ShipColouringService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -27,7 +28,7 @@ public class ShipPlacingFacadeTest {
   private GameArenaService gameArenaService;
 
   @Mock
-  private GameService gameService;
+  private ShipColouringService shipColouringService;
 
   @Mock
   private PlayerService playerService;
@@ -41,7 +42,7 @@ public class ShipPlacingFacadeTest {
   @Before
   public void initTest() {
     MockitoAnnotations.initMocks(this);
-    shipPlacingFacade = new ShipPlacingFacade(gameArenaService, playerService);
+    shipPlacingFacade = new ShipPlacingFacade(gameArenaService, playerService, shipColouringService);
   }
 
   @Test

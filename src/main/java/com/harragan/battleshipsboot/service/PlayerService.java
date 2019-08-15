@@ -61,4 +61,8 @@ public class PlayerService {
     players.forEach(player -> result.put(player, player.getGameArena().getShotPositions()));
     return result;
   }
+
+  public void setWinner(Player player) {
+    player.setWinner(true);
+  }
 }

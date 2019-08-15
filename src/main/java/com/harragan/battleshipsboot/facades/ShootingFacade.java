@@ -33,14 +33,30 @@ public class ShootingFacade {
     final List<Player> otherPlayers = allPlayers.stream()
         .filter(player -> player != shooter).collect(Collectors.toList());
 
+    checkForWinner(allPlayers);
     checkIfAllPlayersAreReady(allPlayers);
     checkForPlayersTurn(shooter, game);
 
     otherPlayers.stream()
         .map(player -> player.getGameArena())
         .forEach(gameArena -> gameArenaService.registerHit(shootRequest.getBoardPosition(), gameArena));
+
+    allPlayers.stream().forEach(player -> {
+    if(player.getGameArena().isAllShipsSunk()) {
+        playerService.setWinner(player);
+      }
+    });
+
     gameService.nextTurn(game);
     gameService.saveGame(game);
+  }
+
+  private void checkForWinner(List<Player> allPlayers) {
+    final boolean isWinner = allPlayers.stream().anyMatch(player -> player.getGameArena().isAllShipsSunk());
+    if(isWinner) {
+      throw new IllegalShotException("The game has finished, there is already a winner");
+    }
+
   }
 
   private void checkForPlayersTurn(final Player player, final Game game) {

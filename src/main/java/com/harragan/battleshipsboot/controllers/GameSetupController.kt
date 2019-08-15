@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 class GameSetupController(private val setupGame: SetupGame) {
 
     @ResponseStatus(HttpStatus.CREATED)
-    @RequestMapping(value = ["/setupgame"], method = [RequestMethod.POST])
+    @RequestMapping(value = ["/setupgame"], method = [RequestMethod.GET])
     fun setupGame() {
         setupGame.setup()
     }

@@ -1,15 +1,15 @@
 package com.harragan.battleshipsboot.model.game;
 
-import static javax.persistence.CascadeType.ALL;
-
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.*;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 public class GameArena {
@@ -22,6 +22,8 @@ public class GameArena {
     private Set<Ship> shipsOnBoard = new HashSet<>();
 
     private boolean allShipsPlaced;
+
+    private boolean allShipsSunk;
 
     @ManyToMany(cascade = ALL)
     private Set<BoardPosition> shotBoardPositions = new HashSet<>();
@@ -90,5 +92,13 @@ public class GameArena {
 
     public Set<BoardPosition> getShotPositions() {
         return this.shotBoardPositions;
+    }
+
+    public boolean isAllShipsSunk() {
+        return allShipsSunk;
+    }
+
+    public void setAllShipsSunk(boolean allShipsSunk) {
+        this.allShipsSunk = allShipsSunk;
     }
 }

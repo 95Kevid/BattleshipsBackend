@@ -19,7 +19,7 @@ public class Game {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
   @OrderColumn
-  @OneToMany(cascade = ALL)
+  @OneToMany
   private List<Player> players;
 
   private int noOfPlayers;
