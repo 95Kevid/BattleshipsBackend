@@ -10,6 +10,7 @@ import com.harragan.battleshipsboot.service.exceptions.IllegalShotException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -32,8 +33,11 @@ public class ShootingFacade {
     final List<Player> allPlayers = game.getPlayers();
     final List<Player> otherPlayers = allPlayers.stream()
         .filter(player -> player != shooter).collect(Collectors.toList());
+    final Optional<Player> winner = playerService.getWinner(allPlayers);
 
-    checkForWinner(allPlayers);
+    if(winner.isPresent()) {
+        throw new IllegalShotException("The game has finished, there is already a winner");
+    }
     checkIfAllPlayersAreReady(allPlayers);
     checkForPlayersTurn(shooter, game);
 
@@ -41,23 +45,10 @@ public class ShootingFacade {
         .map(player -> player.getGameArena())
         .forEach(gameArena -> gameArenaService.registerHit(shootRequest.getBoardPosition(), gameArena));
 
-    allPlayers.stream().forEach(player -> {
-    if(player.getGameArena().isAllShipsSunk()) {
-        playerService.setWinner(player);
-      }
-    });
-
     gameService.nextTurn(game);
     gameService.saveGame(game);
   }
 
-  private void checkForWinner(List<Player> allPlayers) {
-    final boolean isWinner = allPlayers.stream().anyMatch(player -> player.getGameArena().isAllShipsSunk());
-    if(isWinner) {
-      throw new IllegalShotException("The game has finished, there is already a winner");
-    }
-
-  }
 
   private void checkForPlayersTurn(final Player player, final Game game) {
     final Player playerTurn = gameService.checkForTurn(game.getId());

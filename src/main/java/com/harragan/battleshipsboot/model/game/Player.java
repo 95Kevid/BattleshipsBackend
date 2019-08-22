@@ -21,6 +21,8 @@ public class Player {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
+  private boolean loser;
+
   private boolean winner;
 
   public Player() {
@@ -46,7 +48,6 @@ public class Player {
     this.readyToStartGame = readyToStartGame;
   }
 
-
   public int getId() {
     return id;
   }
@@ -63,11 +64,19 @@ public class Player {
     this.gameArena = gameArena;
   }
 
+  public boolean isLoser() {
+    return loser;
+  }
+
+  public void setLoser(boolean loser) {
+    this.loser = loser;
+  }
+
   public boolean isWinner() {
-    return winner;
+      return winner;
   }
 
   public void setWinner(boolean winner) {
-    this.winner = winner;
+      this.winner = winner;
   }
 }

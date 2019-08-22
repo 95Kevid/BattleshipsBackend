@@ -45,7 +45,7 @@ public class GameStatusFacade {
   private PlayerInGameInfo createPlayerInGameInfo(Map<Player, Set<BoardPosition>> playersToHitPositions,
                                                   Map<Player, Set<Ship>> playersToSunkShips, Player player) {
     return new PlayerInGameInfo(player.getId(), player.getName(),
-    playersToHitPositions.get(player), playersToSunkShips.get(player), player.isWinner());
+    playersToHitPositions.get(player), playersToSunkShips.get(player), player.isLoser(), player.isWinner());
   }
 
   @NotNull

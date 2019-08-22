@@ -10,15 +10,17 @@ public class PlayerInGameInfo {
     private final String name;
     private final Set<BoardPosition> shotPositions;
     private final Set<Ship> sunkShips;
-    private final boolean isWinner;
+    private final boolean loser;
+    private final boolean winner;
 
     public PlayerInGameInfo(final int playerId, final String name, final Set<BoardPosition> shotPositions,
-                            final Set<Ship> sunkShips, final boolean isWinner) {
+                            final Set<Ship> sunkShips, final boolean isLoser, final boolean isWinner) {
         this.playerId = playerId;
         this.name = name;
         this.shotPositions = shotPositions;
         this.sunkShips = sunkShips;
-        this.isWinner = isWinner;
+        this.loser = isLoser;
+        this.winner = isWinner;
     }
 
     public int getPlayerId() {
@@ -38,6 +40,10 @@ public class PlayerInGameInfo {
     }
 
     public boolean isWinner() {
-        return isWinner;
+        return winner;
+    }
+
+    public boolean isLoser() {
+        return loser;
     }
 }

@@ -7,10 +7,7 @@ import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import com.harragan.battleshipsboot.service.exceptions.IllegalGameStartException;
 import org.springframework.stereotype.Service;
 
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 @Service
 public class PlayerService {
@@ -65,4 +62,30 @@ public class PlayerService {
   public void setWinner(Player player) {
     player.setWinner(true);
   }
+
+  public void setLoser(Player player) {
+    player.setLoser(true);
+  }
+
+  public Optional<Player> getWinner(List<Player> allPlayers) {
+    final long playersLeftInGame = allPlayers.stream().filter(player ->
+            !player.getGameArena().isAllShipsSunk()).count();
+    if(playersLeftInGame == 1) {
+      final Player winner = allPlayers.stream().filter((player -> !player.getGameArena()
+              .isAllShipsSunk())).findAny().get();
+      setWinner(winner);
+      return Optional.of(winner);
+    }
+    return Optional.ofNullable(null);
+  }
+
+  public void calculateLosers(List<Player> allPlayers) {
+    allPlayers.stream().forEach(player -> {
+      if(player.getGameArena().isAllShipsSunk()) {
+        setLoser(player);
+      }
+    });
+  }
+
+
 }
