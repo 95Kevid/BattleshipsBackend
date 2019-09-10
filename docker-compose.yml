@@ -2,7 +2,7 @@ version: "3"
 
 services:
   battleshipsboot:
-    build: .
+    image: 95kevid/battlships-backend
     ports:
       - "9721:9721"
       - "8080:8080"
@@ -17,3 +17,4 @@ services:
       - MYSQL_ROOT_PASSWORD=passworD
       - MYSQL_DATABASE=battleships
     restart: always
+    
