@@ -41,7 +41,7 @@ public class PlayerAddingFacadeTest {
     playerAddingFacade =
         new PlayerAddingFacade(
             playerService, gameService, playerRepository, gameArenaService);
-    game = new Game(2, 15);
+    game = new Game(2, 15, null);
     game.setId(1);
     burny = new Player("Burny");
     burny.setId(1);

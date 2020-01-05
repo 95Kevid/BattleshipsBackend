@@ -41,7 +41,7 @@ public class ShootingFacadeTest {
   @Before
   public void initTests() {
     MockitoAnnotations.initMocks(this);
-    game = new Game(2, 10);
+    game = new Game(2, 10, null);
     game.setId(1);
     shootingFacade = new ShootingFacade(gameService, gameArenaService, playerService);
     player1 = new Player();

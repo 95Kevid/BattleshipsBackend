@@ -1,5 +1,7 @@
 package com.harragan.battleshipsboot.model.game;
 
+import com.harragan.battleshipsboot.model.kotlinmodel.game.GameStatus;
+
 import static javax.persistence.CascadeType.ALL;
 
 
@@ -26,13 +28,16 @@ public class Game {
 
   private int gameArenaSize;
 
+  private GameStatus gameStatus;
+
   public Game() {
   }
 
-  public Game(final int noOfPlayers, final int gameArenaSize) {
+  public Game(final int noOfPlayers, final int gameArenaSize, final GameStatus gameStatus) {
     this.players = new LinkedList<>();
     this.noOfPlayers = noOfPlayers;
     this.gameArenaSize = gameArenaSize;
+    this.gameStatus = gameStatus;
   }
 
   public int getId() {
@@ -57,5 +62,13 @@ public class Game {
 
   public int getGameArenaSize() {
     return gameArenaSize;
+  }
+
+  public GameStatus getStatus() {
+    return gameStatus;
+  }
+
+  public void setGameStatus(final GameStatus gameStatus) {
+    this.gameStatus = gameStatus;
   }
 }

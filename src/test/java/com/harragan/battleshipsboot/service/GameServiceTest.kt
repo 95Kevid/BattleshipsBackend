@@ -2,6 +2,7 @@ package com.harragan.battleshipsboot.service
 
 import com.harragan.battleshipsboot.model.game.Game
 import com.harragan.battleshipsboot.model.game.Player
+import com.harragan.battleshipsboot.model.kotlinmodel.game.GameStatus
 import com.harragan.battleshipsboot.repositorys.GameRepository
 import com.nhaarman.mockito_kotlin.mock
 import org.assertj.core.api.Assertions.assertThat
@@ -15,7 +16,7 @@ class GameServiceTestKt {
 
     private val gameRepository: GameRepository = mock<GameRepository>()
 
-    private val game1 = Game(2, 10)
+    private val game1 = Game(2, 10, GameStatus.CREATE_GAME);
     private val gameService = GameService(gameRepository)
     private val player1 = Player("John")
     private val player2 = Player("Smith")
