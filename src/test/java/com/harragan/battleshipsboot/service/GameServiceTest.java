@@ -39,9 +39,9 @@ public class GameServiceTest {
   @Before
   public void initTest() {
     MockitoAnnotations.initMocks(this);
-    game1 = new Game(2, 10);
-    game2 = new Game(2, 10);
-    game3 = new Game(3, 10);
+    game1 = new Game(2, 10, null);
+    game2 = new Game(2, 10, null);
+    game3 = new Game(3, 10, null);
 
 
     player1 = new Player();
@@ -85,7 +85,7 @@ public class GameServiceTest {
 
   @Test
   public void givenAGameIdAGameIsReturned() {
-    final Game game = new Game(2, 10);
+    final Game game = new Game(2, 10, null);
     game.setId(12);
     when(gameRepository.findById(14)).thenReturn(Optional.of(game));
     final Game returnedGame = gameService.getGame(14);
@@ -105,7 +105,7 @@ public class GameServiceTest {
     player2.setReadyToStartGame(true);
     player3.setReadyToStartGame(false);
 
-    final Game game1 = new Game(3, 10);
+    final Game game1 = new Game(3, 10, null);
     game1.setPlayers(players);
     game1.setId(9);
 

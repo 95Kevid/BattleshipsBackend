@@ -5,6 +5,8 @@ import com.harragan.battleshipsboot.model.game.GameStatusResponse;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.model.game.PlayerInGameInfo;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.LoadGameRequest;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.LoadGameResponse;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
@@ -26,6 +28,10 @@ public class GameStatusFacade {
   public GameStatusFacade(final GameService gameService, final PlayerService playerService) {
     this.gameService = gameService;
     this.playerService = playerService;
+  }
+
+  public LoadGameResponse loadGame(LoadGameRequest loadGameRequest) {
+    return null;
   }
 
   public GameStatusResponse getGameStatus(final int gameId) {

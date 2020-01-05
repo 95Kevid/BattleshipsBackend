@@ -52,7 +52,7 @@ public class ShootingFacade {
         .forEach(gameArena -> gameArenaService.registerHit(shootRequest.getBoardPosition(), gameArena));
 
     gameService.nextTurn(game);
-    if (winner.isPresent()) playerService.savePlayer(winner.get());
+    if (winner.isPresent()) //playerService.savePlayer(winner.get());
     playerService.savePlayer(shooter);
     gameService.saveGame(game);
   }

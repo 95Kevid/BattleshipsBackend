@@ -3,6 +3,7 @@ package com.harragan.battleshipsboot.service;
 import com.harragan.battleshipsboot.model.game.Game;
 import com.harragan.battleshipsboot.model.game.Player;
 import com.harragan.battleshipsboot.model.game.PlayersToPlayersReady;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.GameStatus;
 import com.harragan.battleshipsboot.repositorys.GameRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class GameService {
   }
 
   public int createGame(final int numberOfPlayers, final int gameArenaSize) {
-    final Game game = new Game(numberOfPlayers, gameArenaSize);
+    final Game game = new Game(numberOfPlayers, gameArenaSize, GameStatus.CREATE_GAME);
     final Game savedGame = saveGame(game);
     return savedGame.getId();
   }
