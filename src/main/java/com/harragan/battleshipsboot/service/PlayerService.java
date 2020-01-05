@@ -2,11 +2,12 @@ package com.harragan.battleshipsboot.service;
 
 import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.game.Player;
+import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.repositorys.PlayerRepository;
 import com.harragan.battleshipsboot.service.exceptions.IllegalGameStartException;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.*;
 
 @Service
 public class PlayerService {
@@ -46,5 +47,47 @@ public class PlayerService {
     } else {
       throw new IllegalGameStartException("The Player has not placed all their ships.");
     }
+  }
+
+  public void savePlayer(final Player player) {
+    playerRepository.save(player);
+  }
+
+  public Map<Player, Set<BoardPosition>> getPlayersToShotPositions(final Set<Player> players) {
+    final Map<Player, Set<BoardPosition>> result = new HashMap<>();
+    players.forEach(player -> result.put(player, player.getGameArena().getShotPositions()));
+    return result;
+  }
+
+  public void setWinner(Player player) {
+    player.setWinner(true);
+  }
+
+  public void setLoser(Player player) {
+    player.setLoser(true);
+  }
+
+  public Optional<Player> getWinner(List<Player> allPlayers) {
+    final long playersLeftInGame = allPlayers.stream().filter(player ->
+            !(player.getGameArena().isAllShipsSunk())).count();
+    if(playersLeftInGame == 1) {
+      final Player winner = allPlayers.stream().filter((player -> !player.getGameArena()
+              .isAllShipsSunk())).findAny().get();
+      setWinner(winner);
+      return Optional.of(winner);
+    }
+    return Optional.ofNullable(null);
+  }
+
+  public boolean loserCheck(Player player) {
+    return player.getGameArena().isAllShipsSunk();
+  }
+
+  public void calculateLosers(List<Player> allPlayers) {
+    allPlayers.stream().forEach(player -> {
+      if(player.getGameArena().isAllShipsSunk()) {
+        setLoser(player);
+      }
+    });
   }
 }

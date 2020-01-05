@@ -25,19 +25,24 @@ public class GameServiceTest {
 
   private Game game1;
   private Game game2;
+  private Game game3;
   private Player player1;
   private Player player2;
   private Player player3;
 
-  @Mock private GameRepository gameRepository;
+  @Mock
+  private GameRepository gameRepository;
 
-  @InjectMocks private GameService gameService;
+  @InjectMocks
+  private GameService gameService;
 
   @Before
   public void initTest() {
     MockitoAnnotations.initMocks(this);
     game1 = new Game(2, 10);
     game2 = new Game(2, 10);
+    game3 = new Game(3, 10);
+
 
     player1 = new Player();
     player1.setId(1);

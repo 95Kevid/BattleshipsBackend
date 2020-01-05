@@ -15,9 +15,11 @@ public class PollingFacadeTest {
 
   private PollingFacade pollingFacade;
 
-  @Mock private GameService gameService;
+  @Mock
+  private GameService gameService;
 
-  @Mock private GameRepository gameRepository;
+  @Mock
+  private GameRepository gameRepository;
 
   @Before
   public void initTest() {
@@ -27,7 +29,7 @@ public class PollingFacadeTest {
 
   @Test
   public void
-      givenWhenAGameIdIsProvidedThenANumberOfPlayersInTheGameIsProvidedWithANumberOfPlayersThatAreNotReady() {
+  givenWhenAGameIdIsProvidedThenANumberOfPlayersInTheGameIsProvidedWithANumberOfPlayersThatAreNotReady() {
     final PlayersToPlayersReady expectedPlayersToPlayersNotReady = new PlayersToPlayersReady(3, 2);
 
     when(gameService.getPlayersToPlayersReady(1)).thenReturn(expectedPlayersToPlayersNotReady);

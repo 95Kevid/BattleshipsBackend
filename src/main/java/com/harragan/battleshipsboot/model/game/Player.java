@@ -1,28 +1,42 @@
 package com.harragan.battleshipsboot.model.game;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+
 
 @Entity
 public class Player {
 
-  @OneToOne(cascade = CascadeType.PERSIST)
+  @JsonIgnore
+  @OneToOne(cascade = CascadeType.ALL)
   private GameArena gameArena;
 
-  private String playerName;
+  @JsonIgnore
   private boolean readyToStartGame;
+
+  private String playerName;
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int id;
 
-  public Player() {}
+  private boolean loser;
+
+  private boolean winner;
+
+  public Player() {
+  }
 
   public Player(final String playerName) {
+    this.playerName = playerName;
+  }
+
+  public String getName() {
+    return playerName;
+  }
+
+  public void setName(final String playerName) {
     this.playerName = playerName;
   }
 
@@ -50,7 +64,19 @@ public class Player {
     this.gameArena = gameArena;
   }
 
-  public void setName(final String name) {
-    this.playerName = name;
+  public boolean isLoser() {
+    return loser;
+  }
+
+  public void setLoser(boolean loser) {
+    this.loser = loser;
+  }
+
+  public boolean isWinner() {
+      return winner;
+  }
+
+  public void setWinner(boolean winner) {
+      this.winner = winner;
   }
 }

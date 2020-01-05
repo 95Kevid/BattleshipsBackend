@@ -4,11 +4,17 @@ import com.harragan.battleshipsboot.model.game.GameArena;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.game.Orientation;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
+import com.harragan.battleshipsboot.model.kotlinmodel.ships.ShipType;
 import com.harragan.battleshipsboot.service.exceptions.IllegalBoardPlacementException;
+import com.harragan.battleshipsboot.service.exceptions.IllegalShotException;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class GameArenaService {
@@ -67,28 +73,34 @@ public class GameArenaService {
   public boolean isShipOffBoard(final Ship ship, final GameArena gameArena) {
     if (ship.getOrientation() == Orientation.VERTICAL
         && ship.getOccupiedBoardPositions().get(0).getRow() + ship.getType().getLength()
-            > gameArena.getGameArenaSize() + 1) {
+        > gameArena.getGameArenaSize() + 1) {
       return true;
     }
     return ship.getOrientation() == Orientation.HORIZONTAL
         && ship.getOccupiedBoardPositions().get(0).getCol() + ship.getType().getLength()
-            > gameArena.getGameArenaSize() + 65;
+        > gameArena.getGameArenaSize() + 65;
   }
 
   private boolean positionsAlreadyOccupied(final Ship ship, final GameArena gameArena) {
-    for (final Ship gameArenaShip : gameArena.getShipsOnBoard()) {
-      final boolean isShipOccupyingPosition =
-          gameArenaShip.getOccupiedBoardPositions().stream()
-              .anyMatch(ship.getOccupiedBoardPositions()::contains);
+    List<String> bp = gameArena.getShipsOnBoard().stream()
+            .map(Ship::getOccupiedBoardPositions)
+            .flatMap(positions -> positions.stream().map(BoardPosition::toString))
+            .collect(Collectors.toList());
 
-      if (isShipOccupyingPosition) {
-        return true;
-      }
-    }
-    return false;
+    List<String> shipPositions = ship.getOccupiedBoardPositions().stream()
+            .map(BoardPosition::toString)
+            .collect(Collectors.toList());
+
+    bp.retainAll(shipPositions);
+    return !bp.isEmpty();
+
   }
 
   public void registerHit(final BoardPosition boardPosition, final GameArena gameArena) {
+    if (isPositionAlreadyHit(boardPosition, gameArena)) {
+      return;
+    }
+    checkShotIsValid(boardPosition, gameArena);
     boardPosition.setHit(true);
     for (final Ship ship : gameArena.getShipsOnBoard()) {
       if (ship.getOccupiedBoardPositions().stream()
@@ -98,8 +110,19 @@ public class GameArenaService {
           gameArena.addSunkenShip(ship);
         }
       }
-      gameArena.addShotPosition(boardPosition);
     }
+    gameArena.addShotPosition(boardPosition);
+    checkForAllShipsSunk(gameArena);
+  }
+
+  private void checkForAllShipsSunk(GameArena gameArena) {
+    if (ShipType.values().length == gameArena.getSunkShips().size()) {
+      gameArena.setAllShipsSunk(true);
+    }
+  }
+
+  private boolean isPositionAlreadyHit(final BoardPosition boardPosition, final GameArena gameArena) {
+    return gameArena.getShotPositions().stream().anyMatch(bp -> bp.positionEqual(boardPosition));
   }
 
   public BoardPosition getOccupiedPositionsOfShip(
@@ -156,6 +179,21 @@ public class GameArenaService {
         ship.getOccupiedBoardPositions().stream().allMatch(p -> p.isHit());
     if (allPositionsHit) {
       ship.setSunk(true);
+    }
+  }
+
+  public Set<BoardPosition> getShotPositions(final Set<GameArena> gameArenas) {
+    final Set<BoardPosition> getShotPositions = new HashSet<>();
+    gameArenas.forEach(gameArena -> getShotPositions.addAll(gameArena.getShotPositions()));
+    return getShotPositions;
+  }
+
+  private void checkShotIsValid(final BoardPosition boardPosition, final GameArena gameArena) {
+    if (boardPosition.getCol() - 'A' > (gameArena.getGameArenaSize() - 1)
+        || boardPosition.getRow() > gameArena.getGameArenaSize()) {
+      throw new IllegalShotException("The board position provided is out of the bounds of the game arena."
+          + " The arena size is " + gameArena.getGameArenaSize() + "x"
+          + gameArena.getGameArenaSize() + ", Please take a shot within these bounds.");
     }
   }
 }

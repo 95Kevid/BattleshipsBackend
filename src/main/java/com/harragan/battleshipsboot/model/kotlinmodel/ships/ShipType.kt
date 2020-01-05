@@ -7,3 +7,4 @@ enum class ShipType(val length: Int) {
     DESTROYER(2),
     BATTLESHIP(4)
 }
+

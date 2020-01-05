@@ -14,6 +14,7 @@ import com.harragan.battleshipsboot.model.kotlinmodel.ships.ShipType;
 import com.harragan.battleshipsboot.service.GameArenaService;
 import com.harragan.battleshipsboot.service.GameService;
 import com.harragan.battleshipsboot.service.PlayerService;
+import com.harragan.battleshipsboot.service.ShipColouringService;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -23,20 +24,25 @@ public class ShipPlacingFacadeTest {
 
   private ShipPlacingFacade shipPlacingFacade;
 
-  @Mock private GameArenaService gameArenaService;
+  @Mock
+  private GameArenaService gameArenaService;
 
-  @Mock private GameService gameService;
+  @Mock
+  private ShipColouringService shipColouringService;
 
-  @Mock private PlayerService playerService;
+  @Mock
+  private PlayerService playerService;
 
-  @Mock private GameArena gameArena;
+  @Mock
+  private GameArena gameArena;
 
-  @Mock private Player burney;
+  @Mock
+  private Player burney;
 
   @Before
   public void initTest() {
     MockitoAnnotations.initMocks(this);
-    shipPlacingFacade = new ShipPlacingFacade(gameArenaService, gameService, playerService);
+    shipPlacingFacade = new ShipPlacingFacade(gameArenaService, playerService, shipColouringService);
   }
 
   @Test
@@ -46,13 +52,11 @@ public class ShipPlacingFacadeTest {
         new Ship(Orientation.HORIZONTAL, new BoardPosition('A', 1), ShipType.DESTROYER);
     game.setId(1);
 
-    when(gameService.getGame(1)).thenReturn(game);
     when(burney.getGameArena()).thenReturn(gameArena);
     when(playerService.getPlayerById(1)).thenReturn(burney);
 
     shipPlacingFacade.placeShip(1, game.getId(), destroyer);
 
     verify(gameArenaService, times(1)).addShip(destroyer, gameArena);
-    verify(gameService, times(1)).getGame(1);
   }
 }

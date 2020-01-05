@@ -65,6 +65,7 @@ public class GameService {
     final Queue<Player> playersInGame = getPlayersFromGame(game);
     final Player currentPlayersTurn = playersInGame.remove();
     playersInGame.add(currentPlayersTurn);
+    game.setPlayers(new LinkedList<>(playersInGame));
   }
 
   public PlayersToPlayersReady getPlayersToPlayersReady(final int gameId) {
@@ -83,10 +84,11 @@ public class GameService {
     return gameRepository.save(game);
   }
 
-  public int checkForTurn(final int gameId) {
+  public Player checkForTurn(final int gameId) {
     final Game game = getGame(gameId);
-    final LinkedList<Player> players = game.getPlayers();
-    final Player player = players.get(game.getTurnIndex());
-    return player.getId();
+    final Queue<Player> players = game.getPlayers();
+    return players.peek();
   }
 }
+
+

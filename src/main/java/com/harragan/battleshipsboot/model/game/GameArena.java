@@ -1,99 +1,104 @@
 package com.harragan.battleshipsboot.model.game;
 
-import static javax.persistence.CascadeType.PERSIST;
-
 import com.harragan.battleshipsboot.model.kotlinmodel.game.BoardPosition;
 import com.harragan.battleshipsboot.model.kotlinmodel.ships.Ship;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+
+import static javax.persistence.CascadeType.ALL;
 
 @Entity
 public class GameArena {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
 
-  @OneToMany(cascade = PERSIST)
-  private Set<Ship> shipsOnBoard = new HashSet<>();
+    @OneToMany(cascade = ALL)
+    private Set<Ship> shipsOnBoard = new HashSet<>();
 
-  private boolean allShipsPlaced;
+    private boolean allShipsPlaced;
 
-  @OneToMany(cascade = PERSIST)
-  private List<BoardPosition> shotBoardPositions = new ArrayList<>();
+    private boolean allShipsSunk;
 
-  @OneToMany(cascade = PERSIST)
-  private Set<Ship> sunkShips = new HashSet<>();
+    @ManyToMany(cascade = ALL)
+    private Set<BoardPosition> shotBoardPositions = new HashSet<>();
 
-  private int gameArenaSize;
+    @OneToMany(cascade = ALL)
+    private Set<Ship> sunkShips = new HashSet<>();
 
-  public GameArena() {}
+    private int gameArenaSize;
 
-  public GameArena(final int gameArenaSize) {
-    this.gameArenaSize = gameArenaSize;
-  }
+    public GameArena() {
+    }
 
-  public List<Ship> getSunkShips() {
-    return new ArrayList<>(sunkShips);
-  }
+    public GameArena(final int gameArenaSize) {
+        this.gameArenaSize = gameArenaSize;
+    }
 
-  public void setSunkShips(final Set<Ship> sunkShips) {
-    this.sunkShips = sunkShips;
-  }
+    public List<Ship> getSunkShips() {
+        return new ArrayList<>(sunkShips);
+    }
 
-  public Set<Ship> getShipsOnBoard() {
-    return shipsOnBoard;
-  }
+    public void setSunkShips(final Set<Ship> sunkShips) {
+        this.sunkShips = sunkShips;
+    }
 
-  public void setShipsOnBoard(final Set<Ship> shipsOnBoard) {
-    this.shipsOnBoard = shipsOnBoard;
-  }
+    public Set<Ship> getShipsOnBoard() {
+        return shipsOnBoard;
+    }
 
-  public void addShip(final Ship ship) {
-    shipsOnBoard.add(ship);
-  }
+    public void setShipsOnBoard(final Set<Ship> shipsOnBoard) {
+        this.shipsOnBoard = shipsOnBoard;
+    }
 
-  public boolean isShipOnBoard(final Ship ship) {
-    return getShipsOnBoard().contains(ship);
-  }
+    public void addShip(final Ship ship) {
+        shipsOnBoard.add(ship);
+    }
 
-  public void addShotPosition(final BoardPosition boardPosition) {
-    this.shotBoardPositions.add(boardPosition);
-  }
+    public boolean isShipOnBoard(final Ship ship) {
+        return getShipsOnBoard().contains(ship);
+    }
 
-  public void clearArena() {
-    shipsOnBoard.clear();
-    shotBoardPositions.clear();
-    sunkShips.clear();
-  }
+    public void addShotPosition(final BoardPosition boardPosition) {
+        this.shotBoardPositions.add(boardPosition);
+    }
 
-  public void addSunkenShip(final Ship ship) {
-    sunkShips.add(ship);
-  }
+    public void clearArena() {
+        shipsOnBoard.clear();
+        shotBoardPositions.clear();
+        sunkShips.clear();
+    }
 
-  public void setShotBoardPositions(final List<BoardPosition> shotBoardPositions) {
-    this.shotBoardPositions = shotBoardPositions;
-  }
+    public void addSunkenShip(final Ship ship) {
+        sunkShips.add(ship);
+    }
 
-  public int getGameArenaSize() {
-    return gameArenaSize;
-  }
+    public int getGameArenaSize() {
+        return gameArenaSize;
+    }
 
-  public boolean isAllShipsPlaced() {
-    return allShipsPlaced;
-  }
+    public boolean isAllShipsPlaced() {
+        return allShipsPlaced;
+    }
 
-  public void setAllShipsPlaced(final boolean input) {
-    allShipsPlaced = input;
-  }
+    public void setAllShipsPlaced(final boolean input) {
+        allShipsPlaced = input;
+    }
 
-  public void shoot(final BoardPosition position) {}
+    public Set<BoardPosition> getShotPositions() {
+        return this.shotBoardPositions;
+    }
+
+    public boolean isAllShipsSunk() {
+        return allShipsSunk;
+    }
+
+    public void setAllShipsSunk(boolean allShipsSunk) {
+        this.allShipsSunk = allShipsSunk;
+    }
 }

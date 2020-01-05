@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 public class BoardPositionFactory {
 
   public static BoardPosition createBoardPosition(final char column, final int row) {
-    if (!Character.isAlphabetic(column)) {
+    final char col = Character.toUpperCase(column);
+    if (!Character.isAlphabetic(col)) {
       throw new IllegalArgumentException("The column has to be a alphabetic character.");
     }
     if (row < 1) {
       throw new IllegalArgumentException("The row number needs to be greater than 1.");
     }
-    return new BoardPosition(column, row);
+    return new BoardPosition(col, row);
   }
 }
